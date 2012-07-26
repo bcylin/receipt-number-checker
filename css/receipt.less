@@ -1,0 +1,765 @@
+/**
+ * receipt.less
+ *
+ * Created by Ben (c) 2012
+ * Licensed under GNU General Public License v2
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ */
+
+/* Body */
+
+@body-margin: 35px;
+@background-image: url('../img/noise-237.png');
+
+body {
+	font-family: sans-serif;
+	background-color: rgb(245,245,245);
+	background-image: @background-image;
+	background-attachment: fixed;
+	overflow-y: scroll;
+}
+
+.desktop {
+	width: 70%;
+	min-width: 850px;
+	margin: @body-margin auto;
+}
+
+.mobile {
+	width: width;
+	height: auto;
+	min-width: 0;
+	min-height: none;
+	margin: 0;
+}
+
+@mobile-msg-width: 90%;
+@mobile-msg-height: 30%;
+
+.mobile .msg {
+	.box;
+	position: fixed;
+	z-index: 101;
+	top: 40%;
+	left: 50%;
+	width: @mobile-msg-width;
+	height: @mobile-msg-height;
+	margin-left: -@mobile-msg-width / 2;
+	margin-top: -@mobile-msg-height / 2;
+	padding: 2em 0;
+	background: transparent;
+	text-align: center;
+	font-size: 1.1em;
+	color: white;
+}
+
+.mobile .msg-background {
+	background: rgba(0,0,0,.8);
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Containers */
+
+// LESS Variables
+@left-width: 50%;
+@page-height: 550px;
+@record-margin-top: 30px;
+@record-width: 350px;
+
+.paper-shadow {
+	-webkit-box-shadow: 1px 3px 10px rgba(0,0,0,.5);
+	box-shadow: 1px 3px 10px rgba(0,0,0,.5);
+}
+
+.container {
+	border: 1px solid #DDD;
+	height: @page-height;
+	display: block;
+	padding: 1em;
+	box-sizing: border-box;
+	background-color: white;
+	.paper-shadow;
+}
+
+.operation {
+	.container;
+	.box;
+	// width: @left-width;
+	width: 450px;
+}
+
+.record {
+	.box;
+	float: right;
+	position: relative;
+	margin-top: @record-margin-top;
+	// width: 90% - @left-width;
+	width: @record-width;
+}
+
+/* Fix operation panel in a taller window */
+@media screen and (min-height: 601px) {
+	.operation {
+		position: fixed;
+	}
+}
+
+/* Layout for a shorter window */
+@media screen and (max-height: 600px) {
+	.operation {
+		float: left;
+		margin-bottom: 50px;
+	}
+}
+
+
+// Parametric Mixins
+.box-margin {
+	margin: 1em;
+}
+.border {
+	border: 1px solid black;
+}
+.box {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+/* Mark icons */
+
+@mark-radius: 15px;
+
+.mark-common {
+	display:inline-block;
+	width: @mark-radius * 2;
+	height: @mark-radius * 2;
+	font-family: sans-serif;
+	font-size: @mark-radius;
+	font-weight: bold;
+	text-align: center;
+	padding-top: @mark-radius / 3;
+	// line-height: @mark-radius * 2 * 4 / 5;
+	border: 3px solid white;
+	border-radius: @mark-radius;
+	color: white;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+	box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+	.box;
+}
+
+.check-mark {
+	.mark-common;
+	background: #3C0;
+}
+.check-mark:after {
+	content: '\2713';	// &#x2713;
+}
+
+.cross-mark {
+	.mark-common;
+	background: #F08080;	// used to be #C00;
+}
+.cross-mark:after {
+	content: '\2716';	// &#x2718;
+}
+
+.question-mark {
+	.mark-common;
+	background: #FC3;
+}
+.question-mark:after {
+	content: '?';
+}
+
+.template {
+	display: none;
+}
+.hidden {
+	display: none;
+}
+
+
+/* Ribbon */
+
+@ribbon-height: 44px;
+@ribbon-width: 350px;
+@ribbon-offset: 50px;
+
+.ribbon {
+	.box;
+	position: fixed;
+	z-index: 10;
+	top: -@ribbon-height / 2 + @ribbon-offset;
+	right: -@ribbon-width / 2 + @ribbon-offset;
+	height: @ribbon-height;
+	width: @ribbon-width;
+	padding: 2px;
+	background: rgb(225,118,0);
+	box-shadow: 0px 2px 15px rgba(0,0,0,.5);
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.ribbon .stitches {
+	.box;
+	display: inline-block;
+	border-top: 2px dotted rgb(255,228,181);
+	border-bottom: 2px dotted rgb(255,228,181);
+	padding: 10px;
+	width: 100%;
+	height: 40px;
+	line-height: 20px;
+	font-size: 20px;
+	letter-spacing: 5px;
+	text-align: center;
+	text-shadow: -1px -1px 1px rgba(0,0,0,.8);
+	color: white;
+}
+
+
+/* Welcome */
+
+#welcome .modal-header {
+	height: 30px;
+}
+
+#welcome .title {
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 10px 35px;
+}
+
+#welcome .modal-body {
+	padding: 10px 40px;
+}
+
+#welcome .modal-body ul {
+	padding-left: 30px;
+}
+
+#welcome .modal-body li {
+	list-style: disc;
+	line-height: 1.5em;
+}
+
+#welcome hr {
+	margin: 0 30px;
+}
+
+#welcome img {
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+#welcome .icons {
+	margin: 10px 30px;
+}
+
+
+/* Input */
+
+#input {
+	position: relative;
+	.box;
+	margin: 1em;
+	padding: 1em;
+	background-color: rgb(220,220,220);
+	border-radius: 5px;
+}
+
+@arrow-color: #333333;
+
+#input .arrow {
+	position: absolute;
+	top: 1.5em;
+	left: 3em;
+	height: 60px;
+	width: 110px;
+	padding: 1em;
+	color: white;
+	text-align: right;
+	background-color: @arrow-color;
+	border-radius: 5px 3px 3px 5px;
+	.box;
+}
+
+#input .arrow:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 108px;
+	margin: 0;
+	width: 35px;
+	border-top: 30px solid transparent;
+	border-right: 0;
+	border-bottom: 30px solid transparent;
+	border-left: 35px solid @arrow-color;
+	height: 60px;
+	.box;
+}
+
+#input input {
+	width: 2em;
+	margin-left: 5.5em;
+	padding: .5em 1em;
+	font-size: 2em;
+	border-radius: 5px;
+	background: rgb(245,245,245);
+}
+
+#input input:focus {
+	outline: none;
+	background: white;
+	-webkit-transition: background 0.2s ease-in 0;
+	-moz-transition: background 0.2s ease-in 0;
+	-o-transition: background 0.2s ease-in 0;
+	-ms-transition: background 0.2s ease-in 0;
+	transition: background 0.2s ease-in 0;
+}
+
+
+/* Switch */
+#switch {
+	.box-margin;
+	.box;
+	font-size: 1.1em;
+	margin: 1.5em 2em 1em 2em;
+	text-align: center;
+}
+
+#switch label {
+	display: inline-block;
+	width: 5em;
+	height: 2em;
+	line-height: 2em;
+	margin: 0 .5em;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	color: gray;
+	cursor: pointer;
+}
+
+#switch label {
+	border: 1px solid #CCC;
+	background: -webkit-linear-gradient(top, white, rgb(230,230,230));
+	background: -moz-linear-gradient(top, white, rgb(230,230,230));
+	background: -o-linear-gradient(top, white, rgb(230,230,230));
+	background: -ms-linear-gradient(top, white, rgb(230,230,230));
+	background: linear-gradient(top, white, rgb(230,230,230));
+}
+
+#switch label:hover {
+	color: rgb(40,40,40);
+	-webkit-transition: color 0.2s ease-in 0;
+	-moz-transition: color 0.2s ease-in 0;
+	-o-transition: color 0.2s ease-in 0;
+	-ms-transition: color 0.2s ease-in 0;
+	transition: color 0.2s ease-in 0;
+	background: -webkit-linear-gradient(top, white, rgb(210,210,210));
+	background: -moz-linear-gradient(top, white, rgb(230,230,230));
+	background: -o-linear-gradient(top, white, rgb(230,230,230));
+	background: -ms-linear-gradient(top, white, rgb(230,230,230));
+	background: linear-gradient(top, white, rgb(230,230,230));
+}
+
+#switch .selected {
+	color: rgb(245,245,245);
+	text-shadow: 0px -1px 1px rgba(0,0,0,.5);
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.5);
+	background: -webkit-linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
+	background: -moz-linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
+	background: -o-linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
+	background: -ms-linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
+	background: linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
+}
+
+#switch .selected:hover {
+	color: white;
+	background: -webkit-linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
+	background: -moz-linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
+	background: -o-linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
+	background: -ms-linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
+	background: linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
+}
+
+
+/* Prize */
+#prize {
+	.box-margin;
+	.box;
+}
+
+@section-vertical-padding: .5em;
+
+#prize section {
+	padding: @section-vertical-padding 1em;
+}
+
+#prize section:not(:last-of-type):after {
+	position: relative;
+	display: block;
+	content: "";
+	height: 0;
+	top: @section-vertical-padding;
+	border-bottom: 2px solid #DDD;
+	-webkit-mask-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
+	-moz-mask-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
+	-o-mask-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
+	-ms-mask-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
+	mask-image: linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
+}
+
+@number-height: 1.5em;
+
+#prize .name {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: right;
+	line-height: @number-height + .2em;
+	width: 7.5em;
+	height: @number-height;
+	padding: (@number-height - 1em) / 2;
+	margin-right: 1em;
+}
+
+#prize ul {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0;
+	padding: 0;
+}
+
+#prize .numbers input {
+	border: 0;
+	font-size: 16px;
+	letter-spacing: 2px;
+	width: 100px;
+	height: @number-height;
+	padding: (@number-height - 1em) / 2;
+	margin: 0;
+}
+
+#prize .numbers input:focus {
+	outline: none;
+}
+
+
+/* Counter */
+
+// Parametric Mixins
+.metal-gradient {
+	background-image: -o-linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
+	background-image: -moz-linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
+	background-image: -webkit-linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
+	background-image: -ms-linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
+	background-image: linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.3, rgb(50,50,50)),
+		color-stop(0.6, rgb(100,100,100))
+	);
+}
+
+@counter-height: 60px;
+
+#counter {
+	.box;
+	.metal-gradient;
+	position: relative;
+	color: white;
+	height: @counter-height;
+	width: @record-width;
+	padding-top: 15px;
+	line-height: 2em;
+	text-align: center;
+	border-radius: 5px;
+	box-shadow: 0px 30px 20px -20px rgba(0,0,0,.5);
+}
+
+/* Fix counter in a taller window */
+@media screen and (min-height: 601px) {
+
+	#counter {
+		position: fixed;
+		top: @body-margin + @record-margin-top;
+	}
+
+	#counter:before {
+		content: "";
+		position: absolute;
+		top: -(@body-margin + @record-margin-top);
+		left: 0;
+		background-color: rgb(245,245,245);
+		background-image: @background-image;
+		height: @body-margin + @record-margin-top;
+		width: @record-width;
+	}
+}
+
+// surface underneath the panel
+#counter:after {
+	content: "";
+	position: absolute;
+	z-index: -2;
+	top: 0;
+	left: 1%;
+	width: 99%;
+	height: @counter-height + 3px;
+	border-radius: 5px;
+	background-color: gray;
+	box-shadow: 0px 5px 10px 0px rgba(0,0,0,.3);
+}
+
+#counter .separator {
+	background: gray;
+	border-left: 1px solid rgb(60,60,60);
+	border-right: 1px solid rgb(60,60,60);
+	margin: 0 1em;
+}
+
+#counter .count {
+	display: inline-block;
+	width: 3em;
+}
+#counter .count:before { content: " "; }
+#counter .count:after { content: " "; }
+
+#counter .frame {
+	cursor: pointer;
+	text-shadow: black 0px -1px 1px;
+}
+
+#counter .frame:hover {
+	color: LemonChiffon;
+	-webkit-transition: color 0.2s ease-in 0;
+	-moz-transition: color 0.2s ease-in 0;
+	-o-transition: color 0.2s ease-in 0;
+	-ms-transition: color 0.2s ease-in 0;
+	transition: color 0.2s ease-in 0;
+}
+
+
+/* List */
+
+#list {
+	.box;
+	position: absolute;
+	z-index: -1;
+	top: @counter-height;
+	left: 10%;
+	width: 80%;
+	border: 1px solid #DDD;
+	background-color: white;
+	// max-height: @page-height - @record-margin-top - @counter-height;
+	margin-bottom: 50px;
+	-webkit-box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+	.paper-shadow;
+}
+
+#list:after {
+	content: "";
+	position: absolute;
+	background: transparent;
+	bottom: -50px;
+	height: 50px;
+	width: 100%;
+}
+
+#list li {
+	margin: 0 10px;
+	font-size: 18px;
+	padding: 16px;
+	height: 50px;
+	border-top: 1px solid rgb(225,225,225);
+	.box;
+}
+
+#list .missed {
+	color: gray;
+}
+
+#list .missed .num {
+	text-decoration: line-through;
+}
+
+#list .winning {
+	cursor: pointer;
+	background: -webkit-linear-gradient(left, white, snow 20%, snow 85%, white);
+	background: -moz-linear-gradient(left, white, snow 20%, snow 85%, white);
+	background: -o-linear-gradient(left, white, snow 20%, snow 85%, white);
+	background: -ms-linear-gradient(left, white, snow 20%, snow 85%, white);
+	background: linear-gradient(left, white, snow 20%, snow 85%, white);
+}
+
+#list .months {
+	font-size: 12px;
+	line-height: 18px;
+	color: gray;
+}
+
+#list .num {
+	font-size: 20px;
+	letter-spacing: 2px;
+	width: 3em;
+	padding: 0 1em;
+	font-weight: bold;
+}
+
+#list .mark {
+	float: right;
+	vertical-align: middle;
+	margin-top: -@mark-radius / 2;
+}
+
+#list .result {
+	font-size: 14px;
+	line-height: 18px;
+	color: gray;
+	float: right;
+	padding-right: .5em;
+	text-align: right;
+}
+
+
+/* Motify Modal */
+
+#notify {
+	border-radius: 10px;
+	border: 3px solid #DDD;
+	.box;
+}
+
+@win-mark-radius: 40px;
+
+#notify .mark {
+	display: block;
+	margin: 15px auto;
+	width: @win-mark-radius * 2;
+	height: @win-mark-radius * 2;
+	font-size: @win-mark-radius;
+	font-weight: bold;
+	text-align: center;
+	padding-top: @win-mark-radius / 3 + 2px;
+	// line-height: @win-mark-radius * 2 * 4 / 5;
+	border: @win-mark-radius / 8 solid white;
+	border-radius: @win-mark-radius;
+	color: white;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+	box-shadow: 1px 1px 6px rgba(0,0,0,.5);
+}
+
+#notify .numbers {
+	position: relative;
+	text-align: center;
+	background: rgb(245,245,245);
+	padding: 10px 0;
+}
+
+#notify .number {
+	display: inline-block;
+	font-size: 45px;
+	font-weight: bold;
+	letter-spacing: 5px;
+	text-shadow: 0px -1px 1px rgba(0,0,0,.8);
+}
+
+@notify-months-size: 14px;
+
+#notify .months {
+	position: absolute;
+	height: @notify-months-size;
+	top: 50%;
+	left: 25px;
+	margin-top: -@notify-months-size / 2;
+}
+
+#notify .first-five {
+	color: rgb(50,50,50);
+}
+
+#notify .last-three {
+	color: #C00;
+}
+
+#notify .result {
+	display: block;
+	font-size: 30px;
+	text-align: center;
+	margin: 15px auto;
+}
+
+#notify .description {
+	display: block;
+	text-align: center;
+}
+
+.modal .close {
+	float: left;
+}
+
+#notify .btn {
+	float: right;
+	clear: both;
+	margin-top: 20px;
+}
+
+
+/* Footer */
+
+footer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	min-width: 1200px;
+	min-height: 28px;
+	color: rgb(60,60,60);
+	background: rgba(200,200,200,.3);
+	-webkit-mask-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
+	mask: linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
+	-o-mask-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
+	-ms-mask-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
+	mask-image: linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
+}
+
+@author-color: rgb(17,33,201);
+
+footer .author {
+	color: @author-color;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+footer .license {
+	float: right;
+	display: inline-block;
+	margin: 12px 20px 10px;
+	font-size: 12px;
+}
+
+footer .license a:visited {
+	color: @author-color;
+}
+
+.tooltip-arrow {
+
+}
+
+.tooltip-inner {
+	padding: 5px 8px;
+}
