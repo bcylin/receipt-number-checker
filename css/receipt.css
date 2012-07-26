@@ -536,6 +536,14 @@ body {
   cursor: pointer;
   text-shadow: #000000 0px -1px 1px;
 }
+#counter .frame:hover {
+  color: LemonChiffon;
+  -webkit-transition: color 0.2s ease-in 0;
+  -moz-transition: color 0.2s ease-in 0;
+  -o-transition: color 0.2s ease-in 0;
+  -ms-transition: color 0.2s ease-in 0;
+  transition: color 0.2s ease-in 0;
+}
 /* List */
 #list {
   -webkit-box-sizing: border-box;
@@ -573,10 +581,10 @@ body {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
-#list .losing {
+#list .missed {
   color: gray;
 }
-#list .losing .num {
+#list .missed .num {
   text-decoration: line-through;
 }
 #list .winning {
