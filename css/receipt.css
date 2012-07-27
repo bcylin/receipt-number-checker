@@ -1,21 +1,21 @@
 /**
  * receipt.less
+ * https://github.com/bcylin/receipt-number-checker
  *
  * Created by Ben (c) 2012
- * Licensed under GNU General Public License v2
+ * Released under GNU General Public License v2
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 /* Body */
 body {
-  font-family: sans-serif;
+  font-family: Helvetica, Tahoma, Verdana, sans-serif;
   background-color: #f5f5f5;
   background-image: url('../img/noise-237.png');
   background-attachment: fixed;
   overflow-y: scroll;
 }
 .desktop {
-  width: 70%;
-  min-width: 850px;
+  width: 850px;
   margin: 35px auto;
 }
 .mobile {
@@ -55,7 +55,6 @@ body {
 }
 /* Containers */
 .paper-shadow {
-  -webkit-box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
 }
 .container {
@@ -65,7 +64,6 @@ body {
   padding: 1em;
   box-sizing: border-box;
   background-color: white;
-  -webkit-box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
 }
 .operation {
@@ -75,7 +73,6 @@ body {
   padding: 1em;
   box-sizing: border-box;
   background-color: white;
-  -webkit-box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -221,9 +218,9 @@ body {
   box-sizing: border-box;
   position: fixed;
   z-index: 10;
-  top: 28px;
+  top: 30px;
   right: -125px;
-  height: 44px;
+  height: 40px;
   width: 350px;
   padding: 2px;
   background: #e17600;
@@ -244,13 +241,70 @@ body {
   border-bottom: 2px dotted #ffe4b5;
   padding: 10px;
   width: 100%;
-  height: 40px;
-  line-height: 20px;
-  font-size: 20px;
-  letter-spacing: 5px;
+  height: 36px;
+  line-height: 12px;
+  font-size: 12px;
+  letter-spacing: 1px;
   text-align: center;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.8);
   color: white;
+}
+/* Share */
+#share {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  width: 60px;
+  padding: 5px 0;
+  text-align: center;
+  background: transparent;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+#share .text {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: DarkSlateGray;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+}
+#share .icon {
+  border-radius: 4px;
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 2px auto;
+  opacity: .6;
+}
+#share .icon:hover {
+  box-shadow: 0 0 15px RoyalBlue;
+  opacity: 1;
+}
+#share .twitter {
+  background-image: url('../img/icon-twitter-48x48.png');
+}
+#share .facebook {
+  background-image: url('../img/icon-f-logo-48x48.png');
+}
+#share .google {
+  background-image: url('../img/icon-g-plus-48x48.png');
+}
+#share .bug {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  padding-top: 8px;
+  background: -webkit-linear-gradient(top, LightSeaGreen, Teal);
+}
+#share .bug:before {
+  content: "BUG report";
 }
 /* Welcome */
 #welcome .modal-header {
@@ -558,8 +612,7 @@ body {
   border: 1px solid #DDD;
   background-color: white;
   margin-bottom: 50px;
-  -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
 }
 #list:after {
