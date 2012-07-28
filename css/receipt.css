@@ -278,6 +278,7 @@ body {
   height: 48px;
   margin: 2px auto;
   opacity: .6;
+  background: gray;
 }
 #share .icon:hover {
   box-shadow: 0 0 15px RoyalBlue;
@@ -301,7 +302,12 @@ body {
   font-size: 14px;
   text-decoration: none;
   padding-top: 8px;
+  background: Teal;
   background: -webkit-linear-gradient(top, LightSeaGreen, Teal);
+  background: -moz-linear-gradient(top, LightSeaGreen, Teal);
+  background: -o-linear-gradient(top, LightSeaGreen, Teal);
+  background: -ms-linear-gradient(top, LightSeaGreen, Teal);
+  background: linear-gradient(top, LightSeaGreen, Teal);
 }
 #share .bug:before {
   content: "BUG report";
