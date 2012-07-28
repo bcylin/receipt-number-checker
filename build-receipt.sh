@@ -7,9 +7,10 @@ cd ..
 lessc css/receipt.less > css/receipt.css
 
 deploy=deploy
-find $deploy -type f -execdir rm '{}' \;
 
-test -d $deploy || mkdir $deploy
+test -d $deploy \
+&& find $deploy -type f -execdir rm '{}' \; \
+|| mkdir $deploy
 test -d $deploy"/css" || mkdir $deploy"/css"
 test -d $deploy"/css/lib" || mkdir $deploy"/css/lib"
 test -d $deploy"/css/plugin" || mkdir $deploy"/css/plugin"

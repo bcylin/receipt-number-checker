@@ -1,8 +1,9 @@
 /**
  * receipt.less
+ * https://github.com/bcylin/receipt-number-checker
  *
  * Created by Ben (c) 2012
- * Licensed under GNU General Public License v2
+ * Released under GNU General Public License v2
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
@@ -12,7 +13,7 @@
 @background-image: url('../img/noise-237.png');
 
 body {
-	font-family: sans-serif;
+	font-family: Helvetica, Tahoma, Verdana, sans-serif;
 	background-color: rgb(245,245,245);
 	background-image: @background-image;
 	background-attachment: fixed;
@@ -20,8 +21,7 @@ body {
 }
 
 .desktop {
-	width: 70%;
-	min-width: 850px;
+	width: 850px;
 	margin: @body-margin auto;
 }
 
@@ -72,7 +72,6 @@ body {
 @record-width: 350px;
 
 .paper-shadow {
-	-webkit-box-shadow: 1px 3px 10px rgba(0,0,0,.5);
 	box-shadow: 1px 3px 10px rgba(0,0,0,.5);
 }
 
@@ -189,7 +188,8 @@ body {
 
 /* Ribbon */
 
-@ribbon-height: 44px;
+@ribbon-height: 40px;
+@ribbon-padding: 2px;
 @ribbon-width: 350px;
 @ribbon-offset: 50px;
 
@@ -201,7 +201,7 @@ body {
 	right: -@ribbon-width / 2 + @ribbon-offset;
 	height: @ribbon-height;
 	width: @ribbon-width;
-	padding: 2px;
+	padding: @ribbon-padding;
 	background: rgb(225,118,0);
 	box-shadow: 0px 2px 15px rgba(0,0,0,.5);
 	-webkit-transform: rotate(45deg);
@@ -218,13 +218,82 @@ body {
 	border-bottom: 2px dotted rgb(255,228,181);
 	padding: 10px;
 	width: 100%;
-	height: 40px;
-	line-height: 20px;
-	font-size: 20px;
-	letter-spacing: 5px;
+	height: @ribbon-height - @ribbon-padding * 2;
+	line-height: 12px;
+	font-size: 12px;
+	letter-spacing: 1px;
 	text-align: center;
 	text-shadow: -1px -1px 1px rgba(0,0,0,.8);
 	color: white;
+}
+
+
+/* Share */
+
+#share {
+	.box;
+	position: fixed;
+	top: 50%;
+	right: 0;
+	width: 60px;
+	padding: 5px 0;
+	text-align: center;
+	background: transparent;
+	box-shadow: 0 0 15px rgba(0,0,0,.5);
+}
+
+#share .text {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 12px;
+	color: DarkSlateGray;
+	text-shadow: -1px -1px 1px rgba(0,0,0,.2);
+}
+
+#share .icon {
+	border-radius: 4px;
+	display: block;
+	width: 48px;
+	height: 48px;
+	margin: 2px auto;
+	opacity: .6;
+	background: gray;
+}
+
+#share .icon:hover {
+	box-shadow: 0 0 15px RoyalBlue;
+	opacity: 1;
+	// transition: box-shadow 0.2s ease-in 0;
+}
+
+#share .twitter {
+	background-image: url('../img/icon-twitter-48x48.png');
+}
+
+#share .facebook {
+	background-image: url('../img/icon-f-logo-48x48.png');
+}
+
+#share .google {
+	background-image: url('../img/icon-g-plus-48x48.png');
+}
+
+#share .bug {
+	.box;
+	color: white;
+	font-size: 14px;
+	text-decoration: none;
+	padding-top: 8px;
+	background: Teal;
+	background: -webkit-linear-gradient(top, LightSeaGreen, Teal);
+	background: -moz-linear-gradient(top, LightSeaGreen, Teal);
+	background: -o-linear-gradient(top, LightSeaGreen, Teal);
+	background: -ms-linear-gradient(top, LightSeaGreen, Teal);
+	background: linear-gradient(top, LightSeaGreen, Teal);
+}
+
+#share .bug:before {
+	content: "BUG report";
 }
 
 
@@ -567,7 +636,7 @@ body {
 	background-color: white;
 	// max-height: @page-height - @record-margin-top - @counter-height;
 	margin-bottom: 50px;
-	-webkit-box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+	box-shadow: 5px 5px 15px rgba(0,0,0,.5);
 	.paper-shadow;
 }
 
@@ -756,10 +825,59 @@ footer .license a:visited {
 	color: @author-color;
 }
 
-.tooltip-arrow {
-
-}
-
 .tooltip-inner {
 	padding: 5px 8px;
+}
+
+
+/* IE non-compatible message */
+
+// IE 8 doesn't support rgba
+
+#ie {
+	background: rgb(45,45,45);
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#ie .msg {
+	display: block;
+	margin: 50px auto;
+	color: white;
+	font-size: 26px;
+	text-align: center;
+}
+
+#ie .choice {
+	.box;
+	display: block;
+	width: 520px;
+	margin: 0 auto;
+	padding: 5px;
+	color: rgb(220,220,220);
+	text-align: left;
+}
+
+#ie .browsers {
+	padding: 15px 0 10px;
+	text-align: center;
+}
+
+#ie .icon {
+	.border;
+	display: inline-block;
+	height: 96px;
+	width: 96px;
+	margin: 0 10px;
+	padding: 15px 30px;
+	background: rgb(90,90,90);
+	border: 1px solid gray;
+}
+
+#ie .icon:hover {
+	background: rgb(120,120,120);
 }

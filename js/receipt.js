@@ -1,9 +1,11 @@
 /*!
  * receipt.js
+ * https://github.com/bcylin/receipt-number-checker
+ *
  * Main config of loading required modules using RequireJS 1.0.8
  *
  * Created by Ben (c) 2012
- * Licensed under GNU General Public License v2
+ * Released under GNU General Public License v2
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
@@ -27,24 +29,19 @@ require.config({
 });
 
 require([
-	'order!jquery',
-	'order!underscore',
-	'order!backbone',
-	'order!models/prizeModel',
-	'order!collections/recordsCollection',
-	'order!views/welcomeView',
-	'order!views/prizeView',
-	'order!views/switchView',
-	'order!views/inputView',
-	'order!views/counterView',
-	'order!views/listView',
-	'order!views/notifyView',
-	'order!views/mobileView',
-	// 'views/signature'
+	'models/prizeModel',
+	'collections/recordsCollection',
+	'views/welcomeView',
+	'views/prizeView',
+	'views/switchView',
+	'views/inputView',
+	'views/counterView',
+	'views/listView',
+	'views/notifyView',
+	'views/mobileView',
+	// 'views/signature',
+	// 'views/share'
 ], function(
-	$,
-	unused,
-	unused,
 	PrizeModel,
 	RecordsCollection,
 	WelcomeView,
@@ -66,6 +63,11 @@ require([
 	// Display a different message for mobile devices
 	if ( app.mobile = navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i) ) {
 		var mobileView = new MobileView({ el: 'body' });
+		return;
+	}
+
+	// This does not support IE yet, stop here if the message is displayed
+	if ( navigator.userAgent.match(/MSIE/i) && document.getElementById('ie') ) {
 		return;
 	}
 
