@@ -47,24 +47,26 @@ return Backbone.View.extend({
 		});
 	},
 
-	// Display winning message of a given number or the last added one
-	// @param {number}
-	displayWin: function(number) {
-		var num = $.isNumeric(number) ? number : this.collection.last().get('num');
-		var result = this.app.prize.match(num);
+	// Display winning message of a record
+	// @param {object} a given record (Backbone.Model)
+	displayResult: function(record) {
+		var result = record.toJSON();
 
 		if (result.isMatched) {
+			var moreThanThreeDigits = (result.matchedNumber.length > 3),
+				shouldMatchAll = (result.matchType === "matchAll");
+
 			this.app.inputView.blur();
 			this.$mark
 				.removeClass('check-mark question-mark')
-				.addClass(result.matchType === "matchThree" ? 'check-mark' : 'question-mark');
+				.addClass(shouldMatchAll ? 'question-mark' : 'check-mark');
 			this.$months.text(result.months);
 			this.$result.text(result.prizeName);
-			this.$firstFive.text(result.matchedNumber.length > 3 ? result.matchedNumber.substr(0, 5) : "");
+			this.$firstFive.text(moreThanThreeDigits ? result.matchedNumber.substr(0, 5) : "");
 			this.$lastThree.text(result.num);
 			this.$description.text(
-				result.matchType === "matchAll" ? "需要8位數字與上列號碼相同" :
-				result.matchedNumber.length > 3 ? "中獎了！請留意末三碼以外的相同數字" :
+				shouldMatchAll ? "需要8位數字與上列號碼相同" :
+				moreThanThreeDigits ? "中獎了！請留意末三碼以外的相同數字" :
 				"中獎了！"
 			);
 

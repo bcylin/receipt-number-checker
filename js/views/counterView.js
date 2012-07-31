@@ -30,7 +30,7 @@ return Backbone.View.extend({
 	},
 
 	toggle: function() {
-		this.app.listView.displayToggle();
+		this.app.listView.toggleList();
 		this.app.inputView.focus();
 	}
 });

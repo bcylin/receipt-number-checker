@@ -28,7 +28,7 @@ return Backbone.View.extend({
 
 		// toggle speed and whether to show slide down effect
 		this.config = {
-			speed: this.options.speed !== undefined ? this.options.speed : 'fast',
+			speed: this.options.speed !== undefined ? this.options.speed : 'default',
 			effect: this.options.effect !== undefined ? this.options.effect : true
 		};
 	},
@@ -37,14 +37,16 @@ return Backbone.View.extend({
 		'click .winning': 'triggerNotify'
 	},
 
-	// Display the newly added record on the list
-	showAdded: function() {
-		var record = this.collection.last(),
-			isMatched = record.get('isMatched'),
+	// Display a record on the list
+	show: function(record) {
+
+		if (!record) { return; }
+		var isMatched = record.get('isMatched'),
 			matchType = record.get('matchType');
 
 		// fill in arguments of compiled template
 		var html = this.compiled({
+				id:		record.cid,
 				num: 	record.get('num'),
 				months: record.get('months'),
 				status: isMatched ? 'winning' : 'missed',
@@ -59,36 +61,56 @@ return Backbone.View.extend({
 		var $li = $(html);
 		this.$ul.prepend($li);
 
+		if ( !this.itemHeight ) {
+			this.itemHeight = $li.outerHeight();
+		}
+	},
+
+	// Display the newly added record on the list
+	showJustAdded: function(newRecord) {
+		this.show(newRecord);
+
 		// scroll to the top when a new item is added
 		window.scrollY > 0 && this.$body.scrollTo( 0, { axis: 'y', duration: this.config.speed} );
 
 		// slide down animation
 		if ( this.config.effect ) {
-			var height = $li.outerHeight();
-			this.$el.animate({ top: '-=' + height + 'px' }, 0);
-			this.$el.animate({ top: '+=' + height + 'px' }, 400);
+			this.$el.animate({ top: '-=' + this.itemHeight + 'px' }, 0);
+			this.$el.animate({ top: '+=' + this.itemHeight + 'px' }, this.config.speed);
 		}
 	},
 
-	// show only winning numbers on the list
-	displayWon: function() {
-		this.$missedList = this.$ul.find('li.missed').slideUp(this.config.speed);
-		this.partiallyHidden = true;
+	// Display the entire list or part of it
+	render: function(part) {
+		this.clear();
+
+		var all = !part;
+		// get all records or just matched ones
+		var records = this.collection.select(function(record) {
+			return all || record.get('isMatched');
+		});
+
+		var self = this;
+		$.each(records, function(i, record) {
+			self.show(record);
+		});
+
+		this.partiallyHidden = !all;
 	},
 
-	// show all input numbers on the list
-	displayAll: function() {
-		this.$missedList && this.$missedList.slideDown(this.config.speed);
-		this.partiallyHidden = false;
+	// Clear list
+	clear: function() {
+		this.$ul.empty();
 	},
 
-	displayToggle: function() {
-		this.partiallyHidden ? this.displayAll() : this.displayWon();
+	// Toogle the list to display all records or just winning ones
+	toggleList: function() {
+		this.partiallyHidden ? this.render() : this.render('win');
 	},
 
 	triggerNotify: function(event) {
-		var num = $(event.target).closest('li').find('.num').text();
-		this.app.notifyView.displayWin(num);
+		var cid = $(event.target).closest('li').attr('id');
+		this.app.notifyView.displayResult( this.collection.getByCid(cid) );
 	}
 });
 

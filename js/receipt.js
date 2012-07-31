@@ -57,7 +57,7 @@ require([
 	// Use Mustache.js style templating
 	_.templateSettings = { interpolate: /\{\{(.+?)\}\}/g };
 
-	// A global object to handle every function
+	// A global object to handle all functions
 	var app = window.receiptApp = {};
 
 	// Display a different message for mobile devices
@@ -69,6 +69,16 @@ require([
 	// This does not support IE yet, stop here if the message is displayed
 	if ( navigator.userAgent.match(/MSIE/i) && document.getElementById('ie') ) {
 		return;
+	}
+
+	// Fix font and github ribbon on Windows
+	if ( navigator.userAgent.match(/Windows/i) ) {
+		document.body.className = document.body.className + " windows";
+		document.getElementById('ribbon').className = "hidden";
+
+		var ribbon = document.getElementById('github-ribbon');
+		ribbon.src = "https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png";
+		ribbon.className = "";
 	}
 
 	app.welcomeView = new WelcomeView({ el: '#welcome' });
@@ -110,13 +120,17 @@ require([
 
 		app.prizeView.render();
 		app.records
-			.on('add', app.listView.showAdded, app.listView)
+			.on('add', app.listView.showJustAdded, app.listView)
 			.on('add', app.counterView.update, app.counterView)
-			.on('add', app.notifyView.displayWin, app.notifyView);
+			.on('add', app.notifyView.displayResult, app.notifyView);
 
 		app.inputView.focus();
 
-		// app.inputView.autoInput([123, 234, 345, 984, 229, 860, '021', 123]);
+		// var randoms = [];
+		// for ( var i = 0; i < 100; i++ ) {
+		// 	randoms.push( ("00" + Math.floor(Math.random() * 999 + 1).toString()).slice(-3) );
+		// }
+		// app.inputView.autoInput(randoms);
 	});
 
 });

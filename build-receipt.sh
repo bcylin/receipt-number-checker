@@ -6,7 +6,7 @@ cd ..
 
 lessc css/receipt.less > css/receipt.css
 
-deploy=deploy
+deploy=receipt
 
 test -d $deploy \
 && find $deploy -type f -execdir rm '{}' \; \

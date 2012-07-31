@@ -58,11 +58,15 @@ return Backbone.View.extend({
 	// Input a list of numbers for testing
 	// @param {array} a list of numbers
 	autoInput: function(numbers) {
-		console.log('here');
-		var self = this;
+		var self = this,
+			original = self.app.listView.config.effect;
+
+		// Turn the sliding effect off during the action
+		self.app.listView.config.effect = false;
 		$.each(numbers, function(index, num) {
 			num.toString().length === self.NUM_CHAR_TO_DETECT && self.save(num);
 		});
+		self.app.listView.config.effect = original;
 	},
 
 	focus: function() {
