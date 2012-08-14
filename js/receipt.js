@@ -13,10 +13,6 @@ require.config({
 	mainConfigFile: 'receipt.js',
 	baseUrl: './js',
 	paths: {
-		// jquery : 'http://code.jquery.com/jquery-1.7.2.min.js',
-		// order: 'http://requirejs.org/docs/release/1.0.5/minified/order.js',
-		// underscore : 'http://underscorejs.org/underscore-min.js',
-		// backbone : 'http://backbonejs.org/backbone-min.js',
 		jquery : 'lib/jquery-1.7.2',
 		order: 'lib/order',
 		underscore : 'lib/underscore',
@@ -38,7 +34,6 @@ require([
 	'views/counterView',
 	'views/listView',
 	'views/notifyView',
-	'views/mobileView',
 	// 'views/signature',
 	// 'views/share'
 ], function(
@@ -50,8 +45,7 @@ require([
 	InputView,
 	CounterView,
 	ListView,
-	NotifyView,
-	MobileView
+	NotifyView
 ){
 
 	// Use Mustache.js style templating
@@ -59,17 +53,6 @@ require([
 
 	// A global object to handle all functions
 	var app = window.receiptApp = {};
-
-	// Display a different message for mobile devices
-	if ( app.mobile = navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i) ) {
-		var mobileView = new MobileView({ el: 'body' });
-		return;
-	}
-
-	// This does not support IE yet, stop here if the message is displayed
-	if ( navigator.userAgent.match(/MSIE/i) && document.getElementById('ie') ) {
-		return;
-	}
 
 	// Fix font and github ribbon on Windows
 	if ( navigator.userAgent.match(/Windows/i) ) {
