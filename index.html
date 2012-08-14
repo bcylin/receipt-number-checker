@@ -135,12 +135,35 @@
 <script type="text/javascript">
 // <![CDATA[
 
+(function() {
+
 	require.config({
 		paths: {
-			'js/receipt': 'js/receipt-built'
+			'js/receipt': 'js/receipt-built',
+			'jquery' : 'http://code.jquery.com/jquery-1.8.0.min'
 		}
 	});
+
+	// Display a different message for mobile devices
+	if ( navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i) ) {
+		require(['jquery'], function($) {
+			var $body = $('body');
+			// Clear everything on the page
+			$body.empty().removeClass('desktop').addClass('mobile');
+			var $msg = $('<div class="msg">').text('目前暫時不支援行動裝置').appendTo($body);
+			var $background = $('<div class="msg-background">').appendTo($body);
+		});
+		return;
+	}
+
+	// This does not support IE yet, stop here if the message is displayed
+	if ( navigator.userAgent.match(/MSIE/i) && document.getElementById('ie') ) {
+		return;
+	}
+
 	require(['js/receipt']);
+
+})();
 
 // ]]>
 </script>
