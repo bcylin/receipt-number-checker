@@ -52,7 +52,7 @@ require([
 	_.templateSettings = { interpolate: /\{\{(.+?)\}\}/g };
 
 	// A global object to handle all functions
-	var app = window.receiptApp = {};
+	var app = window.receiptApp ? window.receiptApp : {};
 
 	// Fix font and github ribbon on Windows
 	if ( navigator.userAgent.match(/Windows/i) ) {
