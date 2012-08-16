@@ -15,6 +15,21 @@
 </head>
 <body class="desktop">
 
+	<div class="mobile-msg">目前暫時不支援行動裝置</div>
+	<div class="mobile-background"></div>
+
+<script type="text/javascript">
+// <![CDATA[
+
+	var app = window.receiptApp = {};
+	// Display a different message for mobile devices
+	if ( app.mobile = navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i) ) {
+		document.body.className = "mobile";
+	}
+
+// ]]>
+</script>
+
 <!--[if IE]>
 	<div id="ie">
 		<span class="msg">目前暫時不支援 Internet Explorer</span>
@@ -27,7 +42,7 @@
 	</div>
 <![endif]-->
 
-	<div id="ribbon" class="ribbon">
+	<div id="ribbon" class="ribbon float">
 		<a target="_blank" href="https://github.com/bcylin/receipt-number-checker">
 			<span class="stitches">Fork me on GitHub</span>
 		</a>
@@ -37,7 +52,7 @@
 		<img id="github-ribbon" class="hidden" style="position: fixed; top: 0; right: 0; border: 0;" src="" alt="Fork me on GitHub">
 	</a>
 
-	<div id="share">
+	<div id="share" class="float">
 		<a class="icon social twitter" href="#twitter"></a>
 		<a class="icon social facebook" href="#facebook"></a>
 		<a class="icon social google" href="#google"></a>
@@ -127,7 +142,7 @@
 		</div>
 	</div>
 
-	<footer>
+	<footer class="float">
 		<div class="license">Designed and created by <span class="author">Ben</span> &copy; 2012 Released under <a target="_blank" id="license" href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL v2</a></div>
 	</footer>
 </body>
@@ -137,22 +152,8 @@
 
 (function() {
 
-	require.config({
-		paths: {
-			'js/receipt': 'js/receipt-built',
-			'jquery' : 'http://code.jquery.com/jquery-1.8.0.min'
-		}
-	});
-
-	// Display a different message for mobile devices
-	if ( navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i) ) {
-		require(['jquery'], function($) {
-			var $body = $('body');
-			// Clear everything on the page
-			$body.empty().removeClass('desktop').addClass('mobile');
-			var $msg = $('<div class="msg">').text('目前暫時不支援行動裝置').appendTo($body);
-			var $background = $('<div class="msg-background">').appendTo($body);
-		});
+	// Avoid loading main script on mobile
+	if ( window.receiptApp.mobile ) {
 		return;
 	}
 
@@ -160,6 +161,12 @@
 	if ( navigator.userAgent.match(/MSIE/i) && document.getElementById('ie') ) {
 		return;
 	}
+
+	require.config({
+		paths: {
+			'js/receipt': 'js/receipt-built'
+		}
+	});
 
 	require(['js/receipt']);
 
