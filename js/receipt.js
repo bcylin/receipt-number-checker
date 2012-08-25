@@ -54,6 +54,11 @@ require([
 	// A global object to handle all functions
 	var app = window.receiptApp ? window.receiptApp : {};
 
+	// Load browser icons
+	document.getElementById('chrome').src = "img/chrome@1x.png";
+	document.getElementById('firefox').src = "img/firefox@1x.png";
+	document.getElementById('safari').src = "img/safari@1x.png";
+
 	// Fix font and github ribbon on Windows
 	if ( navigator.userAgent.match(/Windows/i) ) {
 		document.body.className = document.body.className + " windows";
