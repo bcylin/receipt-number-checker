@@ -54,21 +54,6 @@ require([
 	// A global object to handle all functions
 	var app = window.receiptApp ? window.receiptApp : {};
 
-	// Load browser icons
-	document.getElementById('chrome').src = "img/chrome@1x.png";
-	document.getElementById('firefox').src = "img/firefox@1x.png";
-	document.getElementById('safari').src = "img/safari@1x.png";
-
-	// Fix font and github ribbon on Windows
-	if ( navigator.userAgent.match(/Windows/i) ) {
-		document.body.className = document.body.className + " windows";
-		document.getElementById('ribbon').className = "hidden";
-
-		var ribbon = document.getElementById('github-ribbon');
-		ribbon.src = "https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png";
-		ribbon.className = "";
-	}
-
 	app.welcomeView = new WelcomeView({ el: '#welcome' });
 	app.prize = new PrizeModel;
 
