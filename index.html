@@ -7,6 +7,7 @@
 	<meta http-equiv="expires" content="-1">
 	<meta name="viewport" content="width=device-width">
 	<title>統一發票對獎程式</title>
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/plugin/bootstrap-receipt.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/receipt.css" />
@@ -49,7 +50,7 @@
 	</div>
 
 	<a target="_blank" href="https://github.com/bcylin/receipt-number-checker">
-		<img id="github-ribbon" class="hidden" style="position: fixed; top: 0; right: 0; border: 0;" src="" alt="Fork me on GitHub">
+		<img id="github-ribbon" class="hidden" style="position: fixed; top: 0; right: 0; border: 0;" alt="Fork me on GitHub">
 	</a>
 
 	<div id="share" class="float">
@@ -112,9 +113,9 @@
 		</div>
 		<div class="modal-body">
 			<p class="icons">
-				<img src="img/chrome@1x.png" alt="Chrome">
-				<img src="img/firefox@1x.png" alt="Firefox">
-				<img src="img/safari@1x.png" alt="Safari">
+				<img id="chrome" alt="Chrome">
+				<img id="firefox" alt="Firefox">
+				<img id="safari" alt="Safari">
 				<span>相容性測試 OK</span>
 			</p>
 			<ul>
@@ -157,10 +158,26 @@
 		return;
 	}
 
-	// This does not support IE yet, stop here if the message is displayed
-	if ( navigator.userAgent.match(/MSIE/i) && document.getElementById('ie') ) {
-		return;
+	// Fix font and github ribbon on Windows
+	if ( navigator.userAgent.match(/Windows/i) ) {
+
+		document.body.className = document.body.className + " windows";
+
+		// This does not support IE yet, stop here if the message is displayed
+		if ( document.getElementById('ie') ) {
+			return;
+		}
+
+		document.getElementById('ribbon').className = "hidden";
+		var ribbon = document.getElementById('github-ribbon');
+		ribbon.src = "https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png";
+		ribbon.className = "";
 	}
+
+	// Load browser icons
+	document.getElementById('chrome').src = "img/chrome@1x.png";
+	document.getElementById('firefox').src = "img/firefox@1x.png";
+	document.getElementById('safari').src = "img/safari@1x.png";
 
 	require.config({
 		paths: {
