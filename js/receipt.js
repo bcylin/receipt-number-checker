@@ -64,30 +64,37 @@ require([
 
 		app.inputView = new InputView({
 			el: '#input',
+			delegate: app,
+			dataSource: app.prize,
 			collection: app.records
 		});
 
 		app.switchView = new SwitchView({
-			el: '#switch'
+			el: '#switch',
+			delegate: app,
+			dataSource: app.prize
 		});
 
 		app.prizeView = new PrizeView({
 			el: '#prize',
-			model: app.prize
+			dataSource: app.prize
 		});
 
 		app.counterView = new CounterView({
 			el: '#counter',
+			delegate: app,
 			collection: app.records
 		});
 
 		app.listView = new ListView({
 			el: '#list',
+			delegate: app,
 			collection: app.records
 		});
 
 		app.notifyView = new NotifyView({
 			el: '#notify',
+			delegate: app,
 			collection: app.records
 		});
 
@@ -99,11 +106,47 @@ require([
 
 		app.inputView.focus();
 
-		// var randoms = [];
-		// for ( var i = 0; i < 100; i++ ) {
-		// 	randoms.push( ("00" + Math.floor(Math.random() * 999 + 1).toString()).slice(-3) );
-		// }
-		// app.inputView.autoInput(randoms);
+		// switchView delegate method
+		app.switchViewDidSelectDraw = function(selectedDraw) {
+			this.prize.setDraw(selectedDraw);
+			this.prizeView.refresh();
+			this.inputView.focus();
+		};
+
+		// notifyView delegate method
+		app.counterViewDidToggle = function() {
+			this.listView.toggleList();
+			this.inputView.focus();
+		};
+
+		// listView delegate method
+		app.listViewDidSelectItemWithCid = function(cid) {
+			this.notifyView.displayResult( this.records.getByCid(cid) );
+		};
+
+		// notifyView delegate methods
+		app.notifyViewWillAppear = function() {
+			this.inputView.blur();
+		};
+
+		app.notifyViewDidDismiss = function() {
+			this.inputView.focus();
+		};
+
+		// Input a list of numbers for testing
+		// @param {number} of inputs
+		// app.autoInput = function(num) {
+		// 	// Turn the sliding effect off during the action
+		// 	var original = this.listView.config.effect;
+		// 	this.listView.config.effect = false;
+		// 	for ( var i = 0; i < num; i++ ) {
+		// 		var random = ("00" + Math.floor(Math.random() * 999 + 1).toString()).slice(-3);
+		// 		this.inputView.input(random);
+		// 	}
+		// 	this.listView.config.effect = original;
+		// };
+
+		// app.autoInput(5);
 	});
 
 });

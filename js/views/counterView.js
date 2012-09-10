@@ -15,7 +15,7 @@ define([
 return Backbone.View.extend({
 
 	initialize: function() {
-		this.app = window.receiptApp;
+		this.delegate = this.options.delegate;
 		this.$total = this.$el.find('#total');
 		this.$win = this.$el.find('#win');
 	},
@@ -30,8 +30,7 @@ return Backbone.View.extend({
 	},
 
 	toggle: function() {
-		this.app.listView.toggleList();
-		this.app.inputView.focus();
+		this.delegate.counterViewDidToggle();
 	}
 });
 

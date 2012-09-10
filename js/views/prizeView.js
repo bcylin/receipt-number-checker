@@ -15,6 +15,7 @@ define('views/prizeView', [
 return Backbone.View.extend({
 
 	initialize: function() {
+		this.dataSource = this.options.dataSource;
 		// empty sections after getting the template
 		this.template = this.$el.find('.template').html().trim();
 		this.compiled = _.template(this.template);
@@ -23,8 +24,8 @@ return Backbone.View.extend({
 
 	render: function() {
 		var self = this,
-			list = this.model.getList(),		// prize id-numbers list
-			mapping = this.model.getMapping();	// prize id-name mapping
+			list = this.dataSource.getList(),		// prize id-numbers list
+			mapping = this.dataSource.getMapping();	// prize id-name mapping
 
 		// go through each prize on the list
 		$.each(list, function(id, numbers) {

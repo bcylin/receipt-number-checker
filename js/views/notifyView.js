@@ -17,7 +17,7 @@ define([
 return Backbone.View.extend({
 
 	initialize: function() {
-		this.app = window.receiptApp;
+		this.delegate = this.options.delegate;
 		this.$el.modal({show: false});
 
 		// find each element on the modal
@@ -43,7 +43,7 @@ return Backbone.View.extend({
 		});
 		// focus on input after modal dismissed
 		this.$el.on('hide', function() {
-			self.app.inputView.focus();
+			self.delegate.notifyViewDidDismiss();
 		});
 	},
 
@@ -56,7 +56,7 @@ return Backbone.View.extend({
 			var moreThanThreeDigits = (result.matchedNumber.length > 3),
 				shouldMatchAll = (result.matchType === "matchAll");
 
-			this.app.inputView.blur();
+			this.delegate.notifyViewWillAppear();
 			this.$mark
 				.removeClass('check-mark question-mark')
 				.addClass(shouldMatchAll ? 'question-mark' : 'check-mark');
