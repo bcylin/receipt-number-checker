@@ -20,15 +20,53 @@
 	}
 });
 
- require([
- 	'order!jquery'
+require([
+	'order!jquery',
+	'models/prizeModel',
+	'views/prizeView',
+	'views/switchView',
 ], function(
-	$
+	$,
+	PrizeModel,
+	PrizeView,
+	SwitchView
 ) {
+
+	// Use Mustache.js style templating
+	_.templateSettings = { interpolate: /\{\{(.+?)\}\}/g };
 
 	// Move switch & prize elements to mobile screen
 	var $mobileScreen = $('div.mobile-screen');
 	$('#switch').appendTo($mobileScreen);
 	$('#prize').appendTo($mobileScreen);
+
+	// A global object to handle all functions
+	var app = window.receiptApp ? window.receiptApp : {};
+
+	app.prize = new PrizeModel;
+
+	// Start loading prize data
+	app.prize.init().done(function() {
+
+		app.switchView = new SwitchView({
+			el: '#switch',
+			delegate: app,
+			dataSource: app.prize
+		});
+
+		app.prizeView = new PrizeView({
+			el: '#prize',
+			dataSource: app.prize
+		});
+
+		app.prizeView.render();
+
+		// switchView delegate method
+		app.switchViewDidSelectDraw = function(selectedDraw) {
+			this.prize.setDraw(selectedDraw);
+			this.prizeView.refresh();
+		};
+
+	});
 
 });
