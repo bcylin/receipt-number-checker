@@ -21,6 +21,30 @@ return Backbone.Model.extend({
 		url && this.fetchData(url);
 	},
 
+	// Manually set prize and winning numbers
+	setData: function(data) {
+		var index = 0,
+			_list = {},
+			_mapping = {};
+
+		// map the prize id, prize name, and winning numbers
+		$.each(data.prizes, function(key, value) {
+			_mapping[index + 'thPrize'] = key;
+			_list[index + 'thPrize'] = value;
+			index += 1;
+		});
+
+		this.clear({silent: true});
+		this.set({
+			months: data.months,
+			list: _list,
+			mapping: _mapping
+		});
+
+		this.sortDataByType();
+		this.createNameMapping();
+	},
+
 	// Get raw HTML from the official website, extract winning numbers
 	fetchData: function(url) {
 		var self = this,
@@ -40,13 +64,25 @@ return Backbone.Model.extend({
 		// 	.done(function(content) { processData(content); })
 		// 	.fail(function() {
 				// get the cached file if the middle man fails
-				$.get('cache/' + url.match(/[A-Z\_\d]+\.htm[l]?/ig)[0])
-					.done(function(content) { processData(content); })
-					.fail(function() {
-						dfd.reject();
-						console.log('Fail fetching URL: ' + url);
-					});
+				// $.get('cache/' + url.match(/[A-Z\_\d]+\.htm[l]?/ig)[0])
+				// 	.done(function(content) { processData(content); })
+				// 	.fail(function() {
+				// 		dfd.reject();
+				// 		console.log('Fail fetching URL: ' + url);
+				// 	});
 		//	});
+
+		$.ajax({
+			url: 'cache/' + url.match(/[A-Z\_\d]+\.htm[l]?/ig)[0],
+			success: function(content) { processData(content); },
+			complete: function(xhr, content) {
+				if (xhr.status == 0) {
+					// TODO: error handler is still buggy
+					dfd.reject();
+					console.log('Fail fetching URL: ' + url);
+				}
+			}
+		});
 
 		return dfd.promise();
 	},
@@ -71,6 +107,7 @@ return Backbone.Model.extend({
 			$info = $(data).last();
 
 		this.mapping = {};
+		this.list = {};
 
 		// extract each prize
 		$info.find('.number').each(function(index, item) {
@@ -81,11 +118,11 @@ return Backbone.Model.extend({
 			self.mapping[index + 'thPrize'] = name === "頭獎" ? "頭獎至六獎" : name;
 
 			// winning numbers of this prize id
-			self.set(index + 'thPrize', numbers);
+			self.list[index + 'thPrize'] = numbers;
 		});
 
 		this.set({
-			list: _.pick(this.toJSON(), Object.keys(this.mapping)),
+			list: self.list,
 			mapping: self.mapping
 		});
 	},

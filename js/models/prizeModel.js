@@ -44,6 +44,18 @@ return function() {
 			isDone = true;
 		}).fail(function() {
 			// set winning numbers manually
+			current.thisDraw.setData({
+				months: "測試1",
+				prizes: {
+					'特別獎': ['11112222'],
+					'特獎': ['22221111'],
+					'頭獎至六獎': ['333'],
+					'增開六獎': ['444']
+				}
+			});
+			// console.log(current.thisDraw.toJSON());
+			if (isDone) { self.initializing.resolve(); }
+			isDone = true;
 		});
 
 		current.prevDraw.fetching.done(function() {
