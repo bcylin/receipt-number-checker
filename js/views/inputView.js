@@ -19,12 +19,10 @@ return Backbone.View.extend({
 	initialize: function() {
 		this.app = window.receiptApp;
 		this.delegate = this.options.delegate;
-		this.dataSource = this.options.dataSource;
-		this.$input = this.$el.find('#inputNumber');	// the text input
 	},
 
 	events: {
-		'keyup #inputNumber': 'processInput'
+		'keyup': 'processInput'
 	},
 
 	processInput: function(event) {
@@ -36,25 +34,12 @@ return Backbone.View.extend({
 			input.value = num ? num[0] : "";
 		}
 
-		// save the number input once it reaches certian digits
+		// process the number input once it reaches certian digits
 		if (input.value.length >= this.NUM_CHAR_TO_DETECT) {
 			var num = input.value;
 			input.value = "";	// empty input
-			this.save(num);
+			this.delegate.inputViewDidAcquireNumber(num);
 		}
-	},
-
-	// Save the number to the collection
-	// @parem {string} a number to save
-	// @return {object} result that describes if the number is winning
-	save: function(num) {
-		var result = this.dataSource.match(num);
-
-		// create a record model, insert into list collection
-		var record = new Backbone.Model(result);
-		this.collection.add(record);
-
-		return result;
 	},
 
 	// Input a number
@@ -64,11 +49,11 @@ return Backbone.View.extend({
 	},
 
 	focus: function() {
-		this.$input.focus();
+		this.$el.focus();
 	},
 
 	blur: function() {
-		this.$input.blur();
+		this.$el.blur();
 	}
 });
 
