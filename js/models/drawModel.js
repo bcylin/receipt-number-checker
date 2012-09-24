@@ -24,25 +24,25 @@ return Backbone.Model.extend({
 	// Manually set prize and winning numbers
 	setData: function(data) {
 		var index = 0,
-			_list = {},
-			_mapping = {};
+			numberList = {},
+			prizeNameOfID = {};
 
 		// map the prize id, prize name, and winning numbers
 		$.each(data.prizes, function(key, value) {
-			_mapping[index + 'thPrize'] = key;
-			_list[index + 'thPrize'] = value;
+			prizeNameOfID[index + 'thPrize'] = key;
+			numberList[index + 'thPrize'] = value;
 			index += 1;
 		});
 
 		this.clear({silent: true});
 		this.set({
 			months: data.months,
-			list: _list,
-			mapping: _mapping
+			numberList: numberList,
+			prizeNameOfID: prizeNameOfID
 		});
 
 		this.sortDataByType();
-		this.createNameMapping();
+		this.createNumberNameMapping();
 	},
 
 	// Get raw HTML from the official website, extract winning numbers
@@ -55,7 +55,7 @@ return Backbone.Model.extend({
 			self.extractDate(content);
 			self.extractNumbers(content);
 			self.sortDataByType();
-			self.createNameMapping();
+			self.createNumberNameMapping();
 			dfd.resolve();
 		};
 
@@ -95,7 +95,7 @@ return Backbone.Model.extend({
 
 		var self = this,
 			prizeNameOfID = {},
-			winningNumbers = {};
+			numberList = {};
 
 		// extract each prize
 		$info.find('.number').each(function(index, item) {
@@ -106,31 +106,31 @@ return Backbone.Model.extend({
 			prizeNameOfID[index + 'thPrize'] = name === "頭獎" ? "頭獎至六獎" : name;
 
 			// winning numbers of this prize id
-			winningNumbers[index + 'thPrize'] = numbers;
+			numberList[index + 'thPrize'] = numbers;
 		});
 
 		this.set({
-			list: winningNumbers,
-			mapping: prizeNameOfID
+			numberList: numberList,
+			prizeNameOfID: prizeNameOfID
 		});
 	},
 
 	// Helper function: sort numbers into 2 categories
 	sortDataByType: function() {
 		var self = this,
-			list = self.get('list'),
-			prizeNameOfID = self.get('mapping');
+			numberList = self.get('numberList'),
+			prizeNameOfID = self.get('prizeNameOfID');
 
 		this.set({
 			// numbers that need every digit matching
 			matchAll:
-				$.map(list, function(numbers, id) {
+				$.map(numberList, function(numbers, id) {
 					if ( prizeNameOfID[id] === "特別獎" || prizeNameOfID[id] === "特獎" )
 						return numbers;
 				}),
 			// numbers that need at least three ending digits matching
 			matchThree:
-				$.map(list, function(numbers, id) {
+				$.map(numberList, function(numbers, id) {
 					if ( prizeNameOfID[id] !== "特別獎" && prizeNameOfID[id] !== "特獎" )
 						return numbers;
 				})
@@ -138,18 +138,18 @@ return Backbone.Model.extend({
 	},
 
 	// Helper function: create prize number-name mapping
-	createNameMapping: function() {
-		var numbers = $.map(this.get('list'), function(value, id) { return value; });
+	createNumberNameMapping: function() {
+		var numbers = $.map(this.get('numberList'), function(value, id) { return value; });
 		var self = this,
-			prizeNameOfID = this.get('mapping'),
+			prizeNameOfID = this.get('prizeNameOfID'),
 			prizeNameOfNumber = {};
 
-		$.each(this.get('list'), function(id, numbers) {
+		$.each(this.get('numberList'), function(id, numbers) {
 			$.each(numbers, function(i, number) {
 				prizeNameOfNumber[number] = prizeNameOfID[id];
 			});
 		});
-		this.set('prizeName', prizeNameOfNumber);
+		this.set('prizeNameOfNumber', prizeNameOfNumber);
 	}
 });
 

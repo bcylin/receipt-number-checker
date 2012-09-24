@@ -99,7 +99,7 @@ return function() {
 	this.getMapping = function(whichDraw) {
 		var _draw = !whichDraw ? draw :
 					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
-		return current[_draw].get('mapping');
+		return current[_draw].get('prizeNameOfID');
 	};
 
 	// @param {string} which draw
@@ -115,7 +115,7 @@ return function() {
 	this.getList = function(whichDraw) {
 		var _draw = !whichDraw ? draw :
 					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
-		return current[_draw].get('list');
+		return current[_draw].get('numberList');
 	};
 
 	// @param {string} which draw
@@ -130,8 +130,8 @@ return function() {
 
 	// @param {string} winning number
 	// @return {string} prize name
-	this.getPrizeName = function(winNumber) {
-		return current[draw].get('prizeName')[winNumber];
+	this.prizeNameOfNumber = function(winNumber) {
+		return current[draw].get('prizeNameOfNumber')[winNumber];
 	};
 
 	// Match the given number to see if it's winning
@@ -158,7 +158,7 @@ return function() {
 					result.isMatched = true;
 					result.matchType = matchType;
 					result.matchedNumber = winNumber;
-					result.prizeName = self.getPrizeName(winNumber);
+					result.prizeName = self.prizeNameOfNumber(winNumber);
 				}
 			});
 		});
