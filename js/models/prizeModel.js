@@ -15,8 +15,8 @@ define([
 
 return function() {
 
-	var draw = 'thisDraw';	// Default draw
-	var current = {
+	var _draw = 'thisDraw';	// Default draw
+	var _current = {
 		thisDraw: undefined,
 		prevDraw: undefined
 	};
@@ -34,23 +34,47 @@ return function() {
 
 		var self = this;
 		self.options = $.extend( {}, self.defaults, config );
-		current.thisDraw = new DrawModel({ url: self.options.urls.thisDraw });
-		current.prevDraw = new DrawModel({ url: self.options.urls.prevDraw });
+		_current.thisDraw = new DrawModel({ url: self.options.urls.thisDraw });
+		_current.prevDraw = new DrawModel({ url: self.options.urls.prevDraw });
 
 		// determine when the initializing is done
 		var isDone = false;
-		current.thisDraw.fetching.done(function() {
+		_current.thisDraw.fetching.done(function() {
 			if (isDone) { self.initializing.resolve(); }
 			isDone = true;
 		}).fail(function() {
 			// set winning numbers manually
+			_current.thisDraw.setData({
+				months: "測試1",
+				prizes: {
+					'特別獎': ['11112222'],
+					'特獎': ['22221111'],
+					'頭獎至六獎': ['333'],
+					'增開六獎': ['444']
+				}
+			});
+			console.log(_current.thisDraw.toJSON());
+			if (isDone) { self.initializing.resolve(); }
+			isDone = true;
 		});
 
-		current.prevDraw.fetching.done(function() {
+		_current.prevDraw.fetching.done(function() {
 			if (isDone) { self.initializing.resolve(); }
 			isDone = true;
 		}).fail(function() {
 			// set winning numbers manually
+			_current.prevDraw.setData({
+				months: "測試2",
+				prizes: {
+					'特別獎': ['AAAABBBB'],
+					'特獎': ['BBBBAAAA'],
+					'頭獎至六獎': ['CCC'],
+					'增開六獎': ['DDD']
+				}
+			});
+			console.log(_current.thisDraw.toJSON());
+			if (isDone) { self.initializing.resolve(); }
+			isDone = true;
 		});
 
 		return this.initializing.promise();
@@ -59,11 +83,11 @@ return function() {
 
 	// accessors
 	this.getDraw = function() {
-		return draw;
+		return _draw;
 	};
 	this.setDraw = function(newDraw) {
 		if (newDraw === 'thisDraw' || newDraw === 'prevDraw') {
-			draw = newDraw;
+			_draw = newDraw;
 			return true;
 		} else {
 			return false
@@ -72,42 +96,32 @@ return function() {
 
 	// @param {string} which draw
 	// @return {object} prize index-name mapping
-	this.getMapping = function(whichDraw) {
-		var _draw = !whichDraw ? draw :
+	this.getPrizeNameIDMapping = function(whichDraw) {
+		var draw = !whichDraw ? _draw :
 					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
-		return current[_draw].get('mapping');
+		return _current[draw].get('prizeNameOfID');
 	};
 
 	// @param {string} which draw
 	// @return {string} name of the months
 	this.getMonths = function(whichDraw) {
-		var _draw = !whichDraw ? draw :
+		var draw = !whichDraw ? _draw :
 					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
-		return current[_draw].get('months');
+		return _current[draw].get('months');
 	};
 
 	// @param {string} which draw
 	// @return {object} each array of winning numbers
-	this.getList = function(whichDraw) {
-		var _draw = !whichDraw ? draw :
+	this.getNumberList = function(whichDraw) {
+		var draw = !whichDraw ? _draw :
 					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
-		return current[_draw].get('list');
-	};
-
-	// @param {string} which draw
-	// @return {array} of all winning numbers
-	this.getAllNumbers = function(whichDraw) {
-		var _draw = !whichDraw ? draw :
-					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
-		return $.map(this.getList(), function(numbers, id) {
-			return numbers;
-		});
+		return _current[draw].get('numberList');
 	};
 
 	// @param {string} winning number
 	// @return {string} prize name
-	this.getPrizeName = function(winNumber) {
-		return current[draw].get('prizeName')[winNumber];
+	this.prizeNameOfNumber = function(winNumber) {
+		return _current[_draw].get('prizeNameOfNumber')[winNumber];
 	};
 
 	// Match the given number to see if it's winning
@@ -119,7 +133,7 @@ return function() {
 		var result = {
 			isMatched: false,
 			num: num,
-			months: current[draw].get('months'),
+			months: _current[_draw].get('months'),
 			matchType: undefined,
 			matchedNumber: undefined,
 			prizeName: undefined
@@ -127,14 +141,14 @@ return function() {
 		var type = ['matchAll', 'matchThree'];
 
 		$.each(type, function(i, matchType) {
-			$.each(current[draw].get(matchType), function(i, winNumber) {
+			$.each(_current[_draw].get(matchType), function(i, winNumber) {
 				// match the last three digits
 				var match = winNumber.substr(winNumber.length - 3, 3);
 				if (num === match) {
 					result.isMatched = true;
 					result.matchType = matchType;
 					result.matchedNumber = winNumber;
-					result.prizeName = self.getPrizeName(winNumber);
+					result.prizeName = self.prizeNameOfNumber(winNumber);
 				}
 			});
 		});

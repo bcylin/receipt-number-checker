@@ -21,6 +21,30 @@ return Backbone.Model.extend({
 		url && this.fetchData(url);
 	},
 
+	// Manually set prize and winning numbers
+	setData: function(data) {
+		var index = 0,
+			numberList = {},
+			prizeNameOfID = {};
+
+		// map the prize id, prize name, and winning numbers
+		$.each(data.prizes, function(key, value) {
+			prizeNameOfID[index + 'thPrize'] = key;
+			numberList[index + 'thPrize'] = value;
+			index += 1;
+		});
+
+		this.clear({silent: true});
+		this.set({
+			months: data.months,
+			numberList: numberList,
+			prizeNameOfID: prizeNameOfID
+		});
+
+		this.sortDataByType();
+		this.createNumberNameMapping();
+	},
+
 	// Get raw HTML from the official website, extract winning numbers
 	fetchData: function(url) {
 		var self = this,
@@ -31,22 +55,22 @@ return Backbone.Model.extend({
 			self.extractDate(content);
 			self.extractNumbers(content);
 			self.sortDataByType();
-			self.createNameMapping();
+			self.createNumberNameMapping();
 			dfd.resolve();
 		};
 
-		// get cross-site data from a middle man
-		// $.get('/get', {'site': url})
-		// 	.done(function(content) { processData(content); })
-		// 	.fail(function() {
-				// get the cached file if the middle man fails
-				$.get('cache/' + url.match(/[A-Z\_\d]+\.htm[l]?/ig)[0])
-					.done(function(content) { processData(content); })
-					.fail(function() {
-						dfd.reject();
-						console.log('Fail fetching URL: ' + url);
-					});
-		//	});
+		// get the cached files
+		$.ajax({
+			url: 'cache/' + url.match(/[A-Z\_\d]+\.htm[l]?/ig)[0],
+			dataType: 'html',
+			success: function(content) {
+				processData(content);
+			},
+			error: function(content) {
+				console.log('Fail fetching URL: ' + url);
+				dfd.reject();
+			}
+		});
 
 		return dfd.promise();
 	},
@@ -66,11 +90,12 @@ return Backbone.Model.extend({
 	// @param {string} HTML rawdata
 	extractNumbers: function(rawdata) {
 
-		var self = this;
 		var data = rawdata.replace(/<!DOCTYPE.+<\/head>|[\t\n]+|\ \ |<\/html>/g, ""),
 			$info = $(data).last();
 
-		this.mapping = {};
+		var self = this,
+			prizeNameOfID = {},
+			numberList = {};
 
 		// extract each prize
 		$info.find('.number').each(function(index, item) {
@@ -78,50 +103,53 @@ return Backbone.Model.extend({
 			var name = $(item).closest('td').prev('th').text();
 
 			// name of this prize id
-			self.mapping[index + 'thPrize'] = name === "頭獎" ? "頭獎至六獎" : name;
+			prizeNameOfID[index + 'thPrize'] = name === "頭獎" ? "頭獎至六獎" : name;
 
 			// winning numbers of this prize id
-			self.set(index + 'thPrize', numbers);
+			numberList[index + 'thPrize'] = numbers;
 		});
 
 		this.set({
-			list: _.pick(this.toJSON(), Object.keys(this.mapping)),
-			mapping: self.mapping
+			numberList: numberList,
+			prizeNameOfID: prizeNameOfID
 		});
 	},
 
 	// Helper function: sort numbers into 2 categories
 	sortDataByType: function() {
 		var self = this,
-			list = self.get('list');
+			numberList = self.get('numberList'),
+			prizeNameOfID = self.get('prizeNameOfID');
+
 		this.set({
 			// numbers that need every digit matching
 			matchAll:
-				$.map(list, function(numbers, id) {
-					if ( self.mapping[id] === "特別獎" || self.mapping[id] === "特獎" )
+				$.map(numberList, function(numbers, id) {
+					if ( prizeNameOfID[id] === "特別獎" || prizeNameOfID[id] === "特獎" )
 						return numbers;
 				}),
 			// numbers that need at least three ending digits matching
 			matchThree:
-				$.map(list, function(numbers, id) {
-					if ( self.mapping[id] !== "特別獎" && self.mapping[id] !== "特獎" )
+				$.map(numberList, function(numbers, id) {
+					if ( prizeNameOfID[id] !== "特別獎" && prizeNameOfID[id] !== "特獎" )
 						return numbers;
 				})
 		});
 	},
 
 	// Helper function: create prize number-name mapping
-	createNameMapping: function() {
-		var numbers = $.map(this.get('list'), function(value, id) { return value; });
+	createNumberNameMapping: function() {
+		var numbers = $.map(this.get('numberList'), function(value, id) { return value; });
 		var self = this,
-			nameMapping = {};
+			prizeNameOfID = this.get('prizeNameOfID'),
+			prizeNameOfNumber = {};
 
-		$.each(this.get('list'), function(id, numbers) {
+		$.each(this.get('numberList'), function(id, numbers) {
 			$.each(numbers, function(i, number) {
-				nameMapping[number] = self.mapping[id];
+				prizeNameOfNumber[number] = prizeNameOfID[id];
 			});
 		});
-		this.set('prizeName', nameMapping);
+		this.set('prizeNameOfNumber', prizeNameOfNumber);
 	}
 });
 

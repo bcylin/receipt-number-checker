@@ -15,10 +15,11 @@ define([
 return Backbone.View.extend({
 
 	initialize: function() {
-		this.app = window.receiptApp;
+		this.delegate = this.options.delegate;
+		this.dataSource = this.options.dataSource;
 		// Display months on switch buttons
-		this.$el.find('#thisDraw').text( this.app.prize.getMonths('thisDraw') );
-		this.$el.find('#prevDraw').text( this.app.prize.getMonths('prevDraw') );
+		this.$el.find('#thisDraw').text( this.dataSource.getMonths('thisDraw') );
+		this.$el.find('#prevDraw').text( this.dataSource.getMonths('prevDraw') );
 	},
 
 	events: {
@@ -34,9 +35,7 @@ return Backbone.View.extend({
 
 		// tell otehr componants that the draw has changed
 		var selectedDraw = event.target.value;
-		this.app.prize.setDraw(selectedDraw);
-		this.app.prizeView.refresh();
-		this.app.inputView.focus();
+		this.delegate.switchViewDidSelectDraw(selectedDraw);
 	}
 });
 

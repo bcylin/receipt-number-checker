@@ -18,6 +18,8 @@ return Backbone.View.extend({
 
 	initialize: function() {
 		this.app = window.receiptApp;
+		this.delegate = this.options.delegate;
+		this.dataSource = this.options.dataSource;
 		this.$input = this.$el.find('#inputNumber');	// the text input
 	},
 
@@ -46,7 +48,7 @@ return Backbone.View.extend({
 	// @parem {string} a number to save
 	// @return {object} result that describes if the number is winning
 	save: function(num) {
-		var result = this.app.prize.match(num);
+		var result = this.dataSource.match(num);
 
 		// create a record model, insert into list collection
 		var record = new Backbone.Model(result);
@@ -55,18 +57,10 @@ return Backbone.View.extend({
 		return result;
 	},
 
-	// Input a list of numbers for testing
-	// @param {array} a list of numbers
-	autoInput: function(numbers) {
-		var self = this,
-			original = self.app.listView.config.effect;
-
-		// Turn the sliding effect off during the action
-		self.app.listView.config.effect = false;
-		$.each(numbers, function(index, num) {
-			num.toString().length === self.NUM_CHAR_TO_DETECT && self.save(num);
-		});
-		self.app.listView.config.effect = original;
+	// Input a number
+	// @param {number|string} of three digits
+	input: function(num) {
+		num.toString().length === this.NUM_CHAR_TO_DETECT && this.save(num);
 	},
 
 	focus: function() {

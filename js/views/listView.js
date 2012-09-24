@@ -16,7 +16,7 @@ define([
 return Backbone.View.extend({
 
 	initialize: function() {
-		this.app = window.receiptApp;
+		this.delegate = this.options.delegate;
 
 		// template of an item on the list
 		this.template = this.$el.find('.template').html().trim();
@@ -110,7 +110,7 @@ return Backbone.View.extend({
 
 	triggerNotify: function(event) {
 		var cid = $(event.target).closest('li').attr('id');
-		this.app.notifyView.displayResult( this.collection.getByCid(cid) );
+		this.delegate.listViewDidSelectItemWithCid(cid);
 	}
 });
 

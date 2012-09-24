@@ -13,10 +13,6 @@ require.config({
 	mainConfigFile: 'receipt.js',
 	baseUrl: './js',
 	paths: {
-		// jquery : 'http://code.jquery.com/jquery-1.7.2.min.js',
-		// order: 'http://requirejs.org/docs/release/1.0.5/minified/order.js',
-		// underscore : 'http://underscorejs.org/underscore-min.js',
-		// backbone : 'http://backbonejs.org/backbone-min.js',
 		jquery : 'lib/jquery-1.7.2',
 		order: 'lib/order',
 		underscore : 'lib/underscore',
@@ -38,7 +34,6 @@ require([
 	'views/counterView',
 	'views/listView',
 	'views/notifyView',
-	'views/mobileView',
 	// 'views/signature',
 	// 'views/share'
 ], function(
@@ -50,36 +45,14 @@ require([
 	InputView,
 	CounterView,
 	ListView,
-	NotifyView,
-	MobileView
+	NotifyView
 ){
 
 	// Use Mustache.js style templating
 	_.templateSettings = { interpolate: /\{\{(.+?)\}\}/g };
 
 	// A global object to handle all functions
-	var app = window.receiptApp = {};
-
-	// Display a different message for mobile devices
-	if ( app.mobile = navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i) ) {
-		var mobileView = new MobileView({ el: 'body' });
-		return;
-	}
-
-	// This does not support IE yet, stop here if the message is displayed
-	if ( navigator.userAgent.match(/MSIE/i) && document.getElementById('ie') ) {
-		return;
-	}
-
-	// Fix font and github ribbon on Windows
-	if ( navigator.userAgent.match(/Windows/i) ) {
-		document.body.className = document.body.className + " windows";
-		document.getElementById('ribbon').className = "hidden";
-
-		var ribbon = document.getElementById('github-ribbon');
-		ribbon.src = "https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png";
-		ribbon.className = "";
-	}
+	var app = window.receiptApp ? window.receiptApp : {};
 
 	app.welcomeView = new WelcomeView({ el: '#welcome' });
 	app.prize = new PrizeModel;
@@ -91,30 +64,37 @@ require([
 
 		app.inputView = new InputView({
 			el: '#input',
+			delegate: app,
+			dataSource: app.prize,
 			collection: app.records
 		});
 
 		app.switchView = new SwitchView({
-			el: '#switch'
+			el: '#switch',
+			delegate: app,
+			dataSource: app.prize
 		});
 
 		app.prizeView = new PrizeView({
 			el: '#prize',
-			model: app.prize
+			dataSource: app.prize
 		});
 
 		app.counterView = new CounterView({
 			el: '#counter',
+			delegate: app,
 			collection: app.records
 		});
 
 		app.listView = new ListView({
 			el: '#list',
+			delegate: app,
 			collection: app.records
 		});
 
 		app.notifyView = new NotifyView({
 			el: '#notify',
+			delegate: app,
 			collection: app.records
 		});
 
@@ -126,11 +106,47 @@ require([
 
 		app.inputView.focus();
 
-		// var randoms = [];
-		// for ( var i = 0; i < 100; i++ ) {
-		// 	randoms.push( ("00" + Math.floor(Math.random() * 999 + 1).toString()).slice(-3) );
-		// }
-		// app.inputView.autoInput(randoms);
+		// switchView delegate method
+		app.switchViewDidSelectDraw = function(selectedDraw) {
+			this.prize.setDraw(selectedDraw);
+			this.prizeView.refresh();
+			this.inputView.focus();
+		};
+
+		// notifyView delegate method
+		app.counterViewDidToggle = function() {
+			this.listView.toggleList();
+			this.inputView.focus();
+		};
+
+		// listView delegate method
+		app.listViewDidSelectItemWithCid = function(cid) {
+			this.notifyView.displayResult( this.records.getByCid(cid) );
+		};
+
+		// notifyView delegate methods
+		app.notifyViewWillAppear = function() {
+			this.inputView.blur();
+		};
+
+		app.notifyViewDidDismiss = function() {
+			this.inputView.focus();
+		};
+
+		// Input a list of numbers for testing
+		// @param {number} of inputs
+		// app.autoInput = function(num) {
+		// 	// Turn the sliding effect off during the action
+		// 	var original = this.listView.config.effect;
+		// 	this.listView.config.effect = false;
+		// 	for ( var i = 0; i < num; i++ ) {
+		// 		var random = ("00" + Math.floor(Math.random() * 999 + 1).toString()).slice(-3);
+		// 		this.inputView.input(random);
+		// 	}
+		// 	this.listView.config.effect = original;
+		// };
+
+		// app.autoInput(5);
 	});
 
 });
