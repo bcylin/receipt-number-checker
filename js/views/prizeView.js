@@ -45,7 +45,7 @@ return Backbone.View.extend({
 			// display winning numbers of this prize
 			$.each(numbers, function(index, number) {
 				var $li = $('<li>').appendTo($ul);
-				$('<input>', {type: 'text', value: number}).appendTo($li);
+				$('<span>', {text: number}).appendTo($li);
 			});
 		});
 

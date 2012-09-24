@@ -22,6 +22,11 @@
 	<div class="mobile-msg">目前暫時不支援行動裝置</div>
 	<div class="mobile-background"></div>
 
+	<div class="mobile-screen">
+		<div id="mobile-result"></div>
+		<input type="number" pattern="[0-9]*" id="mobileInput">
+	</div>
+
 <script type="text/javascript">
 // <![CDATA[
 
@@ -156,8 +161,9 @@
 
 (function() {
 
-	// Avoid loading main script on mobile
+	// Load mobile view
 	if ( window.receiptApp.mobile ) {
+		require(['js/receipt-mobile']);
 		return;
 	}
 
