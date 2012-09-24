@@ -53,7 +53,7 @@ return function() {
 					'增開六獎': ['444']
 				}
 			});
-			// console.log(current.thisDraw.toJSON());
+			console.log(current.thisDraw.toJSON());
 			if (isDone) { self.initializing.resolve(); }
 			isDone = true;
 		});
@@ -63,6 +63,18 @@ return function() {
 			isDone = true;
 		}).fail(function() {
 			// set winning numbers manually
+			current.prevDraw.setData({
+				months: "測試2",
+				prizes: {
+					'特別獎': ['AAAABBBB'],
+					'特獎': ['BBBBAAAA'],
+					'頭獎至六獎': ['CCC'],
+					'增開六獎': ['DDD']
+				}
+			});
+			console.log(current.thisDraw.toJSON());
+			if (isDone) { self.initializing.resolve(); }
+			isDone = true;
 		});
 
 		return this.initializing.promise();

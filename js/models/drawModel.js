@@ -59,28 +59,16 @@ return Backbone.Model.extend({
 			dfd.resolve();
 		};
 
-		// get cross-site data from a middle man
-		// $.get('/get', {'site': url})
-		// 	.done(function(content) { processData(content); })
-		// 	.fail(function() {
-				// get the cached file if the middle man fails
-				// $.get('cache/' + url.match(/[A-Z\_\d]+\.htm[l]?/ig)[0])
-				// 	.done(function(content) { processData(content); })
-				// 	.fail(function() {
-				// 		dfd.reject();
-				// 		console.log('Fail fetching URL: ' + url);
-				// 	});
-		//	});
-
+		// get the cached files
 		$.ajax({
 			url: 'cache/' + url.match(/[A-Z\_\d]+\.htm[l]?/ig)[0],
-			success: function(content) { processData(content); },
-			complete: function(xhr, content) {
-				if (xhr.status == 0) {
-					// TODO: error handler is still buggy
-					dfd.reject();
-					console.log('Fail fetching URL: ' + url);
-				}
+			dataType: 'html',
+			success: function(content) {
+				processData(content);
+			},
+			error: function(content) {
+				console.log('Fail fetching URL: ' + url);
+				dfd.reject();
 			}
 		});
 
@@ -102,12 +90,12 @@ return Backbone.Model.extend({
 	// @param {string} HTML rawdata
 	extractNumbers: function(rawdata) {
 
-		var self = this;
 		var data = rawdata.replace(/<!DOCTYPE.+<\/head>|[\t\n]+|\ \ |<\/html>/g, ""),
 			$info = $(data).last();
 
-		this.mapping = {};
-		this.list = {};
+		var self = this,
+			prizeNameOfID = {},
+			winningNumbers = {};
 
 		// extract each prize
 		$info.find('.number').each(function(index, item) {
@@ -115,33 +103,35 @@ return Backbone.Model.extend({
 			var name = $(item).closest('td').prev('th').text();
 
 			// name of this prize id
-			self.mapping[index + 'thPrize'] = name === "頭獎" ? "頭獎至六獎" : name;
+			prizeNameOfID[index + 'thPrize'] = name === "頭獎" ? "頭獎至六獎" : name;
 
 			// winning numbers of this prize id
-			self.list[index + 'thPrize'] = numbers;
+			winningNumbers[index + 'thPrize'] = numbers;
 		});
 
 		this.set({
-			list: self.list,
-			mapping: self.mapping
+			list: winningNumbers,
+			mapping: prizeNameOfID
 		});
 	},
 
 	// Helper function: sort numbers into 2 categories
 	sortDataByType: function() {
 		var self = this,
-			list = self.get('list');
+			list = self.get('list'),
+			prizeNameOfID = self.get('mapping');
+
 		this.set({
 			// numbers that need every digit matching
 			matchAll:
 				$.map(list, function(numbers, id) {
-					if ( self.mapping[id] === "特別獎" || self.mapping[id] === "特獎" )
+					if ( prizeNameOfID[id] === "特別獎" || prizeNameOfID[id] === "特獎" )
 						return numbers;
 				}),
 			// numbers that need at least three ending digits matching
 			matchThree:
 				$.map(list, function(numbers, id) {
-					if ( self.mapping[id] !== "特別獎" && self.mapping[id] !== "特獎" )
+					if ( prizeNameOfID[id] !== "特別獎" && prizeNameOfID[id] !== "特獎" )
 						return numbers;
 				})
 		});
@@ -151,14 +141,15 @@ return Backbone.Model.extend({
 	createNameMapping: function() {
 		var numbers = $.map(this.get('list'), function(value, id) { return value; });
 		var self = this,
-			nameMapping = {};
+			prizeNameOfID = this.get('mapping'),
+			prizeNameOfNumber = {};
 
 		$.each(this.get('list'), function(id, numbers) {
 			$.each(numbers, function(i, number) {
-				nameMapping[number] = self.mapping[id];
+				prizeNameOfNumber[number] = prizeNameOfID[id];
 			});
 		});
-		this.set('prizeName', nameMapping);
+		this.set('prizeName', prizeNameOfNumber);
 	}
 });
 
