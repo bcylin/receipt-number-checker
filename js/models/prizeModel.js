@@ -93,13 +93,10 @@ return function() {
 			return false
 		}
 	};
-	this.getCurrent = function() {
-		return _current;
-	};
 
 	// @param {string} which draw
 	// @return {object} prize index-name mapping
-	this.getMapping = function(whichDraw) {
+	this.getPrizeNameIDMapping = function(whichDraw) {
 		var draw = !whichDraw ? _draw :
 					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
 		return _current[draw].get('prizeNameOfID');
@@ -115,20 +112,10 @@ return function() {
 
 	// @param {string} which draw
 	// @return {object} each array of winning numbers
-	this.getList = function(whichDraw) {
+	this.getNumberList = function(whichDraw) {
 		var draw = !whichDraw ? _draw :
 					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
 		return _current[draw].get('numberList');
-	};
-
-	// @param {string} which draw
-	// @return {array} of all winning numbers
-	this.getAllNumbers = function(whichDraw) {
-		var draw = !whichDraw ? _draw :
-					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
-		return $.map(_current[draw].get('numberList'), function(numbers, id) {
-			return numbers;
-		});
 	};
 
 	// @param {string} winning number

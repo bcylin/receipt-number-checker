@@ -24,17 +24,17 @@ return Backbone.View.extend({
 
 	render: function() {
 		var self = this,
-			list = this.dataSource.getList(),		// prize id-numbers list
-			mapping = this.dataSource.getMapping();	// prize id-name mapping
+			numberList = this.dataSource.getNumberList(),				// prize id-numbers list
+			prizeNameOfID = this.dataSource.getPrizeNameIDMapping();	// prize id-name list
 
 		// go through each prize on the list
-		$.each(list, function(id, numbers) {
+		$.each(numberList, function(id, numbers) {
 			if (!$.isArray(numbers)) { return; }
 
 			// prepare a section for prize info on the page
 			var section = self.compiled({
 				id: id,
-				name: mapping[id]
+				name: prizeNameOfID[id]
 			});
 
 			var $section = $(section),
