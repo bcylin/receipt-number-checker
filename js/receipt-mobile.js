@@ -23,13 +23,17 @@
 require([
 	'order!jquery',
 	'models/prizeModel',
+	'views/inputView',
 	'views/prizeView',
 	'views/switchView',
+	'views/resultView'
 ], function(
 	$,
 	PrizeModel,
+	InputView,
 	PrizeView,
-	SwitchView
+	SwitchView,
+	ResultView
 ) {
 
 	// Use Mustache.js style templating
@@ -48,6 +52,11 @@ require([
 	// Start loading prize data
 	app.prize.init().done(function() {
 
+		app.inputView = new InputView({
+			el: '#mobile-input',
+			delegate: app
+		});
+
 		app.switchView = new SwitchView({
 			el: '#switch',
 			delegate: app,
@@ -59,9 +68,21 @@ require([
 			dataSource: app.prize
 		});
 
+		app.resultView = new ResultView({
+			el: '#mobile-result'
+		});
+
 		app.prizeView.render();
 
+		// inputView delegate method
+		// @parem {string} a number acquired from inputView
+		app.inputViewDidAcquireNumber = function(num) {
+			var result = this.prize.match(num);
+			this.resultView.displayResult(result);
+		};
+
 		// switchView delegate method
+		// @param {string} name of the selected draw
 		app.switchViewDidSelectDraw = function(selectedDraw) {
 			this.prize.setDraw(selectedDraw);
 			this.prizeView.refresh();

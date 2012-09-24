@@ -23,8 +23,17 @@
 	<div class="mobile-background"></div>
 
 	<div class="mobile-screen">
-		<div id="mobile-result"></div>
-		<input type="number" pattern="[0-9]*" id="mobileInput">
+		<input type="number" id="mobile-input" pattern="[0-9]*" maxlength="3">
+		<div id="mobile-result">
+			<div class="numbers">
+				<span class="months">月份</span>
+				<span class="number first-five">12345</span>
+				<span class="number last-three">678</span>
+			</div>
+			<span class="result"></span>
+			<span class="description"></span>
+		</div>
+		<div id="info"></div>
 	</div>
 
 <script type="text/javascript">
