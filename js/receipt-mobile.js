@@ -36,9 +36,9 @@ require([
 	ResultView
 ) {
 
-	// Hide the address bar on mobile browsers
+	// Hide the address bar after launched on mobile browsers
 	$(document).ready(function() {
-		setTimeout(function(){ window.scrollTo(0, 1); }, 100);
+		setTimeout(function(){ window.scrollTo(0, 1); }, 500);
 	});
 
 	// Use Mustache.js style templating
