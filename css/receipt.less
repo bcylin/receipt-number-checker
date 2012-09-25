@@ -33,13 +33,39 @@ body {
 	margin: @body-margin auto;
 }
 
-// Hide mobile message on Desktop
-.desktop .mobile-msg,
-.desktop .mobile-background {
-	.hidden;
+/* Hide mobile screen on desktop */
+.desktop {
+	.error-msg,
+	.error-background,
+	.mobile-screen {
+		display: none !important;
+	}
 }
 
+/* Hide desktop components on mobile devices */
 .mobile {
+	.error-msg,
+	.error-background,
+	.operation,
+	.record,
+	.modal,
+	.float {
+		display: none !important;
+	}
+}
+
+/* Hide all components on non-compatible screen */
+.non-compatible {
+	.mobile-screen,
+	.operation,
+	.record,
+	.modal,
+	.float {
+		display: none !important;
+	}
+}
+
+.non-compatible {
 	width: width;
 	height: auto;
 	min-width: 0;
@@ -50,7 +76,7 @@ body {
 @mobile-msg-width: 90%;
 @mobile-msg-height: 30%;
 
-.mobile .mobile-msg {
+.non-compatible .error-msg {
 	.box;
 	position: fixed;
 	z-index: 101;
@@ -67,7 +93,7 @@ body {
 	color: white;
 }
 
-.mobile .mobile-background {
+.non-compatible .error-background {
 	background: rgb(45,45,45);
 	position: fixed;
 	z-index: 100;
@@ -77,15 +103,254 @@ body {
 	height: 100%;
 }
 
-// Hide all components on Desktop
-.mobile .operation,
-.mobile .record,
-.mobile .modal,
-.mobile .float {
-	display: none !important;
+/* Mobile Screen */
+
+.mobile-screen {
+	width: width;
+	// max-width: 480px;
+	margin: 0 auto;
+	.box;
 }
 
-/* Containers */
+.mobile-screen {	// Nested rules
+
+@UIFontSize: 16px;
+
+.UIButton {
+	color: rgb(81,102,145);
+	background-color: rgb(247,247,247);
+	border: 1px solid rgb(161,167,173);
+	border-radius: 10px;
+	font-size: @UIFontSize;
+	font-weight: bold;
+	height: 44px;
+}
+
+.UIGroupedTable {
+	background-color: rgb(247,247,247);
+	border: 1px solid rgb(161,167,173);
+	border-radius: 10px;
+	font-size: @UIFontSize;
+	font-weight: bold;
+	padding: 0;
+	margin: 10px auto;
+	width: 90%;
+}
+
+.UITableViewCellTextLabel {
+	display: inline-block;
+	text-align: right;
+	font-size: 14px;
+	color: rgb(81,102,145);
+	width: 35%;
+	margin: 4px 5% 0 0;
+	.box;
+}
+
+// inputView
+
+.input {
+	width: 100%;
+	height: 44px;
+	vertical-align: middle;
+	border-bottom: 1px solid rgb(129,146,159);
+	background: -webkit-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	background: -moz-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	background: -o-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	background: -ms-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	background: linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	box-shadow: 0px -1px 5px rgba(0,0,0,.5);
+}
+
+.input label {
+	display: inline-block;
+	width: 39%;
+	height: 44px;
+	line-height: 44px;
+	text-align: right;
+	color: rgb(20,20,20);
+	font-weight: bold;
+}
+
+// Modify place holder
+::-webkit-input-placeholder {
+	text-align: left;
+}
+
+:-moz-placeholder {
+	text-align: left;
+}
+
+#mobile-input {
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1;	// Fix placeholder vertical alignment on iOS
+	text-align: center;
+	letter-spacing: 2px;
+	height: 30px;
+	width: 55%;
+	float: right;
+	padding: 0 10px;
+	margin: 7px;
+	border: 1px solid rgb(163,175,185);
+	border-radius: 17px;
+	-webkit-appearance: none;	// To set box-shadow on iOS
+	box-shadow: inset 1px 2px 2px rgba(100,100,100,.8);
+	.box;
+}
+
+// resultView
+
+.tableView {
+	.UIGroupedTable;
+	margin: 15px auto;
+}
+
+.tableViewCell {
+	font-size: 16px;
+	height: 1em;
+	padding: 15px 0;
+	text-align: center;
+	color: rgb(143,143,143);
+	background-color: transparent;
+}
+
+.tableViewCell:not(:last-of-type) {
+	border-bottom: 1px solid rgb(202,202,202);
+}
+
+.number {
+	letter-spacing: 2px;
+}
+
+.description {
+	display: block;
+	width: 90%;
+	height: 1em;
+	margin: 10px auto;
+	text-align: center;
+	color: rgb(77,87,107);
+}
+
+.match-all {
+	.tableViewCell:last-of-type {
+		color: white;
+		background: -webkit-linear-gradient(top, Gold, SandyBrown);
+		background: -moz-linear-gradient(top, Gold, SandyBrown);
+		background: -o-linear-gradient(top, Gold, SandyBrown);
+		background: -ms-linear-gradient(top, Gold, SandyBrown);
+		background: linear-gradient(top, Gold, SandyBrown);
+		text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+	.first-five {
+		color: black;
+	}
+	.last-three {
+		color: rgb(220,20,60);
+	}
+}
+
+.match-three {
+	.tableViewCell:last-of-type {
+		color: white;
+		background: -webkit-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		background: -moz-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		background: -o-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		background: -ms-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		background: linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+	.first-five {
+		color: black;
+	}
+	.last-three {
+		color: rgb(220,20,60);
+	}
+
+}
+
+// switchView
+
+#switch {
+	text-align: center;
+}
+
+#switch > label {
+	position: relative;
+	width: 42%;
+	display: inline-block;
+	margin: 5px 3%;
+	.UIButton;
+	.box;
+}
+
+#switch .selected {
+	background: -webkit-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
+	background: -moz-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
+	background: -o-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
+	background: -ms-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
+	background: linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
+	color: white;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+}
+
+@span-width: 40px;
+
+#switch span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: @UIFontSize;
+	width: @span-width;
+	margin-top: -@UIFontSize / 2 + 1px;
+	margin-left: -@span-width / 2;
+}
+
+// prizeView
+
+#prize {
+	.UIGroupedTable;
+	margin-bottom: 25px;
+}
+
+#prize section {
+	padding: 10px 0;
+}
+
+#prize section:not(:last-of-type) {
+	border-bottom: 1px solid rgb(202,202,202);
+}
+
+#prize .name {
+	.UITableViewCellTextLabel;
+}
+
+#prize ul {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0;
+	padding: 0;
+}
+
+#prize .numbers span {
+	border: 0;
+	font-family: 'Lucida Grande';
+	vertical-align: middle;
+	letter-spacing: 2px;
+	height: @UIFontSize;
+	line-height: @UIFontSize + 6px;
+	padding: 1px;
+	margin: 0;
+	.box;
+}
+
+}	// End of nested rules
+
+/* Desktop Containers */
 
 // LESS Variables
 @left-width: 50%;
@@ -423,6 +688,7 @@ body {
 
 
 /* Switch */
+.desktop {	// Nested rules
 #switch {
 	.box-margin;
 	.box;
@@ -485,9 +751,11 @@ body {
 	background: -ms-linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
 	background: linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
 }
+}	// End of nested rules
 
 
 /* Prize */
+.desktop {	// Nested rules
 #prize {
 	.box-margin;
 	.box;
@@ -513,17 +781,18 @@ body {
 	mask-image: linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
 }
 
-@number-height: 1.5em;
+@number-height: 33px;
 
 #prize .name {
 	display: inline-block;
 	vertical-align: middle;
 	text-align: right;
-	line-height: @number-height + .2em;
+	line-height: @number-height;
 	width: 7.5em;
 	height: @number-height;
-	padding: (@number-height - 1em) / 2;
+	padding: 1px;
 	margin-right: 1em;
+	.box;
 }
 
 #prize ul {
@@ -533,19 +802,24 @@ body {
 	padding: 0;
 }
 
-#prize .numbers input {
+#prize .numbers span {
 	border: 0;
 	font-size: 16px;
+	font-family: 'Lucida Grande';
+	vertical-align: middle;
 	letter-spacing: 2px;
 	width: 100px;
 	height: @number-height;
-	padding: (@number-height - 1em) / 2;
+	line-height: @number-height;
+	padding: 1px;
 	margin: 0;
+	.box;
 }
 
 #prize .numbers input:focus {
 	outline: none;
 }
+}	// End of nested rules
 
 
 /* Counter */

@@ -2,6 +2,7 @@
 
 cd js
 node lib/r.js -o build-receipt.js
+node lib/r.js -o build-receipt-mobile.js
 cd ..
 
 lessc css/receipt.less > css/receipt.css
@@ -22,6 +23,7 @@ cp -fv css/receipt.css $deploy"/css"
 cp -fv css/lib/reset.css $deploy"/css/lib"
 cp -fv css/plugin/bootstrap-receipt.min.css $deploy"/css/plugin"
 cp -fv js/receipt-built.js $deploy"/js"
+cp -fv js/receipt-mobile-built.js $deploy"/js"
 cp -fv js/lib/html5shiv.js $deploy"/js/lib"
 cp -fv js/lib/require.min.js $deploy"/js/lib"
 cp -rfv cache $deploy
