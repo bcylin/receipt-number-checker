@@ -40,9 +40,9 @@ require([
 	_.templateSettings = { interpolate: /\{\{(.+?)\}\}/g };
 
 	// Move switch & prize elements to mobile screen
-	var $mobileScreen = $('div.mobile-screen');
-	$('#switch').appendTo($mobileScreen);
-	$('#prize').appendTo($mobileScreen);
+	var $infoSheet = $('#info');
+	$('#switch').appendTo($infoSheet);
+	$('#prize').appendTo($infoSheet);
 
 	// A global object to handle all functions
 	var app = window.receiptApp ? window.receiptApp : {};
