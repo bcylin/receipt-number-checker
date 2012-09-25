@@ -36,6 +36,11 @@ require([
 	ResultView
 ) {
 
+	// Hide the address bar on mobile browsers
+	$(document).ready(function() {
+		setTimeout(function(){ window.scrollTo(0, 1); }, 100);
+	});
+
 	// Use Mustache.js style templating
 	_.templateSettings = { interpolate: /\{\{(.+?)\}\}/g };
 
@@ -91,5 +96,10 @@ require([
 			this.resultView.clearDisplay();
 			this.resultView.displayMonths( this.prize.getMonths(selectedDraw) );
 		};
+
+		// Keep the address bar hidden
+		$('#mobile-input').on('focus', function() {
+			window.scrollTo(0, 1);
+		});
 	});
 });
