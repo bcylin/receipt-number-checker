@@ -44,7 +44,7 @@ body {
 
 /* Hide desktop components on mobile devices */
 .mobile {
-	.error-msg
+	.error-msg,
 	.error-background,
 	.operation,
 	.record,
@@ -182,11 +182,11 @@ body {
 }
 
 #mobile-input {
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: bold;
 	line-height: 1;	// Fix placeholder vertical alignment on iOS
 	text-align: center;
-	letter-spacing: 3px;
+	letter-spacing: 2px;
 	height: 30px;
 	width: 55%;
 	float: right;
@@ -207,8 +207,9 @@ body {
 }
 
 .tableViewCell {
+	font-size: 16px;
 	height: 1em;
-	padding: 10px 0;
+	padding: 15px 0;
 	text-align: center;
 	color: rgb(143,143,143);
 	background-color: transparent;
@@ -216,6 +217,10 @@ body {
 
 .tableViewCell:not(:last-of-type) {
 	border-bottom: 1px solid rgb(202,202,202);
+}
+
+.number {
+	letter-spacing: 2px;
 }
 
 .description {
