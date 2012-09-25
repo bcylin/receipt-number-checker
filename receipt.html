@@ -23,8 +23,8 @@
 </head>
 <body class="desktop">
 
-	<div class="mobile-msg">目前暫時不支援行動裝置</div>
-	<div class="mobile-background"></div>
+	<div class="error-msg">iPad 使用介面尚未完成</div>
+	<div class="error-background"></div>
 
 	<div class="mobile-screen">
 		<div class="input">
@@ -51,8 +51,11 @@
 // <![CDATA[
 
 	var app = window.receiptApp = {};
+	app.mobile = navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i)
 	// Display a different message for mobile devices
-	if ( app.mobile = navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i) ) {
+	if ( 'iPad' == app.mobile ) {
+		document.body.className = "non-compatible";
+	} else if ( app.mobile ) {
 		document.body.className = "mobile";
 	}
 
@@ -187,6 +190,11 @@
 			// 'js/receipt': 'js/receipt-built'
 		}
 	});
+
+	// UI on iPad is yet finished
+	if ( window.receiptApp.mobile == 'iPad' ) {
+		return;
+	}
 
 	// Load mobile view
 	if ( window.receiptApp.mobile ) {
