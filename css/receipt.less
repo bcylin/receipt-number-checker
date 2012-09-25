@@ -96,10 +96,8 @@ body {
 
 .mobile-screen {
 	width: width;
-	max-width: 480px;
-	// height: 417px;
+	// max-width: 480px;
 	margin: 0 auto;
-	.border;
 	.box;
 }
 
@@ -161,6 +159,7 @@ body {
 	text-align: right;
 }
 
+// Modify place holder
 ::-webkit-input-placeholder {
 	text-align: left;
 }
@@ -188,10 +187,6 @@ body {
 }
 
 // resultView
-
-#mobile-result {
-
-}
 
 .tableView {
 	.UIGroupedTable;
@@ -223,6 +218,10 @@ body {
 	.tableViewCell:last-of-type {
 		color: white;
 		background: -webkit-linear-gradient(top, Gold, SandyBrown);
+		background: -moz-linear-gradient(top, Gold, SandyBrown);
+		background: -o-linear-gradient(top, Gold, SandyBrown);
+		background: -ms-linear-gradient(top, Gold, SandyBrown);
+		background: linear-gradient(top, Gold, SandyBrown);
 		text-shadow: 1px 1px 1px rgba(0,0,0,.5);
 		border-bottom-left-radius: 10px;
 		border-bottom-right-radius: 10px;
@@ -264,15 +263,19 @@ body {
 
 #switch > label {
 	position: relative;
-	width: 43%;
+	width: 42%;
 	display: inline-block;
-	margin: 5px 2.5%;
+	margin: 5px 3%;
 	.UIButton;
 	.box;
 }
 
 #switch .selected {
 	background: -webkit-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
+	background: -moz-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
+	background: -o-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
+	background: -ms-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
+	background: linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
 	color: white;
 	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
 }

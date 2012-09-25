@@ -180,6 +180,13 @@
 
 (function() {
 
+	require.config({
+		paths: {
+			// 'js/receipt-mobile': 'js/receipt-mobile-built',
+			// 'js/receipt': 'js/receipt-built'
+		}
+	});
+
 	// Load mobile view
 	if ( window.receiptApp.mobile ) {
 		require(['js/receipt-mobile']);
@@ -206,12 +213,6 @@
 	document.getElementById('chrome').src = "img/chrome@1x.png";
 	document.getElementById('firefox').src = "img/firefox@1x.png";
 	document.getElementById('safari').src = "img/safari@1x.png";
-
-	require.config({
-		paths: {
-			// 'js/receipt': 'js/receipt-built'
-		}
-	});
 
 	require(['js/receipt']);
 
