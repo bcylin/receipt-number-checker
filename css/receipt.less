@@ -125,35 +125,59 @@ body {
 	font-weight: bold;
 	padding: 0;
 	margin: 10px auto;
+	width: 90%;
 }
 
-#mobileInput {
-	font-size: 36px;
-	font-weight: bold;
-	letter-spacing: 20px;
-	text-align: left;
-	height: 70px;
-	width: 200px;
-	position: relative;
-	display: block;
-	margin: 10px auto;
-	padding: 5px 30px 5px 30px;
-	box-shadow: inset 1px 1px 2px #999;
-	border: 0;
+.UITableViewCellTextLabel {
+	display: inline-block;
+	text-align: right;
+	font-size: 14px;
+	color: rgb(81,102,145);
+	width: 35%;
+	margin: 4px 5% 0 0;
+	.box;
+}
+
+.input {
+	height: 44px;
+	vertical-align: middle;
+	border-bottom: 1px solid rgb(129,146,159);
+	background: -webkit-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	background: -moz-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	background: -o-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	background: -ms-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	background: linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+}
+
+
+.input label {
+	display: inline-block;
+	width: 34%;
+	height: 44px;
+	line-height: 44px;
+	text-align: right;
+}
+
+@searchFont: 20px;
+
+#mobile-input {
+	font-size: 16px;
+	line-height: 1;	// Fix placeholder vertical alignment on iOS
+	height: 30px;
+	width: 60%;
+	float: right;
+	padding: 0 10px;
+	margin: 7px;
+	border: 1px solid rgb(163,175,185);
+	border-radius: 17px;
+	-webkit-appearance: none;	// To set box-shadow on iOS
+	box-shadow: inset 1px 2px 2px rgba(100,100,100,.8);
 	.box;
 }
 
 #mobile-result {
 	height: 70px;
 	.border;
-}
-
-#info {
-	// .border;
-	// margin: 5px;
-	// padding: 10px;
-	// border-radius: 5px;
-	// background-color: white;
 }
 
 #switch {
@@ -183,12 +207,11 @@ body {
 
 #prize {
 	.UIGroupedTable;
-	width: 90%;
 	margin-bottom: 25px;
 }
 
 #prize section {
-	padding: 15px 0;
+	padding: 10px 0;
 }
 
 #prize section:not(:last-of-type) {
@@ -196,13 +219,7 @@ body {
 }
 
 #prize .name {
-	display: inline-block;
-	text-align: right;
-	font-size: 14px;
-	color: rgb(81,102,145);
-	width: 35%;
-	margin: 4px 5% 0 0;
-	.box;
+	.UITableViewCellTextLabel;
 }
 
 #prize ul {
