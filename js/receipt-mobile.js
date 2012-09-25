@@ -44,6 +44,7 @@ require([
 	$('#switch').appendTo($infoSheet);
 	$('#prize').appendTo($infoSheet);
 
+
 	// A global object to handle all functions
 	var app = window.receiptApp ? window.receiptApp : {};
 

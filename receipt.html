@@ -5,10 +5,13 @@
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="expires" content="-1">
-	<meta name="viewport" content="width=device-width">
 	<meta property="og:title" content="統一發票對獎程式">
 	<meta property="og:url" content="http://bcylin.github.com/projects/receipt/">
 	<meta property="og:image" content="http://bcylin.github.com/projects/receipt/img/thumbnail.png">
+	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
 	<title>統一發票對獎程式</title>
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
@@ -30,12 +33,12 @@
 		<div id="mobile-result">
 			<div class="tableView">
 				<div class="tableViewCell">
-					<span class="number first-five">輸入</span>
-					<span class="number last-three">號碼</span>
+					<span class="number first-five"></span>
+					<span class="number last-three">輸入號碼</span>
 				</div>
 				<div class="tableViewCell">
 					<span class="months"></span>
-					<span class="result">對獎</span>
+					<span class="result">顯示對獎結果</span>
 				</div>
 			</div>
 			<span class="description"></span>
@@ -90,11 +93,11 @@
 			<input type="text" id="inputNumber" maxlength="3">
 		</div>
 		<div id="switch">
-			<label class="selected">
+			<label class="selected" onclick="">
 				<span id="thisDraw">本期</span>
 				<input type="radio" name="draw" value="thisDraw" class="switch hidden" checked>
 			</label>
-			<label>
+			<label onclick="">
 				 <span id="prevDraw">前期</span>
 				 <input type="radio" name="draw" value="prevDraw" class="switch hidden">
 			</label>
