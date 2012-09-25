@@ -26,19 +26,18 @@
 
 	<div class="mobile-screen">
 		<div class="input">
-			<label for="mobile-input" onclick="">統一發票末三碼</label>
-			<input type="text" id="mobile-input" pattern="[0-9]*" maxlength="3" placeholder="&#x2794;">
+			<label for="mobile-input">統一發票</label>
+			<input type="text" id="mobile-input" pattern="[0-9]*" maxlength="3" placeholder="末三碼">
 		</div>
 		<div id="mobile-result">
-			<div class="tableView">
-				<div class="tableViewCell">
-					<span class="number first-five"></span>
-					<span class="number last-three">輸入末三碼顯示對獎結果</span>
-				</div>
-				<div class="tableViewCell">
-					<span class="months"></span>
-					<span class="result"></span>
-				</div>
+			<div class="number-display">
+				<span class="instruction">輸入末三碼顯示對獎結果</span>
+				<span class="number first-five"></span>
+				<span class="number last-three"></span>
+			</div>
+			<div class="result-display">
+				<span class="months"></span>
+				<span class="result">中獎結果</span>
 			</div>
 			<span class="description"></span>
 		</div>

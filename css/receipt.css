@@ -107,7 +107,7 @@ body {
   font-size: 16px;
   font-weight: bold;
   padding: 0;
-  margin: 10px auto;
+  margin: 15px auto;
   width: 90%;
 }
 .mobile-screen .UITableViewCellTextLabel {
@@ -122,76 +122,121 @@ body {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
-.mobile-screen .input {
-  width: 100%;
-  height: 44px;
-  vertical-align: middle;
-  border-bottom: 1px solid #81929f;
-  background: -webkit-linear-gradient(top, #dce3e7, #b3bec5);
-  background: -moz-linear-gradient(top, #dce3e7, #b3bec5);
-  background: -o-linear-gradient(top, #dce3e7, #b3bec5);
-  background: -ms-linear-gradient(top, #dce3e7, #b3bec5);
-  background: linear-gradient(top, #dce3e7, #b3bec5);
-  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.5);
-}
-.mobile-screen .input label {
-  display: inline-block;
-  width: 39%;
-  height: 44px;
-  line-height: 44px;
-  text-align: right;
-  color: #141414;
-  font-weight: bold;
-}
-.mobile-screen ::-webkit-input-placeholder {
-  text-align: left;
-}
-.mobile-screen :-moz-placeholder {
-  text-align: left;
-}
-.mobile-screen #mobile-input {
+.mobile-screen .UITableViewCell {
+  margin: 15px auto;
   font-size: 16px;
-  font-weight: bold;
-  line-height: 1;
+  height: 44px;
+  padding: 14px 0;
   text-align: center;
-  letter-spacing: 2px;
-  height: 30px;
-  width: 55%;
-  float: right;
-  padding: 0 10px;
-  margin: 7px;
-  border: 1px solid #a3afb9;
-  border-radius: 17px;
-  -webkit-appearance: none;
-  box-shadow: inset 1px 2px 2px rgba(100, 100, 100, 0.8);
+  color: #8f8f8f;
+  background: transparent;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
-.mobile-screen .tableView {
+.mobile-screen .UITableViewCell:not(:last-of-type) {
+  border-bottom: 1px solid #cacaca;
+}
+.mobile-screen .UIGroupedTableHeader {
+  font-weight: bold;
+  color: #4c566c;
+  display: block;
+  width: 85%;
+  margin: 15px auto 10px auto;
+}
+.mobile-screen .UIGroupedTableFooter {
+  font-size: 14px;
+  color: #4c566c;
+  display: block;
+  width: 85%;
+  margin: 0px auto;
+  text-align: center;
+}
+.mobile-screen .input {
   background-color: #f7f7f7;
   border: 1px solid #a1a7ad;
   border-radius: 10px;
   font-size: 16px;
   font-weight: bold;
   padding: 0;
-  margin: 10px auto;
+  margin: 15px auto;
+  width: 90%;
+  height: 44px;
+}
+.mobile-screen .input label {
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  width: 30%;
+  height: 44px;
+  line-height: 44px;
+  text-align: right;
+  color: #141414;
+  margin-right: 5%;
+}
+.mobile-screen #mobile-input {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: left;
+  letter-spacing: 2px;
+  height: 100%;
+  width: 55%;
+  padding: 0 15px;
+  margin: 0;
+  border: 0;
+  border-left: 1px solid #cfcfcf;
+  border-radius: 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+  box-shadow: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.mobile-screen #mobile-input:focus {
+  outline: none;
+}
+.mobile-screen .number-display {
+  text-align: center;
+  display: block;
+  width: 85%;
+  height: 20px;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.mobile-screen .instruction {
+  font-size: 14px;
+  color: #4c566c;
+}
+.mobile-screen .result-display {
+  background-color: #f7f7f7;
+  border: 1px solid #a1a7ad;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0;
+  margin: 15px auto;
   width: 90%;
   margin: 15px auto;
-}
-.mobile-screen .tableViewCell {
   font-size: 16px;
-  height: 1em;
-  padding: 15px 0;
+  height: 44px;
+  padding: 14px 0;
   text-align: center;
   color: #8f8f8f;
-  background-color: transparent;
-}
-.mobile-screen .tableViewCell:not(:last-of-type) {
-  border-bottom: 1px solid #cacaca;
+  background: transparent;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .mobile-screen .number {
+  font-size: 22px;
   letter-spacing: 2px;
 }
 .mobile-screen .description {
@@ -202,7 +247,7 @@ body {
   text-align: center;
   color: #4d576b;
 }
-.mobile-screen .match-all .tableViewCell:last-of-type {
+.mobile-screen .match-all .result-display {
   color: white;
   background: -webkit-linear-gradient(top, Gold, SandyBrown);
   background: -moz-linear-gradient(top, Gold, SandyBrown);
@@ -219,7 +264,7 @@ body {
 .mobile-screen .match-all .last-three {
   color: #dc143c;
 }
-.mobile-screen .match-three .tableViewCell:last-of-type {
+.mobile-screen .match-three .result-display {
   color: white;
   background: -webkit-linear-gradient(top, #86c491, #00a62a);
   background: -moz-linear-gradient(top, #86c491, #00a62a);
@@ -281,7 +326,7 @@ body {
   font-size: 16px;
   font-weight: bold;
   padding: 0;
-  margin: 10px auto;
+  margin: 15px auto;
   width: 90%;
   margin-bottom: 25px;
 }
