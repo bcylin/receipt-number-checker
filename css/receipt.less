@@ -138,7 +138,10 @@ body {
 	.box;
 }
 
+// inputView
+
 .input {
+	width: 100%;
 	height: 44px;
 	vertical-align: middle;
 	border-bottom: 1px solid rgb(129,146,159);
@@ -147,24 +150,33 @@ body {
 	background: -o-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
 	background: -ms-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
 	background: linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
+	box-shadow: 0px -1px 5px rgba(0,0,0,.5);
 }
-
 
 .input label {
 	display: inline-block;
-	width: 34%;
+	width: 39%;
 	height: 44px;
 	line-height: 44px;
 	text-align: right;
 }
 
-@searchFont: 20px;
+::-webkit-input-placeholder {
+	text-align: left;
+}
+
+:-moz-placeholder {
+	text-align: left;
+}
 
 #mobile-input {
-	font-size: 16px;
+	font-size: 18px;
+	font-weight: bold;
 	line-height: 1;	// Fix placeholder vertical alignment on iOS
+	text-align: center;
+	letter-spacing: 3px;
 	height: 30px;
-	width: 60%;
+	width: 55%;
 	float: right;
 	padding: 0 10px;
 	margin: 7px;
@@ -175,10 +187,76 @@ body {
 	.box;
 }
 
+// resultView
+
 #mobile-result {
-	height: 70px;
-	.border;
+
 }
+
+.tableView {
+	.UIGroupedTable;
+	margin: 15px auto;
+}
+
+.tableViewCell {
+	height: 1em;
+	padding: 10px 0;
+	text-align: center;
+	color: rgb(143,143,143);
+	background-color: transparent;
+}
+
+.tableViewCell:not(:last-of-type) {
+	border-bottom: 1px solid rgb(202,202,202);
+}
+
+.description {
+	display: block;
+	width: 90%;
+	height: 35px;
+	margin: 10px auto;
+	text-align: center;
+	color: rgb(77,87,107);
+}
+
+.match-all {
+	.tableViewCell:last-of-type {
+		color: white;
+		background: -webkit-linear-gradient(top, Gold, SandyBrown);
+		text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+	.first-five {
+		color: black;
+	}
+	.last-three {
+		color: rgb(220,20,60);
+	}
+}
+
+.match-three {
+	.tableViewCell:last-of-type {
+		color: white;
+		background: -webkit-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		background: -moz-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		background: -o-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		background: -ms-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		background: linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+		text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+	.first-five {
+		color: black;
+	}
+	.last-three {
+		color: rgb(220,20,60);
+	}
+
+}
+
+// switchView
 
 #switch {
 	text-align: center;
@@ -204,6 +282,8 @@ body {
 	margin-top: -@UIFontSize / 2 + 1px;
 	margin-left: -@span-width / 2;
 }
+
+// prizeView
 
 #prize {
 	.UIGroupedTable;

@@ -20,7 +20,7 @@ return Backbone.View.extend({
 		this.$result = this.$el.find('.result');
 		this.$firstFive = this.$el.find('.first-five');		// first five digits
 		this.$lastThree = this.$el.find('.last-three');		// last three digits
-		this.$description = this.$el.find('.description');
+		this.$description = this.$el.find('.description').hide();
 	},
 
 	// Display winning message of a result
@@ -34,17 +34,21 @@ return Backbone.View.extend({
 			var moreThanThreeDigits = (result.matchedNumber.length > 3),
 				shouldMatchAll = (result.matchType === "matchAll");
 
+			this.$el
+				.removeClass('match-all match-three')
+				.addClass(shouldMatchAll ? 'match-all' : 'match-three');
 			this.$result.text(result.prizeName);
 			this.$firstFive.text(moreThanThreeDigits ? result.matchedNumber.substr(0, 5) : "");
 			this.$description.text(
 				shouldMatchAll ? "需要8位數字與上列號碼相同" :
 				moreThanThreeDigits ? "中獎了！請留意末三碼以外的相同數字" :
 				"中獎了！"
-			);
+			).slideDown();
 		} else {
+			this.$el.removeClass('match-all match-three');
 			this.$firstFive.text("");
 			this.$result.text("未中獎");
-			this.$description.text("");
+			this.$description.text("").slideUp();
 		}
 	}
 });

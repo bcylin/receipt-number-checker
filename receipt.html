@@ -24,16 +24,20 @@
 
 	<div class="mobile-screen">
 		<div class="input">
-			<label for="mobile-input">輸入統一發票</label>
-			<input type="number" id="mobile-input" pattern="[0-9]*" maxlength="3" placeholder="末三碼">
+			<label for="mobile-input">統一發票末三碼</label>
+			<input type="number" id="mobile-input" pattern="[0-9]*" maxlength="3" placeholder="&#x2794;">
 		</div>
 		<div id="mobile-result">
-			<div class="numbers">
-				<span class="months">月份</span>
-				<span class="number first-five">12345</span>
-				<span class="number last-three">678</span>
+			<div class="tableView">
+				<div class="tableViewCell">
+					<span class="number first-five">輸入</span>
+					<span class="number last-three">號碼</span>
+				</div>
+				<div class="tableViewCell">
+					<span class="months"></span>
+					<span class="result">對獎</span>
+				</div>
 			</div>
-			<span class="result"></span>
 			<span class="description"></span>
 		</div>
 		<div id="info"></div>
