@@ -63,10 +63,8 @@ require([
 		app.records = new RecordsCollection;
 
 		app.inputView = new InputView({
-			el: '#input',
-			delegate: app,
-			dataSource: app.prize,
-			collection: app.records
+			el: '#inputNumber',
+			delegate: app
 		});
 
 		app.switchView = new SwitchView({
@@ -106,7 +104,16 @@ require([
 
 		app.inputView.focus();
 
+		// inputView delegate method
+		// @parem {string} a number acquired from inputView
+		app.inputViewDidAcquireNumber = function(num) {
+			var result = this.prize.match(num);
+			var record = new Backbone.Model(result);
+			this.records.add(record);
+		};
+
 		// switchView delegate method
+		// @param {string} name of the selected draw
 		app.switchViewDidSelectDraw = function(selectedDraw) {
 			this.prize.setDraw(selectedDraw);
 			this.prizeView.refresh();
@@ -120,6 +127,7 @@ require([
 		};
 
 		// listView delegate method
+		// @param {string} client id of Backbone model
 		app.listViewDidSelectItemWithCid = function(cid) {
 			this.notifyView.displayResult( this.records.getByCid(cid) );
 		};
