@@ -20,7 +20,7 @@ return Backbone.View.extend({
 		this.$result = this.$el.find('.result');
 		this.$firstFive = this.$el.find('.first-five');		// first five digits
 		this.$lastThree = this.$el.find('.last-three');		// last three digits
-		this.$description = this.$el.find('.description').hide();
+		this.$description = this.$el.find('.description');
 	},
 
 	// Display winning message of a result
@@ -43,13 +43,27 @@ return Backbone.View.extend({
 				shouldMatchAll ? "需要8位數字與上列號碼相同" :
 				moreThanThreeDigits ? "中獎了！請留意末三碼以外的相同數字" :
 				"中獎了！"
-			).slideDown();
+			);
 		} else {
 			this.$el.removeClass('match-all match-three');
 			this.$firstFive.text("");
 			this.$result.text("未中獎");
-			this.$description.text("").slideUp();
+			this.$description.text("");
 		}
+	},
+
+	// Display months
+	// @param {string} name of months
+	displayMonths: function(months) {
+		this.$months.text(months);
+	},
+
+	clearDisplay: function() {
+		this.$el.removeClass('match-all match-three');
+		this.$firstFive.text("");
+		this.$lastThree.text("");
+		this.$result.text("");
+		this.$description.text("");
 	}
 });
 

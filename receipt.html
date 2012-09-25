@@ -12,6 +12,7 @@
 	<meta name="viewport" content="initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<title>統一發票對獎程式</title>
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
@@ -27,18 +28,18 @@
 
 	<div class="mobile-screen">
 		<div class="input">
-			<label for="mobile-input">統一發票末三碼</label>
+			<label for="mobile-input" onclick="">統一發票末三碼</label>
 			<input type="number" id="mobile-input" pattern="[0-9]*" maxlength="3" placeholder="&#x2794;">
 		</div>
 		<div id="mobile-result">
 			<div class="tableView">
 				<div class="tableViewCell">
 					<span class="number first-five"></span>
-					<span class="number last-three">輸入號碼</span>
+					<span class="number last-three">輸入末三碼顯示對獎結果</span>
 				</div>
 				<div class="tableViewCell">
 					<span class="months"></span>
-					<span class="result">顯示對獎結果</span>
+					<span class="result"></span>
 				</div>
 			</div>
 			<span class="description"></span>

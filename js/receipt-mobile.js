@@ -74,6 +74,7 @@ require([
 		});
 
 		app.prizeView.render();
+		app.resultView.displayMonths( app.prize.getMonths() );
 
 		// inputView delegate method
 		// @parem {string} a number acquired from inputView
@@ -87,8 +88,8 @@ require([
 		app.switchViewDidSelectDraw = function(selectedDraw) {
 			this.prize.setDraw(selectedDraw);
 			this.prizeView.refresh();
+			this.resultView.clearDisplay();
+			this.resultView.displayMonths( this.prize.getMonths(selectedDraw) );
 		};
-
 	});
-
 });
