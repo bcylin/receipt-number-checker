@@ -5,10 +5,12 @@
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="expires" content="-1">
-	<meta name="viewport" content="width=device-width">
 	<meta property="og:title" content="統一發票對獎程式">
 	<meta property="og:url" content="http://bcylin.github.com/projects/receipt/">
 	<meta property="og:image" content="http://bcylin.github.com/projects/receipt/img/thumbnail.png">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>統一發票對獎程式</title>
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
@@ -19,15 +21,39 @@
 </head>
 <body class="desktop">
 
-	<div class="mobile-msg">目前暫時不支援行動裝置</div>
-	<div class="mobile-background"></div>
+	<div class="error-msg">iPad 使用介面尚未完成</div>
+	<div class="error-background"></div>
+
+	<div class="mobile-screen">
+		<div class="input">
+			<label for="mobile-input" onclick="">統一發票末三碼</label>
+			<input type="number" id="mobile-input" pattern="[0-9]*" maxlength="3" placeholder="&#x2794;">
+		</div>
+		<div id="mobile-result">
+			<div class="tableView">
+				<div class="tableViewCell">
+					<span class="number first-five"></span>
+					<span class="number last-three">輸入末三碼顯示對獎結果</span>
+				</div>
+				<div class="tableViewCell">
+					<span class="months"></span>
+					<span class="result"></span>
+				</div>
+			</div>
+			<span class="description"></span>
+		</div>
+		<div id="info"></div>
+	</div>
 
 <script type="text/javascript">
 // <![CDATA[
 
 	var app = window.receiptApp = {};
+	app.mobile = navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i)
 	// Display a different message for mobile devices
-	if ( app.mobile = navigator.userAgent.match(/Android|BlackBerry|iPad|iPhone|iPod|webOS/i) ) {
+	if ( 'iPad' == app.mobile ) {
+		document.body.className = "non-compatible";
+	} else if ( app.mobile ) {
 		document.body.className = "mobile";
 	}
 
@@ -69,11 +95,11 @@
 			<input type="text" id="inputNumber" maxlength="3">
 		</div>
 		<div id="switch">
-			<label class="selected">
+			<label class="selected" onclick="">
 				<span id="thisDraw">本期</span>
 				<input type="radio" name="draw" value="thisDraw" class="switch hidden" checked>
 			</label>
-			<label>
+			<label onclick="">
 				 <span id="prevDraw">前期</span>
 				 <input type="radio" name="draw" value="prevDraw" class="switch hidden">
 			</label>
@@ -156,8 +182,21 @@
 
 (function() {
 
-	// Avoid loading main script on mobile
+	require.config({
+		paths: {
+			'js/receipt-mobile': 'js/receipt-mobile-built',
+			'js/receipt': 'js/receipt-built'
+		}
+	});
+
+	// UI on iPad is yet finished
+	if ( window.receiptApp.mobile == 'iPad' ) {
+		return;
+	}
+
+	// Load mobile view
 	if ( window.receiptApp.mobile ) {
+		require(['js/receipt-mobile']);
 		return;
 	}
 
@@ -181,12 +220,6 @@
 	document.getElementById('chrome').src = "img/chrome@1x.png";
 	document.getElementById('firefox').src = "img/firefox@1x.png";
 	document.getElementById('safari').src = "img/safari@1x.png";
-
-	require.config({
-		paths: {
-			'js/receipt': 'js/receipt-built'
-		}
-	});
 
 	require(['js/receipt']);
 
