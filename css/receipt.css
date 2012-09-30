@@ -903,6 +903,9 @@ body {
   background-color: gray;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
+#counter.chrome:after {
+  content: none !important;
+}
 #counter .separator {
   background: gray;
   border-left: 1px solid #3c3c3c;
