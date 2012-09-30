@@ -20,6 +20,7 @@ return Backbone.View.extend({
 		this.$result = this.$el.find('.result');
 		this.$firstFive = this.$el.find('.first-five');		// first five digits
 		this.$lastThree = this.$el.find('.last-three');		// last three digits
+		this.$instruction = this.$el.find('.instruction');
 		this.$description = this.$el.find('.description');
 	},
 
@@ -29,6 +30,7 @@ return Backbone.View.extend({
 
 		this.$months.text(result.months);
 		this.$lastThree.text(result.num);
+		this.$instruction.hide();
 
 		if (result.isMatched) {
 			var moreThanThreeDigits = (result.matchedNumber.length > 3),
@@ -62,8 +64,9 @@ return Backbone.View.extend({
 		this.$el.removeClass('match-all match-three');
 		this.$firstFive.text("");
 		this.$lastThree.text("");
-		this.$result.text("");
+		this.$result.text("中獎結果");
 		this.$description.text("");
+		this.$instruction.show();
 	}
 });
 

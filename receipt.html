@@ -8,8 +8,7 @@
 	<meta property="og:title" content="統一發票對獎程式">
 	<meta property="og:url" content="http://bcylin.github.com/projects/receipt/">
 	<meta property="og:image" content="http://bcylin.github.com/projects/receipt/img/thumbnail.png">
-	<meta name="viewport" content="width=device-width">
-	<meta name="viewport" content="initial-scale=1">
+	<meta property="og:description" content="統一發票對獎程式，輸入末三碼顯示對獎結果，建議搭配數字鍵盤使用，請提供各種意見及問題，Thanks!" />
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,19 +27,18 @@
 
 	<div class="mobile-screen">
 		<div class="input">
-			<label for="mobile-input" onclick="">統一發票末三碼</label>
-			<input type="text" id="mobile-input" pattern="[0-9]*" maxlength="3" placeholder="&#x2794;">
+			<label for="mobile-input">統一發票</label>
+			<input type="text" id="mobile-input" pattern="[0-9]*" maxlength="3" placeholder="末三碼">
 		</div>
 		<div id="mobile-result">
-			<div class="tableView">
-				<div class="tableViewCell">
-					<span class="number first-five"></span>
-					<span class="number last-three">輸入末三碼顯示對獎結果</span>
-				</div>
-				<div class="tableViewCell">
-					<span class="months"></span>
-					<span class="result"></span>
-				</div>
+			<div class="number-display">
+				<span class="instruction">輸入末三碼顯示對獎結果</span>
+				<span class="number first-five"></span>
+				<span class="number last-three"></span>
+			</div>
+			<div class="result-display">
+				<span class="months"></span>
+				<span class="result">中獎結果</span>
 			</div>
 			<span class="description"></span>
 		</div>
@@ -222,6 +220,11 @@
 	document.getElementById('chrome').src = "img/chrome@1x.png";
 	document.getElementById('firefox').src = "img/firefox@1x.png";
 	document.getElementById('safari').src = "img/safari@1x.png";
+
+	// Handle bug of displaying layers in Google Chrome 22
+	if ( navigator.userAgent.match(/Chrome/i) ) {
+		document.getElementById('counter').className = "chrome";
+	}
 
 	require(['js/receipt']);
 

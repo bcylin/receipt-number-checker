@@ -133,7 +133,7 @@ body {
 	font-size: @UIFontSize;
 	font-weight: bold;
 	padding: 0;
-	margin: 10px auto;
+	margin: 15px auto;
 	width: 90%;
 }
 
@@ -147,79 +147,103 @@ body {
 	.box;
 }
 
+.UITableViewCell {
+	margin: 15px auto;
+	font-size: 16px;
+	height: 44px;
+	padding: 14px 0;
+	text-align: center;
+	color: rgb(143,143,143);
+	background: transparent;
+	.box;
+}
+
+.UITableViewCell:not(:last-of-type) {
+	border-bottom: 1px solid rgb(202,202,202);
+}
+
+.UIGroupedTableHeader {
+	font-weight: bold;
+	color: rgb(76,86,108);
+	display: block;
+	width: 85%;
+	margin: 15px auto 10px auto;
+}
+
+.UIGroupedTableFooter {
+	font-size: 14px;
+	color: rgb(76,86,108);
+	display: block;
+	width: 85%;
+	margin: 0px auto;
+	text-align: center;
+}
+
 // inputView
 
 .input {
-	width: 100%;
+	.UIGroupedTable;
 	height: 44px;
-	vertical-align: middle;
-	border-bottom: 1px solid rgb(129,146,159);
-	background: -webkit-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
-	background: -moz-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
-	background: -o-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
-	background: -ms-linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
-	background: linear-gradient(top, rgb(220,227,231), rgb(179,190,197));
-	box-shadow: 0px -1px 5px rgba(0,0,0,.5);
 }
 
 .input label {
+	font-size: 14px;
+	font-weight: bold;
 	display: inline-block;
-	width: 39%;
+	width: 30%;
 	height: 44px;
 	line-height: 44px;
 	text-align: right;
 	color: rgb(20,20,20);
-	font-weight: bold;
-}
-
-// Modify place holder
-::-webkit-input-placeholder {
-	text-align: left;
-}
-
-:-moz-placeholder {
-	text-align: left;
+	margin-right: 5%;
 }
 
 #mobile-input {
 	font-size: 16px;
 	font-weight: bold;
 	line-height: 1;	// Fix placeholder vertical alignment on iOS
-	text-align: center;
+	text-align: left;
 	letter-spacing: 2px;
-	height: 30px;
+	height: 100%;
 	width: 55%;
-	float: right;
-	padding: 0 10px;
-	margin: 7px;
-	border: 1px solid rgb(163,175,185);
-	border-radius: 17px;
+	padding: 0 15px;
+	margin: 0;
+	border: 0;
+	border-left: 1px solid rgb(207,207,207);
+	border-radius: 0;
+	background-color: transparent;
 	-webkit-appearance: none;	// To set box-shadow on iOS
-	box-shadow: inset 1px 2px 2px rgba(100,100,100,.8);
+	box-shadow: none;
 	.box;
+}
+
+#mobile-input:focus {
+	outline: none;
 }
 
 // resultView
 
-.tableView {
-	.UIGroupedTable;
-	margin: 15px auto;
-}
-
-.tableViewCell {
-	font-size: 16px;
-	height: 1em;
-	padding: 15px 0;
+.number-display {
 	text-align: center;
-	color: rgb(143,143,143);
-	background-color: transparent;
+	display: block;
+	width: 85%;
+	height: 20px;
+	margin: 0 auto;
+	.box;
 }
 
-.tableViewCell:not(:last-of-type) {
-	border-bottom: 1px solid rgb(202,202,202);
+.instruction {
+	font-size: 14px;
+	color: rgb(76,86,108);
+}
+
+.result-display {
+	.UIGroupedTable;
+	.UITableViewCell;
 }
 
 .number {
+	font-size: 22px;
 	letter-spacing: 2px;
 }
 
@@ -233,7 +257,7 @@ body {
 }
 
 .match-all {
-	.tableViewCell:last-of-type {
+	.result-display {
 		color: white;
 		background: -webkit-linear-gradient(top, Gold, SandyBrown);
 		background: -moz-linear-gradient(top, Gold, SandyBrown);
@@ -253,7 +277,7 @@ body {
 }
 
 .match-three {
-	.tableViewCell:last-of-type {
+	.result-display {
 		color: white;
 		background: -webkit-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
 		background: -moz-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
@@ -889,6 +913,10 @@ body {
 	border-radius: 5px;
 	background-color: gray;
 	box-shadow: 0px 5px 10px 0px rgba(0,0,0,.3);
+}
+
+#counter.chrome:after {
+	content: none !important;	// bug of different layers in Google Chrome 22
 }
 
 #counter .separator {
