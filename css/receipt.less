@@ -210,6 +210,7 @@ body {
 .input {
 	.UIGroupedTable;
 	height: 44px;
+	background: rgb(230,230,230);
 }
 
 .input label {
@@ -222,6 +223,7 @@ body {
 	text-align: right;
 	color: rgb(20,20,20);
 	margin-right: 5%;
+	.box;
 }
 
 #mobile-input {
@@ -230,16 +232,19 @@ body {
 	line-height: 1;	// Fix placeholder vertical alignment on iOS
 	text-align: left;
 	letter-spacing: 2px;
+	float: right;
 	height: 100%;
-	width: 55%;
+	width: 63%;
 	padding: 0 15px;
 	margin: 0;
 	border: 0;
 	border-left: 1px solid rgb(207,207,207);
 	border-radius: 0;
-	background-color: transparent;
+	border-top-right-radius: 9px;
+	border-bottom-right-radius: 10px;
+	background-color: white;
 	-webkit-appearance: none;	// To set box-shadow on iOS
-	box-shadow: none;
+	box-shadow: inset rgba(0,0,0,.5) 1px 1px 2px;
 	.box;
 }
 
