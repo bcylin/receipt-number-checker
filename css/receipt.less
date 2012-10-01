@@ -314,30 +314,26 @@ body.mobile {
 .description {
 	display: block;
 	width: 90%;
-	height: 1em;
+	height: 0;
 	margin: 10px auto;
 	text-align: center;
 	color: rgb(77,87,107);
-	.hidden;
+	-webkit-transition-property: height;
+	-webkit-transition-duration: 0.4s;
+	-webkit-transition-timing-funciton: linear;
 }
 
-.match-all {
+.description.active {
+	height: 34px;
+}
+
+.matched {
 	.first-five {
 		color: black;
 	}
 	.last-three {
 		color: rgb(220,20,60);
 	}
-}
-
-.match-three {
-	.first-five {
-		color: black;
-	}
-	.last-three {
-		color: rgb(220,20,60);
-	}
-
 }
 
 // switchView

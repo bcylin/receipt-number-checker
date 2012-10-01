@@ -31,15 +31,13 @@ return Backbone.View.extend({
 		this.$months.text(result.months);
 		this.$lastThree.text(result.num);
 		this.$instruction.hide();
+		this.$description.addClass('active');
 
 		if (result.isMatched) {
-			var moreThanThreeDigits = (result.matchedNumber.length > 3),
-				shouldMatchAll = (result.matchType === "matchAll");
+			var shouldMatchAll = (result.matchType === "matchAll"),
+				moreThanThreeDigits = (result.matchedNumber.length > 3);
 
-			this.$el
-				.removeClass('match-all match-three')
-				.addClass(shouldMatchAll ? 'match-all' : 'match-three');
-			this.$result.text(result.prizeName);
+			this.$el.addClass('matched');
 			this.$firstFive.text(moreThanThreeDigits ? result.matchedNumber.substr(0, 5) : "");
 			this.$description.text(
 				shouldMatchAll ? "需要8位數字與上列號碼相同" :
@@ -47,25 +45,17 @@ return Backbone.View.extend({
 				"中獎了！"
 			);
 		} else {
-			this.$el.removeClass('match-all match-three');
+			this.$el.removeClass('matched');
 			this.$firstFive.text("");
-			this.$result.text("未中獎");
-			this.$description.text("");
+			this.$description.text("未中獎");
 		}
 	},
 
-	// Display months
-	// @param {string} name of months
-	displayMonths: function(months) {
-		this.$months.text(months);
-	},
-
 	clearDisplay: function() {
-		this.$el.removeClass('match-all match-three');
+		this.$el.removeClass('matched');
 		this.$firstFive.text("");
 		this.$lastThree.text("");
-		this.$result.text("中獎結果");
-		this.$description.text("");
+		this.$description.text("").removeClass('active');
 		this.$instruction.show();
 	}
 });
