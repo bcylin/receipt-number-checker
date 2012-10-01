@@ -38,7 +38,7 @@ require([
 
 	// Hide the address bar after launched on mobile browsers
 	$(document).ready(function() {
-		setTimeout(function(){ window.scrollTo(0, 1); }, 500);
+		setTimeout(function() { window.scrollTo(0, 0); }, 500);
 	});
 
 	// Use Mustache.js style templating
@@ -99,7 +99,7 @@ require([
 
 		// Keep the address bar hidden
 		$('#mobile-input').on('focus', function() {
-			window.scrollTo(0, 1);
+			setTimeout(function() { window.scrollTo(0, 0); }, 0);
 		});
 	});
 });
