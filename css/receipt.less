@@ -201,12 +201,44 @@ body.mobile {
 	background: rgb(126, 148, 176);
 	background: -webkit-gradient(linear, left top, left bottom,
 								from(rgb(180,191,206)),
-								color-stop(0.5, rgb(134, 154, 178)),
-								color-stop(0.5, rgb(126, 148, 176)),
+								color-stop(0.5, rgb(134,154,178)),
+								color-stop(0.5, rgb(126,148,176)),
 								to(rgb(109,131,161)));
 	border-bottom: 1px solid rgb(101,121,148);
 	-webkit-box-shadow: 0px 1px 1px rgb(45,48,51);
 	box-shadow: 0px 1px 1px rgb(45,48,51);
+}
+
+.title.match-all {
+	background: -webkit-gradient(linear, left top, left bottom,
+								from(rgb(255,215,0)),
+								color-stop(0.5, rgb(244,164,96)),
+								color-stop(0.5, rgb(255,165,0)),
+								to(rgb(255,140,0)));
+	// background: -webkit-linear-gradient(top, Gold, SandyBrown);
+	background: -moz-linear-gradient(top, Gold, SandyBrown);
+	background: -o-linear-gradient(top, Gold, SandyBrown);
+	background: -ms-linear-gradient(top, Gold, SandyBrown);
+	background: linear-gradient(top, Gold, SandyBrown);
+	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+	border-bottom: 1px solid Goldenrod;
+	box-shadow: 0px 1px 1px rgba(45,48,51,.5);
+}
+
+.title.match-three {
+	background: -webkit-gradient(linear, left top, left bottom,
+								from(rgb(98,141,95)),
+								color-stop(0.5, rgb(50,121,44)),
+								color-stop(0.5, rgb(22,100,15)),
+								to(rgb(25,116,17)));
+	// background: -webkit-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+	background: -moz-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+	background: -o-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+	background: -ms-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+	background: linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+	border-bottom: 1px solid rgb(18,85,13);
+	box-shadow: 0px 1px 1px rgba(45,48,51,.5);
 }
 
 // inputView
@@ -263,22 +295,19 @@ body.mobile {
 	display: block;
 	width: 85%;
 	height: 20px;
-	margin: 0 auto;
+	margin: 15px auto;
 	.box;
 }
 
 .instruction {
 	font-size: 14px;
+	line-height: 22px;
 	color: rgb(76,86,108);
-}
-
-.result-display {
-	.UIGroupedTable;
-	.UITableViewCell;
 }
 
 .number {
 	font-size: 22px;
+	line-height: 22px;
 	letter-spacing: 2px;
 }
 
@@ -289,20 +318,10 @@ body.mobile {
 	margin: 10px auto;
 	text-align: center;
 	color: rgb(77,87,107);
+	.hidden;
 }
 
 .match-all {
-	.result-display {
-		color: white;
-		background: -webkit-linear-gradient(top, Gold, SandyBrown);
-		background: -moz-linear-gradient(top, Gold, SandyBrown);
-		background: -o-linear-gradient(top, Gold, SandyBrown);
-		background: -ms-linear-gradient(top, Gold, SandyBrown);
-		background: linear-gradient(top, Gold, SandyBrown);
-		text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-		border-bottom-left-radius: 10px;
-		border-bottom-right-radius: 10px;
-	}
 	.first-five {
 		color: black;
 	}
@@ -312,17 +331,6 @@ body.mobile {
 }
 
 .match-three {
-	.result-display {
-		color: white;
-		background: -webkit-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-		background: -moz-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-		background: -o-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-		background: -ms-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-		background: linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-		text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-		border-bottom-left-radius: 10px;
-		border-bottom-right-radius: 10px;
-	}
 	.first-five {
 		color: black;
 	}
@@ -342,7 +350,7 @@ body.mobile {
 	position: relative;
 	width: 42%;
 	display: inline-block;
-	margin: 5px 3%;
+	margin: 0 3%;
 	.UIButton;
 	.box;
 }

@@ -23,6 +23,7 @@
 require([
 	'order!jquery',
 	'models/prizeModel',
+	'views/titleView',
 	'views/inputView',
 	'views/prizeView',
 	'views/switchView',
@@ -30,6 +31,7 @@ require([
 ], function(
 	$,
 	PrizeModel,
+	TitleView,
 	InputView,
 	PrizeView,
 	SwitchView,
@@ -58,6 +60,10 @@ require([
 	// Start loading prize data
 	app.prize.init().done(function() {
 
+		app.titleView = new TitleView({
+			el: '#mobile-title'
+		});
+
 		app.inputView = new InputView({
 			el: '#mobile-input',
 			delegate: app
@@ -79,12 +85,12 @@ require([
 		});
 
 		app.prizeView.render();
-		app.resultView.displayMonths( app.prize.getMonths() );
 
 		// inputView delegate method
 		// @parem {string} a number acquired from inputView
 		app.inputViewDidAcquireNumber = function(num) {
 			var result = this.prize.match(num);
+			this.titleView.changeTitleForResult(result);
 			this.resultView.displayResult(result);
 		};
 
@@ -93,8 +99,8 @@ require([
 		app.switchViewDidSelectDraw = function(selectedDraw) {
 			this.prize.setDraw(selectedDraw);
 			this.prizeView.refresh();
+			this.titleView.resetTitle();
 			this.resultView.clearDisplay();
-			this.resultView.displayMonths( this.prize.getMonths(selectedDraw) );
 		};
 
 		// Keep the address bar hidden
