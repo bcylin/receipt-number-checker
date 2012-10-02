@@ -187,17 +187,17 @@ body.mobile {
 
 // title
 
-.title {
+#mobile-title {
 	.box;
 	display: block;
 	width: 100%;
-	height: 44px;
-	line-height:44px;
+	height: 48px;
+	line-height:48px;
 	text-align: center;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 	color: white;
-	text-shadow: 0px -1px rgba(0,0,0,.5);
+	text-shadow: -1px -1px 1px rgba(0,0,0,.5);
 	background: rgb(126, 148, 176);
 	background: -webkit-gradient(linear, left top, left bottom,
 								from(rgb(180,191,206)),
@@ -209,36 +209,48 @@ body.mobile {
 	box-shadow: 0px 1px 1px rgb(45,48,51);
 }
 
-.title.match-all {
-	background: -webkit-gradient(linear, left top, left bottom,
-								from(rgb(255,215,0)),
-								color-stop(0.5, rgb(244,164,96)),
-								color-stop(0.5, rgb(255,165,0)),
-								to(rgb(255,140,0)));
-	// background: -webkit-linear-gradient(top, Gold, SandyBrown);
+#mobile-title.match-all {
+	// background: -webkit-gradient(linear, left top, left bottom,
+	// 							from(rgb(255,215,0)),
+	// 							color-stop(0.5, rgb(244,164,96)),
+	// 							color-stop(0.5, rgb(255,165,0)),
+	// 							to(rgb(255,140,0)));
+	background: -webkit-linear-gradient(top, Gold, SandyBrown);
 	background: -moz-linear-gradient(top, Gold, SandyBrown);
 	background: -o-linear-gradient(top, Gold, SandyBrown);
 	background: -ms-linear-gradient(top, Gold, SandyBrown);
 	background: linear-gradient(top, Gold, SandyBrown);
-	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
 	border-bottom: 1px solid Goldenrod;
 	box-shadow: 0px 1px 1px rgba(45,48,51,.5);
 }
 
-.title.match-three {
-	background: -webkit-gradient(linear, left top, left bottom,
-								from(rgb(98,141,95)),
-								color-stop(0.5, rgb(50,121,44)),
-								color-stop(0.5, rgb(22,100,15)),
-								to(rgb(25,116,17)));
-	// background: -webkit-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
+#mobile-title.match-three {
+	// background: -webkit-gradient(linear, left top, left bottom,
+	// 							from(rgb(98,141,95)),
+	// 							color-stop(0.5, rgb(50,121,44)),
+	// 							color-stop(0.5, rgb(22,100,15)),
+	// 							to(rgb(25,116,17)));
+	background: -webkit-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
 	background: -moz-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
 	background: -o-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
 	background: -ms-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
 	background: linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-	border-bottom: 1px solid rgb(18,85,13);
+	border-bottom: 1px solid rgb(98,141,95);
 	box-shadow: 0px 1px 1px rgba(45,48,51,.5);
+}
+
+#mobile-title > .winning-msg {
+	opacity: 0;
+	display: inline-block;
+	-webkit-transform: scale(6);
+	-webkit-transform-origin: top center;
+	-webkit-transition-property: -webkit-transform, opacity;
+	-webkit-transition-duration: 0.3s;
+}
+
+#mobile-title > .winning-msg.steady {
+	-webkit-transform: scale(1);
+	opacity: 1;
 }
 
 // inputView
@@ -319,12 +331,12 @@ body.mobile {
 	text-align: center;
 	color: rgb(77,87,107);
 	-webkit-transition-property: height;
-	-webkit-transition-duration: 0.4s;
-	-webkit-transition-timing-funciton: linear;
+	-webkit-transition-duration: 0.1s;
+	-webkit-transition-timing-function: linear;
 }
 
 .description.active {
-	height: 34px;
+	height: 30px;
 }
 
 .matched {

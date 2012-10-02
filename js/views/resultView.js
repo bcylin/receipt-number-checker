@@ -47,7 +47,7 @@ return Backbone.View.extend({
 		} else {
 			this.$el.removeClass('matched');
 			this.$firstFive.text("");
-			this.$description.text("未中獎");
+			this.$description.text(result.months + "未中獎");
 		}
 	},
 
