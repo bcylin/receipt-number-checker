@@ -199,11 +199,11 @@ body.mobile {
 	color: white;
 	text-shadow: -1px -1px 1px rgba(0,0,0,.5);
 	background: rgb(126, 148, 176);
-	background: -webkit-gradient(linear, left top, left bottom,
-								from(rgb(180,191,206)),
-								color-stop(0.5, rgb(134,154,178)),
-								color-stop(0.5, rgb(126,148,176)),
-								to(rgb(109,131,161)));
+	background: -webkit-linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
+	background: -moz-linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
+	background: -o-linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
+	background: -ms-linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
+	background: linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
 	border-bottom: 1px solid rgb(101,121,148);
 	-webkit-box-shadow: 0px 1px 1px rgb(45,48,51);
 	box-shadow: 0px 1px 1px rgb(45,48,51);
@@ -243,9 +243,25 @@ body.mobile {
 	opacity: 0;
 	display: inline-block;
 	-webkit-transform: scale(6);
+	-moz-transform: scale(6);
+	-o-transform: scale(6);
+	-ms-transform: scale(6);
+	transform: scale(6);
 	-webkit-transform-origin: top center;
+	-moz-transform-origin: top center;
+	-o-transform-origin: top center;
+	-ms-transform-origin: top center;
+	transform-origin: top center;
 	-webkit-transition-property: -webkit-transform, opacity;
+	-moz-transition-property: -moz-transform, opacity;
+	-o-transition-property: -o-transform, opacity;
+	-ms-transition-property: -ms-transform, opacity;
+	transition-property: transform, opacity;
 	-webkit-transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	-ms-transition-duration: 0.3s;
+	transition-duration: 0.3s;
 }
 
 #mobile-title > .winning-msg.steady {
@@ -330,9 +346,11 @@ body.mobile {
 	margin: 10px auto;
 	text-align: center;
 	color: rgb(77,87,107);
-	-webkit-transition-property: height;
-	-webkit-transition-duration: 0.1s;
-	-webkit-transition-timing-function: linear;
+	-webkit-transition: height 0.1s linear;
+	-moz-transition: height 0.1s linear;
+	-o-transition: height 0.1s linear;
+	-ms-transition: height 0.1s linear;
+	transition: height 0.1s linear;
 }
 
 .description.active {
@@ -632,9 +650,14 @@ body.mobile {
 }
 
 #share .icon:hover {
+	-webkit-box-shadow: 0 0 15px RoyalBlue;
 	box-shadow: 0 0 15px RoyalBlue;
 	opacity: 1;
-	// transition: box-shadow 0.2s ease-in 0;
+	-webkit-transition: box-shadow 0.3s;
+	-moz-transition: box-shadow 0.3s;
+	-o-transition: box-shadow 0.3s;
+	-ms-transition: box-shadow 0.3s;
+	transition: box-shadow 0.3s;
 }
 
 #share .twitter {
@@ -762,16 +785,16 @@ body.mobile {
 	font-size: 2em;
 	border-radius: 5px;
 	background: rgb(245,245,245);
+	-webkit-transition: background 0.4s;
+	-moz-transition: background 0.4s;
+	-o-transition: background 0.4s;
+	-ms-transition: background 0.4s;
+	transition: background 0.4s;
 }
 
 #input input:focus {
 	outline: none;
 	background: white;
-	-webkit-transition: background 0.2s ease-in 0;
-	-moz-transition: background 0.2s ease-in 0;
-	-o-transition: background 0.2s ease-in 0;
-	-ms-transition: background 0.2s ease-in 0;
-	transition: background 0.2s ease-in 0;
 }
 
 
@@ -811,11 +834,11 @@ body.mobile {
 
 #switch label:hover {
 	color: rgb(40,40,40);
-	-webkit-transition: color 0.2s ease-in 0;
-	-moz-transition: color 0.2s ease-in 0;
-	-o-transition: color 0.2s ease-in 0;
-	-ms-transition: color 0.2s ease-in 0;
-	transition: color 0.2s ease-in 0;
+	-webkit-transition: color 0.3s;
+	-moz-transition: color 0.3s;
+	-o-transition: color 0.3s;
+	-ms-transition: color 0.3s;
+	transition: color 0.3s;
 	background: -webkit-linear-gradient(top, white, rgb(210,210,210));
 	background: -moz-linear-gradient(top, white, rgb(230,230,230));
 	background: -o-linear-gradient(top, white, rgb(230,230,230));
@@ -1012,11 +1035,11 @@ body.mobile {
 
 #counter .frame:hover {
 	color: LemonChiffon;
-	-webkit-transition: color 0.2s ease-in 0;
-	-moz-transition: color 0.2s ease-in 0;
-	-o-transition: color 0.2s ease-in 0;
-	-ms-transition: color 0.2s ease-in 0;
-	transition: color 0.2s ease-in 0;
+	-webkit-transition: color 0.3s;
+	-moz-transition: color 0.3s;
+	-o-transition: color 0.3s;
+	-ms-transition: color 0.3s;
+	transition: color 0.3s;
 }
 
 
