@@ -14,6 +14,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>統一發票對獎程式</title>
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
 	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/plugin/bootstrap-receipt.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/receipt.css" />
@@ -26,6 +28,9 @@
 	<div class="error-background"></div>
 
 	<div class="mobile-screen">
+		<div id="mobile-title">
+			<span class="title">統一發票對獎程式</span>
+		</div>
 		<div class="input">
 			<label for="mobile-input">統一發票</label>
 			<input type="text" id="mobile-input" pattern="[0-9]*" maxlength="3" placeholder="末三碼">
@@ -35,10 +40,6 @@
 				<span class="instruction">輸入末三碼顯示對獎結果</span>
 				<span class="number first-five"></span>
 				<span class="number last-three"></span>
-			</div>
-			<div class="result-display">
-				<span class="months"></span>
-				<span class="result">中獎結果</span>
 			</div>
 			<span class="description"></span>
 		</div>
@@ -221,7 +222,7 @@
 	document.getElementById('firefox').src = "img/firefox@1x.png";
 	document.getElementById('safari').src = "img/safari@1x.png";
 
-	// Handle bug in Google Chrome 22
+	// Handle bug of displaying layers in Google Chrome 22
 	if ( navigator.userAgent.match(/Chrome/i) ) {
 		document.getElementById('counter').className = "chrome";
 	}
