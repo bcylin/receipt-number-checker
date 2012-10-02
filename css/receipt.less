@@ -206,7 +206,7 @@ body.mobile {
 	background: linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
 	border-bottom: 1px solid rgb(101,121,148);
 	-webkit-box-shadow: 0px 1px 1px rgb(45,48,51);
-	box-shadow: 0px 1px 1px rgb(45,48,51);
+	box-shadow: 0px 1px 1px rgba(45,48,51,.8);
 }
 
 #mobile-title.match-all {
@@ -323,19 +323,20 @@ body.mobile {
 	display: block;
 	width: 85%;
 	height: 20px;
-	margin: 15px auto;
+	margin: 10px auto 12px auto;
 	.box;
 }
 
 .instruction {
 	font-size: 14px;
-	line-height: 22px;
+	line-height: 14px;
+	vertical-align: text-top;
 	color: rgb(76,86,108);
 }
 
 .number {
-	font-size: 22px;
-	line-height: 22px;
+	font-size: 24px;
+	line-height: 24px;
 	letter-spacing: 2px;
 }
 
@@ -344,7 +345,9 @@ body.mobile {
 	width: 90%;
 	height: 0;
 	margin: 10px auto;
+	font-size: 16px;
 	text-align: center;
+	line-height: 30px;
 	color: rgb(77,87,107);
 	-webkit-transition: height 0.1s linear;
 	-moz-transition: height 0.1s linear;
@@ -354,7 +357,7 @@ body.mobile {
 }
 
 .description.active {
-	height: 30px;
+	height: 34px;
 }
 
 .matched {
