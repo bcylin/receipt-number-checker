@@ -7,12 +7,11 @@
  */
 
 define([
-	'order!jquery',
-	'order!underscore',
-	'order!backbone',
-	'order!bootstrap-modal',
-	'order!bootstrap-transition'
-], function($) {
+	'jquery',
+	'backbone',
+	'bootstrap-modal',
+	'bootstrap-transition'
+], function() {
 
 return Backbone.View.extend({
 

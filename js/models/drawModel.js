@@ -7,9 +7,8 @@
  */
 
 define([
-	'order!jquery',
-	'order!underscore',
-	'order!backbone'
+	'jquery',
+	'backbone'
 ], function($) {
 
 return Backbone.Model.extend({

@@ -6,10 +6,9 @@
  * @author	Ben on 06/Jul/2012
  */
 
-define('views/prizeView', [
-	'order!jquery',
-	'order!underscore',
-	'order!backbone'
+define([
+	'jquery',
+	'backbone'
 ], function($) {
 
 return Backbone.View.extend({
