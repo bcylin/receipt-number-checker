@@ -151,6 +151,27 @@ require([
 		// };
 
 		// app.autoInput(5);
+
+		// Animate bouncing arrow
+		var $arrow = $('.arrow'),
+			origin = $arrow.css('left'),
+			bounces = 4,
+			fraction = parseInt(origin) / bounces,
+			duration = 350,
+			resetPosition = function() {
+				$arrow.css({'left': origin});
+			};
+
+		(function bounceArrow() {
+			if (bounces > 0) {
+				bounces -= 1;
+				var position = parseInt(origin) - fraction * bounces;
+				$arrow.css({'left': position + 'px'});
+				setTimeout(resetPosition, duration);
+				setTimeout(bounceArrow, duration * 2);
+			}
+		})();
+
 	});
 
 });
