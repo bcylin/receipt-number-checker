@@ -498,6 +498,7 @@ body.mobile {
 @media screen and (max-height: 600px) {
 	.operation {
 		float: left;
+		position: relative;
 		margin-bottom: 50px;
 	}
 }
@@ -581,7 +582,7 @@ body.mobile {
 @ribbon-height: 40px;
 @ribbon-padding: 2px;
 @ribbon-width: 350px;
-@ribbon-offset: 50px;
+@ribbon-offset: 60px;
 
 .ribbon {
 	.box;
@@ -609,8 +610,9 @@ body.mobile {
 	padding: 10px;
 	width: 100%;
 	height: @ribbon-height - @ribbon-padding * 2;
-	line-height: 12px;
-	font-size: 12px;
+	line-height: 11px;
+	font-size: 11px;
+	font-weight: bold;
 	letter-spacing: 1px;
 	text-align: center;
 	text-shadow: -1px -1px 1px rgba(0,0,0,.8);
@@ -692,48 +694,6 @@ body.mobile {
 
 #share .bug:before {
 	content: "BUG report";
-}
-
-
-// ----------
-/* Welcome */
-// ---------
-
-#welcome .modal-header {
-	height: 30px;
-}
-
-#welcome .title {
-	display: inline-block;
-	font-size: 20px;
-	font-weight: bold;
-	margin: 10px 35px;
-}
-
-#welcome .modal-body {
-	padding: 10px 40px;
-}
-
-#welcome .modal-body ul {
-	padding-left: 30px;
-}
-
-#welcome .modal-body li {
-	list-style: disc;
-	line-height: 1.5em;
-}
-
-#welcome hr {
-	margin: 0 30px;
-}
-
-#welcome img {
-	vertical-align: middle;
-	margin-right: 5px;
-}
-
-#welcome .icons {
-	margin: 10px 30px;
 }
 
 
@@ -940,6 +900,32 @@ body.mobile {
 	outline: none;
 }
 }	// End of nested rules
+
+
+// ---------
+/* Source */
+// --------
+
+.desktop {	// Nested rules
+@source-color: LightGray;
+#source {
+	position: absolute;
+	bottom: 4px;
+	right: 6px;
+	color: @source-color;
+	font-size: 0.7em;
+}
+
+#source a {
+	font-weight: normal;
+	color: @source-color;
+}
+
+#source a:hover {
+	font-weight: bold;
+	color: gray;
+}
+}
 
 
 // ----------

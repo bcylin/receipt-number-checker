@@ -27,7 +27,6 @@ require.config({
 require([
 	'models/prizeModel',
 	'collections/recordsCollection',
-	'views/welcomeView',
 	'views/prizeView',
 	'views/switchView',
 	'views/inputView',
@@ -39,7 +38,6 @@ require([
 ], function(
 	PrizeModel,
 	RecordsCollection,
-	WelcomeView,
 	PrizeView,
 	SwitchView,
 	InputView,
@@ -53,8 +51,6 @@ require([
 
 	// A global object to handle all functions
 	var app = window.receiptApp ? window.receiptApp : {};
-
-	app.welcomeView = new WelcomeView({ el: '#welcome' });
 	app.prize = new PrizeModel;
 
 	// Start loading prize data
