@@ -4,3 +4,15 @@
 	    -ms-box-sizing: @type;
 	        box-sizing: @type;
 }
+
+.box-shadow(
+	@x : 2px,
+	@y : 2px,
+	@blur : 5px,
+	@spread : 0,
+	@color : rgba(0,0,0,.5)
+) {
+	-webkit-box-shadow: @x @y @blur @spread @color;
+	   -moz-box-shadow: @x @y @blur @spread @color;
+	        box-shadow: @x @y @blur @spread @color;
+}
