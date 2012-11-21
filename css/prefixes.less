@@ -5,14 +5,8 @@
 	        box-sizing: @type;
 }
 
-.box-shadow(
-	@x : 2px,
-	@y : 2px,
-	@blur : 5px,
-	@spread : 0,
-	@color : rgba(0,0,0,.5)
-) {
-	-webkit-box-shadow: @x @y @blur @spread @color;
-	   -moz-box-shadow: @x @y @blur @spread @color;
-	        box-shadow: @x @y @blur @spread @color;
+.box-shadow( @params : 2px 2px 5px 0 rgba(0,0,0,.5) ) {
+	-webkit-box-shadow: @params;
+	   -moz-box-shadow: @params;
+	        box-shadow: @params;
 }
