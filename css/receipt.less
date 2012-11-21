@@ -243,21 +243,13 @@ body.mobile {
 #mobile-title > .winning-msg {
 	opacity: 0;
 	display: inline-block;
-	-webkit-transform: scale(6);
-	-moz-transform: scale(6);
-	-o-transform: scale(6);
-	-ms-transform: scale(6);
-	transform: scale(6);
-	-webkit-transform-origin: top center;
-	-moz-transform-origin: top center;
-	-o-transform-origin: top center;
-	-ms-transform-origin: top center;
-	transform-origin: top center;
+	.transform(scale(6));
+	.transform-origin(top center);
 	.transition(all 0.3s);
 }
 
 #mobile-title > .winning-msg.steady {
-	-webkit-transform: scale(1);
+	.transform(scale(1));
 	opacity: 1;
 }
 
@@ -580,11 +572,7 @@ body.mobile {
 	padding: @ribbon-padding;
 	background: rgb(225,118,0);
 	.box-shadow(0 2px 15px 0 rgba(0,0,0,.5));
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
+	.transform(rotate(45deg));
 }
 
 .ribbon .stitches {
