@@ -34,3 +34,43 @@
 	     -o-transform-origin: @params;
 	        transform-origin: @params;
 }
+
+.linear-gradient(
+		@start : top,
+		@color-begins : silver,
+		@color-ends : black
+) {
+	background: -webkit-linear-gradient(@start, @color-begins, @color-ends);
+	background: -moz-linear-gradient(@start, @color-begins, @color-ends);
+	background: -ms-linear-gradient(@start, @color-begins, @color-ends);
+	background: -o-linear-gradient(@start, @color-begins, @color-ends);
+	background: linear-gradient(@start, @color-begins, @color-ends);
+}
+
+.linear-gradient-with-four-stops(
+	@start : top,
+	@stop-1 : white,
+	@stop-2 : silver 25%,
+	@stop-3 : gray 75%,
+	@stop-4 : black
+) {
+	background: -webkit-linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+	background: -moz-linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+	background: -ms-linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+	background: -o-linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+	background: linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+}
+
+.mask-gradient(
+	@start : top,
+	@stop-1 : rgba(0, 0, 0, 0),
+	@stop-2 : black 20%,
+	@stop-3 : black 80%,
+	@stop-4 : rgba(0, 0, 0, 0) 100%
+) {
+	-webkit-mask-image: -webkit-linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+	-moz-mask-image: -moz-linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+	-ms-mask-image: -ms-linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+	-o-mask-image: -o-linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+	mask-image: linear-gradient(@start, @stop-1, @stop-2, @stop-3, @stop-4);
+}
