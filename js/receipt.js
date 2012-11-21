@@ -99,6 +99,7 @@ require([
 			.on('add', app.notifyView.displayResult, app.notifyView);
 
 		app.inputView.focus();
+		app.arrow.init();
 
 		// inputView delegate method
 		// @parem {string} a number acquired from inputView
@@ -106,6 +107,7 @@ require([
 			var result = this.prize.match(num);
 			var record = new Backbone.Model(result);
 			this.records.add(record);
+			this.arrow.shouldBounce = false;
 		};
 
 		// switchView delegate method
@@ -151,27 +153,43 @@ require([
 		// };
 
 		// app.autoInput(5);
-
-		// Animate bouncing arrow
-		var $arrow = $('.arrow'),
-			origin = $arrow.css('left'),
-			bounces = 4,
-			fraction = parseInt(origin) / bounces,
-			duration = 350,
-			resetPosition = function() {
-				$arrow.css({'left': origin});
-			};
-
-		(function bounceArrow() {
-			if (bounces > 0) {
-				bounces -= 1;
-				var position = parseInt(origin) - fraction * bounces;
-				$arrow.css({'left': position + 'px'});
-				setTimeout(resetPosition, duration);
-				setTimeout(bounceArrow, duration * 2);
-			}
-		})();
-
 	});
 
+	// Animate bouncing arrow
+	app.arrow = {
+		$el: $('.arrow'),
+		shouldBounce: true,
+		duration: 350,
+		times: 2,
+		loopDuration: 5000,
+
+		init: function() {
+			this.origin = this.$el.css('left');
+			this.fraction = parseInt(this.origin) / (this.times + 1);
+			this.loop();
+		},
+
+		loop: function() {
+			if (this.shouldBounce) {
+				this.bounce(this.times);
+				var self = this;
+				setTimeout(function() { self.loop(); }, self.loopDuration);
+			}
+		},
+
+		resetPosition: function() {
+			this.$el.css({'left': this.origin});
+		},
+
+		bounce: function(times) {
+			if (times > 0) {
+				var self = this;
+				var position = parseInt(self.origin) - self.fraction * times;
+				self.$el.css({'left': position + 'px'});
+				setTimeout(function() { self.resetPosition(); }, self.duration);
+				setTimeout(function() { self.bounce(times); }, self.duration * 2);
+				times -= 1;
+			}
+		}
+	};
 });
