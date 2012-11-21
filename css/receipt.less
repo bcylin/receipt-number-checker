@@ -253,16 +253,7 @@ body.mobile {
 	-o-transform-origin: top center;
 	-ms-transform-origin: top center;
 	transform-origin: top center;
-	-webkit-transition-property: -webkit-transform, opacity;
-	-moz-transition-property: -moz-transform, opacity;
-	-o-transition-property: -o-transform, opacity;
-	-ms-transition-property: -ms-transform, opacity;
-	transition-property: transform, opacity;
-	-webkit-transition-duration: 0.3s;
-	-moz-transition-duration: 0.3s;
-	-o-transition-duration: 0.3s;
-	-ms-transition-duration: 0.3s;
-	transition-duration: 0.3s;
+	.transition(all 0.3s);
 }
 
 #mobile-title > .winning-msg.steady {
@@ -350,7 +341,7 @@ body.mobile {
 	text-align: center;
 	line-height: 30px;
 	color: rgb(77,87,107);
-	.transition(height, 0.1s, linear);
+	.transition(height 0.1s linear);
 }
 
 .description.active {
@@ -651,7 +642,7 @@ body.mobile {
 #share .icon:hover {
 	opacity: 1;
 	.box-shadow(0 0 15px 0 RoyalBlue);
-	.transition(box-shadow, 0.3s);
+	.transition(all 0.3s);
 }
 
 #share .twitter {
@@ -713,7 +704,7 @@ body.mobile {
 	background-color: @arrow-color;
 	border-radius: 5px 3px 3px 5px;
 	.box;
-	.transition(left, 0.3s, ease-in-out);
+	.transition(left 0.3s ease-in-out);
 }
 
 #input .arrow:after {
@@ -738,7 +729,7 @@ body.mobile {
 	font-size: 2em;
 	border-radius: 5px;
 	background: rgb(245,245,245);
-	.transition(background, 0.5s);
+	.transition(background 0.5s);
 }
 
 #input input:focus {
@@ -783,7 +774,7 @@ body.mobile {
 
 #switch label:hover {
 	color: rgb(40,40,40);
-	.transition(color, 0.3s);
+	.transition(color 0.3s);
 	background: -webkit-linear-gradient(top, white, rgb(210,210,210));
 	background: -moz-linear-gradient(top, white, rgb(230,230,230));
 	background: -o-linear-gradient(top, white, rgb(230,230,230));
@@ -1006,7 +997,7 @@ body.mobile {
 
 #counter .frame:hover {
 	color: LemonChiffon;
-	.transition(color, 0.3s);
+	.transition(color 0.3s);
 }
 
 
