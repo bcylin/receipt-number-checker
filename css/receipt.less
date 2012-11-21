@@ -350,11 +350,7 @@ body.mobile {
 	text-align: center;
 	line-height: 30px;
 	color: rgb(77,87,107);
-	-webkit-transition: height 0.1s linear;
-	-moz-transition: height 0.1s linear;
-	-o-transition: height 0.1s linear;
-	-ms-transition: height 0.1s linear;
-	transition: height 0.1s linear;
+	.transition(height, 0.1s, linear);
 }
 
 .description.active {
@@ -653,13 +649,9 @@ body.mobile {
 }
 
 #share .icon:hover {
-	.box-shadow(0 0 15px 0 RoyalBlue);
 	opacity: 1;
-	-webkit-transition: box-shadow 0.3s;
-	-moz-transition: box-shadow 0.3s;
-	-o-transition: box-shadow 0.3s;
-	-ms-transition: box-shadow 0.3s;
-	transition: box-shadow 0.3s;
+	.box-shadow(0 0 15px 0 RoyalBlue);
+	.transition(box-shadow, 0.3s);
 }
 
 #share .twitter {
@@ -721,11 +713,7 @@ body.mobile {
 	background-color: @arrow-color;
 	border-radius: 5px 3px 3px 5px;
 	.box;
-	-webkit-transition: left 0.3s ease-in-out;
-	-moz-transition: left 0.3s ease-in-out;
-	-o-transition: left 0.3s ease-in-out;
-	-ms-transition: left 0.3s ease-in-out;
-	transition: left 0.3s ease-in-out;
+	.transition(left, 0.3s, ease-in-out);
 }
 
 #input .arrow:after {
@@ -750,11 +738,7 @@ body.mobile {
 	font-size: 2em;
 	border-radius: 5px;
 	background: rgb(245,245,245);
-	-webkit-transition: background 0.4s;
-	-moz-transition: background 0.4s;
-	-o-transition: background 0.4s;
-	-ms-transition: background 0.4s;
-	transition: background 0.4s;
+	.transition(background, 0.5s);
 }
 
 #input input:focus {
@@ -799,11 +783,7 @@ body.mobile {
 
 #switch label:hover {
 	color: rgb(40,40,40);
-	-webkit-transition: color 0.3s;
-	-moz-transition: color 0.3s;
-	-o-transition: color 0.3s;
-	-ms-transition: color 0.3s;
-	transition: color 0.3s;
+	.transition(color, 0.3s);
 	background: -webkit-linear-gradient(top, white, rgb(210,210,210));
 	background: -moz-linear-gradient(top, white, rgb(230,230,230));
 	background: -o-linear-gradient(top, white, rgb(230,230,230));
@@ -1026,11 +1006,7 @@ body.mobile {
 
 #counter .frame:hover {
 	color: LemonChiffon;
-	-webkit-transition: color 0.3s;
-	-moz-transition: color 0.3s;
-	-o-transition: color 0.3s;
-	-ms-transition: color 0.3s;
-	transition: color 0.3s;
+	.transition(color, 0.3s);
 }
 
 
