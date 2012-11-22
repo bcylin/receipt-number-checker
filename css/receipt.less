@@ -3,9 +3,11 @@
  * https://github.com/bcylin/receipt-number-checker
  *
  * Created by Ben (c) 2012
- * Released under GNU General Public License v2
- * http://www.gnu.org/licenses/gpl-2.0.html
+ * Released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
+
+@import "prefixes.less";
 
 /* Body */
 
@@ -103,348 +105,9 @@ body {
 	height: 100%;
 }
 
-// ----------------
 /* Mobile Screen */
-// ---------------
 
-body.mobile {
-	min-height: 480px;
-}
-
-.mobile-screen {
-	width: width;
-	// max-width: 480px;
-	margin: 0 auto;
-	.box;
-}
-
-.mobile-screen {	// Nested rules
-
-@UIFontSize: 16px;
-
-.UIButton {
-	color: rgb(81,102,145);
-	background-color: rgb(247,247,247);
-	border: 1px solid rgb(161,167,173);
-	border-radius: 10px;
-	font-size: @UIFontSize;
-	font-weight: bold;
-	height: 44px;
-}
-
-.UIGroupedTable {
-	background-color: rgb(247,247,247);
-	border: 1px solid rgb(161,167,173);
-	border-radius: 10px;
-	font-size: @UIFontSize;
-	font-weight: bold;
-	padding: 0;
-	margin: 15px auto;
-	width: 90%;
-}
-
-.UITableViewCellTextLabel {
-	display: inline-block;
-	text-align: right;
-	font-size: 14px;
-	color: rgb(81,102,145);
-	width: 35%;
-	margin: 4px 5% 0 0;
-	.box;
-}
-
-.UITableViewCell {
-	margin: 15px auto;
-	font-size: 16px;
-	height: 44px;
-	padding: 14px 0;
-	text-align: center;
-	color: rgb(143,143,143);
-	background: transparent;
-	.box;
-}
-
-.UITableViewCell:not(:last-of-type) {
-	border-bottom: 1px solid rgb(202,202,202);
-}
-
-.UIGroupedTableHeader {
-	font-weight: bold;
-	color: rgb(76,86,108);
-	display: block;
-	width: 85%;
-	margin: 15px auto 10px auto;
-}
-
-.UIGroupedTableFooter {
-	font-size: 14px;
-	color: rgb(76,86,108);
-	display: block;
-	width: 85%;
-	margin: 0px auto;
-	text-align: center;
-}
-
-// title
-
-#mobile-title {
-	.box;
-	display: block;
-	width: 100%;
-	height: 48px;
-	line-height:48px;
-	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
-	color: white;
-	text-shadow: -1px -1px 1px rgba(0,0,0,.5);
-	background: rgb(126, 148, 176);
-	background: -webkit-linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
-	background: -moz-linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
-	background: -o-linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
-	background: -ms-linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
-	background: linear-gradient(top, rgb(180,191,206) 0%, rgb(134,154,178) 50%, rgb(126,148,176) 50%, rgb(109,131,161) 100%);
-	border-bottom: 1px solid rgb(101,121,148);
-	-webkit-box-shadow: 0px 1px 1px rgb(45,48,51);
-	box-shadow: 0px 1px 1px rgba(45,48,51,.8);
-}
-
-#mobile-title.match-all {
-	// background: -webkit-gradient(linear, left top, left bottom,
-	// 							from(rgb(255,215,0)),
-	// 							color-stop(0.5, rgb(244,164,96)),
-	// 							color-stop(0.5, rgb(255,165,0)),
-	// 							to(rgb(255,140,0)));
-	background: -webkit-linear-gradient(top, Gold, SandyBrown);
-	background: -moz-linear-gradient(top, Gold, SandyBrown);
-	background: -o-linear-gradient(top, Gold, SandyBrown);
-	background: -ms-linear-gradient(top, Gold, SandyBrown);
-	background: linear-gradient(top, Gold, SandyBrown);
-	border-bottom: 1px solid Goldenrod;
-	box-shadow: 0px 1px 1px rgba(45,48,51,.5);
-}
-
-#mobile-title.match-three {
-	// background: -webkit-gradient(linear, left top, left bottom,
-	// 							from(rgb(98,141,95)),
-	// 							color-stop(0.5, rgb(50,121,44)),
-	// 							color-stop(0.5, rgb(22,100,15)),
-	// 							to(rgb(25,116,17)));
-	background: -webkit-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-	background: -moz-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-	background: -o-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-	background: -ms-linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-	background: linear-gradient(top, rgb(134,196,145), rgb(0,166,42));
-	border-bottom: 1px solid rgb(98,141,95);
-	box-shadow: 0px 1px 1px rgba(45,48,51,.5);
-}
-
-#mobile-title > .winning-msg {
-	opacity: 0;
-	display: inline-block;
-	-webkit-transform: scale(6);
-	-moz-transform: scale(6);
-	-o-transform: scale(6);
-	-ms-transform: scale(6);
-	transform: scale(6);
-	-webkit-transform-origin: top center;
-	-moz-transform-origin: top center;
-	-o-transform-origin: top center;
-	-ms-transform-origin: top center;
-	transform-origin: top center;
-	-webkit-transition-property: -webkit-transform, opacity;
-	-moz-transition-property: -moz-transform, opacity;
-	-o-transition-property: -o-transform, opacity;
-	-ms-transition-property: -ms-transform, opacity;
-	transition-property: transform, opacity;
-	-webkit-transition-duration: 0.3s;
-	-moz-transition-duration: 0.3s;
-	-o-transition-duration: 0.3s;
-	-ms-transition-duration: 0.3s;
-	transition-duration: 0.3s;
-}
-
-#mobile-title > .winning-msg.steady {
-	-webkit-transform: scale(1);
-	opacity: 1;
-}
-
-// inputView
-
-.input {
-	.UIGroupedTable;
-	height: 44px;
-	background: rgb(230,230,230);
-}
-
-.input label {
-	font-size: 14px;
-	font-weight: bold;
-	display: inline-block;
-	width: 30%;
-	height: 44px;
-	line-height: 44px;
-	text-align: right;
-	color: rgb(20,20,20);
-	margin-right: 5%;
-	.box;
-}
-
-#mobile-input {
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 1;	// Fix placeholder vertical alignment on iOS
-	text-align: left;
-	letter-spacing: 2px;
-	float: right;
-	height: 100%;
-	width: 63%;
-	padding: 0 15px;
-	margin: 0;
-	border: 0;
-	border-left: 1px solid rgb(207,207,207);
-	border-radius: 0;
-	border-top-right-radius: 9px;
-	border-bottom-right-radius: 10px;
-	background-color: white;
-	-webkit-appearance: none;	// To set box-shadow on iOS
-	box-shadow: inset rgba(0,0,0,.5) 1px 1px 2px;
-	.box;
-}
-
-#mobile-input:focus {
-	outline: none;
-}
-
-// resultView
-
-.number-display {
-	text-align: center;
-	display: block;
-	width: 85%;
-	height: 20px;
-	margin: 10px auto 12px auto;
-	.box;
-}
-
-.instruction {
-	font-size: 14px;
-	line-height: 14px;
-	vertical-align: text-top;
-	color: rgb(76,86,108);
-}
-
-.number {
-	font-size: 24px;
-	line-height: 24px;
-	letter-spacing: 2px;
-}
-
-.description {
-	display: block;
-	width: 90%;
-	height: 0;
-	margin: 10px auto;
-	font-size: 16px;
-	text-align: center;
-	line-height: 30px;
-	color: rgb(77,87,107);
-	-webkit-transition: height 0.1s linear;
-	-moz-transition: height 0.1s linear;
-	-o-transition: height 0.1s linear;
-	-ms-transition: height 0.1s linear;
-	transition: height 0.1s linear;
-}
-
-.description.active {
-	height: 34px;
-}
-
-.matched {
-	.first-five {
-		color: black;
-	}
-	.last-three {
-		color: rgb(220,20,60);
-	}
-}
-
-// switchView
-
-#switch {
-	text-align: center;
-}
-
-#switch > label {
-	position: relative;
-	width: 42%;
-	display: inline-block;
-	margin: 0 3%;
-	.UIButton;
-	.box;
-}
-
-#switch .selected {
-	background: -webkit-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
-	background: -moz-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
-	background: -o-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
-	background: -ms-linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
-	background: linear-gradient(top, rgb(96,127,236), rgb(43,81,233));
-	color: white;
-	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-}
-
-@span-width: 40px;
-
-#switch span {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	height: @UIFontSize;
-	width: @span-width;
-	margin-top: -@UIFontSize / 2 + 1px;
-	margin-left: -@span-width / 2;
-}
-
-// prizeView
-
-#prize {
-	.UIGroupedTable;
-	margin-bottom: 25px;
-}
-
-#prize section {
-	padding: 10px 0;
-}
-
-#prize section:not(:last-of-type) {
-	border-bottom: 1px solid rgb(202,202,202);
-}
-
-#prize .name {
-	.UITableViewCellTextLabel;
-}
-
-#prize ul {
-	display: inline-block;
-	vertical-align: top;
-	margin: 0;
-	padding: 0;
-}
-
-#prize .numbers span {
-	border: 0;
-	font-family: 'Lucida Grande';
-	vertical-align: middle;
-	letter-spacing: 2px;
-	height: @UIFontSize;
-	line-height: @UIFontSize + 6px;
-	padding: 1px;
-	margin: 0;
-	.box;
-}
-
-}	// End of nested rules
+@import "receipt-mobile.less";
 
 
 // ---------------------
@@ -452,13 +115,13 @@ body.mobile {
 // --------------------
 
 // LESS Variables
-@left-width: 50%;
+@operation-width: 450px;
 @page-height: 550px;
 @record-margin-top: 30px;
 @record-width: 350px;
 
 .paper-shadow {
-	box-shadow: 1px 3px 10px rgba(0,0,0,.5);
+	.box-shadow(1px 3px 10px 0 rgba(0,0,0,.5));
 }
 
 .container {
@@ -474,8 +137,7 @@ body.mobile {
 .operation {
 	.container;
 	.box;
-	// width: @left-width;
-	width: 450px;
+	width: @operation-width;
 }
 
 .record {
@@ -483,7 +145,6 @@ body.mobile {
 	float: right;
 	position: relative;
 	margin-top: @record-margin-top;
-	// width: 90% - @left-width;
 	width: @record-width;
 }
 
@@ -498,6 +159,7 @@ body.mobile {
 @media screen and (max-height: 600px) {
 	.operation {
 		float: left;
+		position: relative;
 		margin-bottom: 50px;
 	}
 }
@@ -511,10 +173,7 @@ body.mobile {
 	border: 1px solid black;
 }
 .box {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
+	.box-sizing(border-box);
 }
 
 
@@ -538,7 +197,7 @@ body.mobile {
 	border-radius: @mark-radius;
 	color: white;
 	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-	box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+	.box-shadow(1px 1px 4px 0 rgba(0,0,0,.5));
 	.box;
 }
 
@@ -581,7 +240,7 @@ body.mobile {
 @ribbon-height: 40px;
 @ribbon-padding: 2px;
 @ribbon-width: 350px;
-@ribbon-offset: 50px;
+@ribbon-offset: 60px;
 
 .ribbon {
 	.box;
@@ -593,12 +252,8 @@ body.mobile {
 	width: @ribbon-width;
 	padding: @ribbon-padding;
 	background: rgb(225,118,0);
-	box-shadow: 0px 2px 15px rgba(0,0,0,.5);
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
+	.box-shadow(0 2px 15px 0 rgba(0,0,0,.5));
+	.transform(rotate(45deg));
 }
 
 .ribbon .stitches {
@@ -609,8 +264,9 @@ body.mobile {
 	padding: 10px;
 	width: 100%;
 	height: @ribbon-height - @ribbon-padding * 2;
-	line-height: 12px;
-	font-size: 12px;
+	line-height: 11px;
+	font-size: 11px;
+	font-weight: bold;
 	letter-spacing: 1px;
 	text-align: center;
 	text-shadow: -1px -1px 1px rgba(0,0,0,.8);
@@ -631,7 +287,7 @@ body.mobile {
 	padding: 5px 0;
 	text-align: center;
 	background: transparent;
-	box-shadow: 0 0 15px rgba(0,0,0,.5);
+	.box-shadow(0 0 15px 0 rgba(0,0,0,.5));
 }
 
 #share .text {
@@ -653,14 +309,9 @@ body.mobile {
 }
 
 #share .icon:hover {
-	-webkit-box-shadow: 0 0 15px RoyalBlue;
-	box-shadow: 0 0 15px RoyalBlue;
 	opacity: 1;
-	-webkit-transition: box-shadow 0.3s;
-	-moz-transition: box-shadow 0.3s;
-	-o-transition: box-shadow 0.3s;
-	-ms-transition: box-shadow 0.3s;
-	transition: box-shadow 0.3s;
+	.box-shadow(0 0 15px 0 RoyalBlue);
+	.transition(all 0.3s);
 }
 
 #share .twitter {
@@ -683,57 +334,11 @@ body.mobile {
 	text-decoration: none;
 	padding-top: 10px;
 	background: Teal;
-	background: -webkit-linear-gradient(top, LightSeaGreen, Teal);
-	background: -moz-linear-gradient(top, LightSeaGreen, Teal);
-	background: -o-linear-gradient(top, LightSeaGreen, Teal);
-	background: -ms-linear-gradient(top, LightSeaGreen, Teal);
-	background: linear-gradient(top, LightSeaGreen, Teal);
+	.linear-gradient(top, LightSeaGreen, Teal);
 }
 
 #share .bug:before {
 	content: "BUG report";
-}
-
-
-// ----------
-/* Welcome */
-// ---------
-
-#welcome .modal-header {
-	height: 30px;
-}
-
-#welcome .title {
-	display: inline-block;
-	font-size: 20px;
-	font-weight: bold;
-	margin: 10px 35px;
-}
-
-#welcome .modal-body {
-	padding: 10px 40px;
-}
-
-#welcome .modal-body ul {
-	padding-left: 30px;
-}
-
-#welcome .modal-body li {
-	list-style: disc;
-	line-height: 1.5em;
-}
-
-#welcome hr {
-	margin: 0 30px;
-}
-
-#welcome img {
-	vertical-align: middle;
-	margin-right: 5px;
-}
-
-#welcome .icons {
-	margin: 10px 30px;
 }
 
 
@@ -764,6 +369,7 @@ body.mobile {
 	background-color: @arrow-color;
 	border-radius: 5px 3px 3px 5px;
 	.box;
+	.transition(left 0.3s ease-in-out);
 }
 
 #input .arrow:after {
@@ -788,11 +394,7 @@ body.mobile {
 	font-size: 2em;
 	border-radius: 5px;
 	background: rgb(245,245,245);
-	-webkit-transition: background 0.4s;
-	-moz-transition: background 0.4s;
-	-o-transition: background 0.4s;
-	-ms-transition: background 0.4s;
-	transition: background 0.4s;
+	.transition(background 0.5s);
 }
 
 #input input:focus {
@@ -828,45 +430,25 @@ body.mobile {
 
 #switch label {
 	border: 1px solid #CCC;
-	background: -webkit-linear-gradient(top, white, rgb(230,230,230));
-	background: -moz-linear-gradient(top, white, rgb(230,230,230));
-	background: -o-linear-gradient(top, white, rgb(230,230,230));
-	background: -ms-linear-gradient(top, white, rgb(230,230,230));
-	background: linear-gradient(top, white, rgb(230,230,230));
+	.linear-gradient(top, white, rgb(230,230,230));
 }
 
 #switch label:hover {
 	color: rgb(40,40,40);
-	-webkit-transition: color 0.3s;
-	-moz-transition: color 0.3s;
-	-o-transition: color 0.3s;
-	-ms-transition: color 0.3s;
-	transition: color 0.3s;
-	background: -webkit-linear-gradient(top, white, rgb(210,210,210));
-	background: -moz-linear-gradient(top, white, rgb(230,230,230));
-	background: -o-linear-gradient(top, white, rgb(230,230,230));
-	background: -ms-linear-gradient(top, white, rgb(230,230,230));
-	background: linear-gradient(top, white, rgb(230,230,230));
+	.transition(color 0.3s);
+	.linear-gradient(top, white, rgb(230,230,230));
 }
 
 #switch .selected {
 	color: rgb(245,245,245);
 	text-shadow: 0px -1px 1px rgba(0,0,0,.5);
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.5);
-	background: -webkit-linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
-	background: -moz-linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
-	background: -o-linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
-	background: -ms-linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
-	background: linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
+	.linear-gradient(top, rgb(102, 153, 204), rgb(51, 102, 153));
 }
 
 #switch .selected:hover {
 	color: white;
-	background: -webkit-linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
-	background: -moz-linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
-	background: -o-linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
-	background: -ms-linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
-	background: linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
+	.linear-gradient(top, rgb(102, 153, 204), rgb(0, 51, 153));
 }
 }	// End of nested rules
 
@@ -894,11 +476,7 @@ body.mobile {
 	height: 0;
 	top: @section-vertical-padding;
 	border-bottom: 2px solid #DDD;
-	-webkit-mask-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
-	-moz-mask-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
-	-o-mask-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
-	-ms-mask-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
-	mask-image: linear-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
+	.mask-gradient(left, rgba(0, 0, 0, 0), black 20%, black 80%, rgba(0, 0, 0, 0) 100%);
 }
 
 @number-height: 33px;
@@ -939,6 +517,44 @@ body.mobile {
 #prize .numbers input:focus {
 	outline: none;
 }
+
+@size: 32px;
+#activityIndicator {
+	width: @size;
+	height: @size;
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	left: 50%;
+	margin-left: -@size / 2;
+	background-image: url('../img/indicator.gif');
+}
+}	// End of nested rules
+
+
+// ---------
+/* Source */
+// --------
+
+.desktop {	// Nested rules
+@source-color: LightGray;
+#source {
+	position: absolute;
+	bottom: 4px;
+	right: 6px;
+	color: @source-color;
+	font-size: 0.7em;
+}
+
+#source a {
+	font-weight: normal;
+	color: @source-color;
+}
+
+#source a:hover {
+	font-weight: bold;
+	color: gray;
+}
 }	// End of nested rules
 
 
@@ -948,19 +564,7 @@ body.mobile {
 
 // Parametric Mixins
 .metal-gradient {
-	background-image: -o-linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
-	background-image: -moz-linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
-	background-image: -webkit-linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
-	background-image: -ms-linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
-	background-image: linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
-
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.3, rgb(50,50,50)),
-		color-stop(0.6, rgb(100,100,100))
-	);
+	.linear-gradient(bottom, rgb(50,50,50) 30%, rgb(80,80,80) 60%);
 }
 
 @counter-height: 60px;
@@ -976,7 +580,7 @@ body.mobile {
 	line-height: 2em;
 	text-align: center;
 	border-radius: 5px;
-	box-shadow: 0px 30px 20px -20px rgba(0,0,0,.5);
+	.box-shadow(0 30px 20px -20px rgba(0,0,0,.5));
 }
 
 /* Fix counter in a taller window */
@@ -1010,7 +614,7 @@ body.mobile {
 	height: @counter-height + 3px;
 	border-radius: 5px;
 	background-color: gray;
-	box-shadow: 0px 5px 10px 0px rgba(0,0,0,.3);
+	.box-shadow(0 5px 10px 0 rgba(0,0,0,.3));
 }
 
 #counter.chrome:after {
@@ -1038,11 +642,7 @@ body.mobile {
 
 #counter .frame:hover {
 	color: LemonChiffon;
-	-webkit-transition: color 0.3s;
-	-moz-transition: color 0.3s;
-	-o-transition: color 0.3s;
-	-ms-transition: color 0.3s;
-	transition: color 0.3s;
+	.transition(color 0.3s);
 }
 
 
@@ -1059,9 +659,8 @@ body.mobile {
 	width: 80%;
 	border: 1px solid #DDD;
 	background-color: white;
-	// max-height: @page-height - @record-margin-top - @counter-height;
 	margin-bottom: 50px;
-	box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+	.box-shadow(5px 5px 15px 0 rgba(0,0,0,.5));
 	.paper-shadow;
 }
 
@@ -1093,11 +692,7 @@ body.mobile {
 
 #list .winning {
 	cursor: pointer;
-	background: -webkit-linear-gradient(left, white, snow 20%, snow 85%, white);
-	background: -moz-linear-gradient(left, white, snow 20%, snow 85%, white);
-	background: -o-linear-gradient(left, white, snow 20%, snow 85%, white);
-	background: -ms-linear-gradient(left, white, snow 20%, snow 85%, white);
-	background: linear-gradient(left, white, snow 20%, snow 85%, white);
+	.linear-gradient-with-four-stops(left, white, snow 20%, snow 85%, white);
 }
 
 #list .months {
@@ -1151,12 +746,11 @@ body.mobile {
 	font-weight: bold;
 	text-align: center;
 	padding-top: @win-mark-radius / 3 + 2px;
-	// line-height: @win-mark-radius * 2 * 4 / 5;
 	border: @win-mark-radius / 8 solid white;
 	border-radius: @win-mark-radius;
 	color: white;
 	text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-	box-shadow: 1px 1px 6px rgba(0,0,0,.5);
+	.box-shadow(1px 1px 6px 0 rgba(0,0,0,.5));
 }
 
 #notify .numbers {
@@ -1228,11 +822,7 @@ footer {
 	min-height: 28px;
 	color: rgb(60,60,60);
 	background: rgba(200,200,200,.3);
-	-webkit-mask-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
-	mask: linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
-	-o-mask-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
-	-ms-mask-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
-	mask-image: linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
+	.mask-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 50%, black 60%, black 100%);
 }
 
 @author-color: rgb(17,33,201);

@@ -75,7 +75,7 @@
 
 	<div id="ribbon" class="ribbon float">
 		<a target="_blank" href="https://github.com/bcylin/receipt-number-checker">
-			<span class="stitches">Fork me on GitHub</span>
+			<span class="stitches">Source Code on GitHub</span>
 		</a>
 	</div>
 
@@ -106,12 +106,16 @@
 			</label>
 		</div>
 		<div id="prize">
-			<div class="template">
+			<script class="template" type="text/template">
 				<section id="{{id}}">
 					<label class="name">{{name}}</label>
 					<ul class="numbers"></ul>
 				</section>
-			</div>
+			</script>
+		</div>
+		<div id="activityIndicator"></div>
+		<div id="source">
+			資料來源 <a target="_blank" href="http://invoice.etax.nat.gov.tw/">財政部稅務入口網</a>
 		</div>
 	</div>
 
@@ -124,37 +128,15 @@
 			</div>
 		</div>
 		<div id="list">
-			<div class="template">
+			<script class="template" type="text/template">
 				<li id="{{id}}" class="{{status}}">
 					<span class="months">{{months}}</span>
 					<span class="num">{{num}}</span>
 					<span class="mark {{mark}}"></span>
 					<span class="result">{{result}}</span>
 				</li>
-			</div>
+			</script>
 			<ul></ul>
-		</div>
-	</div>
-
-	<div class="modal fade" id="welcome">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<span class="title">統一發票對獎程式</span>
-		</div>
-		<div class="modal-body">
-			<p class="icons">
-				<img id="chrome" alt="Chrome">
-				<img id="firefox" alt="Firefox">
-				<img id="safari" alt="Safari">
-				<span>相容性測試 OK</span>
-			</p>
-			<ul>
-				<li>中獎號碼資料取自<a target="_blank" href="http://invoice.etax.nat.gov.tw/">財政部稅務入口網</a></li>
-				<li>建議搭配數字鍵盤使用，請提供各種意見及問題，Thanks!</li>
-			</ul>
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-primary" data-dismiss="modal">按任意鍵繼續</button>
 		</div>
 	</div>
 
@@ -216,11 +198,6 @@
 		ribbon.src = "https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png";
 		ribbon.className = "";
 	}
-
-	// Load browser icons
-	document.getElementById('chrome').src = "img/chrome@1x.png";
-	document.getElementById('firefox').src = "img/firefox@1x.png";
-	document.getElementById('safari').src = "img/safari@1x.png";
 
 	// Handle bug of displaying layers in Google Chrome 22
 	if ( navigator.userAgent.match(/Chrome/i) ) {

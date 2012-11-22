@@ -27,7 +27,6 @@ require.config({
 require([
 	'models/prizeModel',
 	'collections/recordsCollection',
-	'views/welcomeView',
 	'views/prizeView',
 	'views/switchView',
 	'views/inputView',
@@ -39,7 +38,6 @@ require([
 ], function(
 	PrizeModel,
 	RecordsCollection,
-	WelcomeView,
 	PrizeView,
 	SwitchView,
 	InputView,
@@ -53,8 +51,6 @@ require([
 
 	// A global object to handle all functions
 	var app = window.receiptApp ? window.receiptApp : {};
-
-	app.welcomeView = new WelcomeView({ el: '#welcome' });
 	app.prize = new PrizeModel;
 
 	// Start loading prize data
@@ -103,6 +99,8 @@ require([
 			.on('add', app.notifyView.displayResult, app.notifyView);
 
 		app.inputView.focus();
+		app.arrow.init();
+		$('#activityIndicator').hide();
 
 		// inputView delegate method
 		// @parem {string} a number acquired from inputView
@@ -110,6 +108,7 @@ require([
 			var result = this.prize.match(num);
 			var record = new Backbone.Model(result);
 			this.records.add(record);
+			this.arrow.shouldBounce = false;
 		};
 
 		// switchView delegate method
@@ -157,4 +156,42 @@ require([
 		// app.autoInput(5);
 	});
 
+	// Animate bouncing arrow
+	app.arrow = {
+		$el: $('.arrow'),
+		shouldBounce: true,
+		duration: 350,
+		times: 2,
+		loopDuration: 5000,
+
+		init: function() {
+			this.origin = this.$el.css('left');
+			this.fraction = parseInt(this.origin) / (this.times + 1);
+			var self = this;
+			setTimeout(function() { self.loop(); }, 1000);	// wait 1 second before starting
+		},
+
+		loop: function() {
+			if (this.shouldBounce) {
+				this.bounce(this.times);
+				var self = this;
+				setTimeout(function() { self.loop(); }, self.loopDuration);
+			}
+		},
+
+		resetPosition: function() {
+			this.$el.css({'left': this.origin});
+		},
+
+		bounce: function(times) {
+			if (times > 0) {
+				var self = this;
+				var position = parseInt(self.origin) - self.fraction * times;
+				self.$el.css({'left': position + 'px'});
+				setTimeout(function() { self.resetPosition(); }, self.duration);
+				setTimeout(function() { self.bounce(times); }, self.duration * 2);
+				times -= 1;
+			}
+		}
+	};
 });
