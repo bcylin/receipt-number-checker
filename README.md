@@ -5,10 +5,17 @@ Result checker for Taiwan Uniform Receipt Lottery
 ### Demo
 http://bcylin.github.com/projects/receipt/
 
-### Cached source [[1]](http://invoice.etax.nat.gov.tw/etaxinfo_1.htm "統一發票中獎號碼單") [[2]](http://invoice.etax.nat.gov.tw/etaxinfo_2.htm "統一發票中獎號碼單")
+### Parse Data
 
-    cache/etaxinfo_1.htm
-    cache/etaxinfo_2.htm
+    $ ./data/parser.rb
+
+Source: [[1]](http://invoice.etax.nat.gov.tw/invoice.html)
+
+    cache/invoice.html
+
+Output:
+
+    data/numbers.json
 
 ### Run Locally
 
@@ -22,6 +29,3 @@ Require:
 
   - [Node.js](http://nodejs.org/)
   - npm-installed [lessc](http://search.npmjs.org/#/less)
-
-
-[demo]:http://bcylin.github.com/projects/receipt/
