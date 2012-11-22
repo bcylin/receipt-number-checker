@@ -517,6 +517,18 @@ body {
 #prize .numbers input:focus {
 	outline: none;
 }
+
+@size: 32px;
+#activityIndicator {
+	width: @size;
+	height: @size;
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	left: 50%;
+	margin-left: -@size / 2;
+	background-image: url('../img/indicator.gif');
+}
 }	// End of nested rules
 
 
@@ -543,7 +555,7 @@ body {
 	font-weight: bold;
 	color: gray;
 }
-}
+}	// End of nested rules
 
 
 // ----------

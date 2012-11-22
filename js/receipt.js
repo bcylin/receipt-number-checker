@@ -100,6 +100,7 @@ require([
 
 		app.inputView.focus();
 		app.arrow.init();
+		$('#activityIndicator').hide();
 
 		// inputView delegate method
 		// @parem {string} a number acquired from inputView
