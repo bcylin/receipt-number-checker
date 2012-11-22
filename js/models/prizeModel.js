@@ -21,62 +21,54 @@ return function() {
 		prevDraw: undefined
 	};
 
-	this.defaults = {
-		// data resource
-		urls: {
-			thisDraw: "http://invoice.etax.nat.gov.tw/etaxinfo_1.htm",
-			prevDraw: "http://invoice.etax.nat.gov.tw/etaxinfo_2.htm"
-		}
-	};
-
-	this.initializing = new $.Deferred();
 	this.init = function(config) {
 
+		this.options = $.extend( {}, this.defaults, config );
+		this.initializing = new $.Deferred();
+		_current.thisDraw = new DrawModel();
+		_current.prevDraw = new DrawModel();
+
 		var self = this;
-		self.options = $.extend( {}, self.defaults, config );
-		_current.thisDraw = new DrawModel({ url: self.options.urls.thisDraw });
-		_current.prevDraw = new DrawModel({ url: self.options.urls.prevDraw });
-
-		// determine when the initializing is done
-		var isDone = false;
-		_current.thisDraw.fetching.done(function() {
-			if (isDone) { self.initializing.resolve(); }
-			isDone = true;
-		}).fail(function() {
-			// set winning numbers manually
-			_current.thisDraw.setData({
-				months: "測試1",
-				prizes: {
-					'特別獎': ['11112222'],
-					'特獎': ['22221111'],
-					'頭獎至六獎': ['333'],
-					'增開六獎': ['444']
-				}
-			});
-			console.log(_current.thisDraw.toJSON());
-			if (isDone) { self.initializing.resolve(); }
-			isDone = true;
+		// load data of winning numbers
+		$.ajax({
+			url: self.options.url || 'data/numbers.json',
+			dataType: 'json',
+			success: function(data) {
+				var keys = Object.keys(data).sort();
+				_current.prevDraw.setData({
+					months: keys[0],
+					prizes: data[keys[0]]
+				});
+				_current.thisDraw .setData({
+					months: keys[1],
+					prizes: data[keys[1]]
+				});
+				self.initializing.resolve();
+			},
+			error: function(data) {
+				console.log('Fail fetching data from file: ' + this.url);
+				// set winning numbers manually
+				_current.thisDraw.setData({
+					months: "測試1",
+					prizes: {
+						'特別獎': ['11112222'],
+						'特獎': ['22221111'],
+						'頭獎至六獎': ['333'],
+						'增開六獎': ['444']
+					}
+				});
+				_current.prevDraw.setData({
+					months: "測試2",
+					prizes: {
+						'特別獎': ['AAAABBBB'],
+						'特獎': ['BBBBAAAA'],
+						'頭獎至六獎': ['CCC'],
+						'增開六獎': ['DDD']
+					}
+				});
+				self.initializing.resolve();
+			}
 		});
-
-		_current.prevDraw.fetching.done(function() {
-			if (isDone) { self.initializing.resolve(); }
-			isDone = true;
-		}).fail(function() {
-			// set winning numbers manually
-			_current.prevDraw.setData({
-				months: "測試2",
-				prizes: {
-					'特別獎': ['AAAABBBB'],
-					'特獎': ['BBBBAAAA'],
-					'頭獎至六獎': ['CCC'],
-					'增開六獎': ['DDD']
-				}
-			});
-			console.log(_current.thisDraw.toJSON());
-			if (isDone) { self.initializing.resolve(); }
-			isDone = true;
-		});
-
 		return this.initializing.promise();
 	};
 
