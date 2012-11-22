@@ -1,13 +1,13 @@
-#
+#!/usr/bin/env ruby
+# encoding : utf-8
+
 # data/parser.rb
 # https://github.com/bcylin/receipt-number-checker
 #
 # Created by Ben (c) 2012
 # Released under the MIT License
 # http://opensource.org/licenses/MIT
-#
 
-#!/usr/bin/env ruby
 
 begin
     gem "nokogiri"
@@ -24,13 +24,12 @@ require "json"
 # Fetch data
 
 url = "http://invoice.etax.nat.gov.tw/invoice.html"
+path = "../cache/invoice.html"
 
 begin
     html = Nokogiri::HTML(open(url))
     puts "Fetched from URL"
 rescue
-    path = "../cache/invoice.html"
-    
     if not File.exists?(path)
         puts "Error loading HTML file"
         exit
@@ -56,7 +55,8 @@ def parse(html, id)
     numbers = nodes.xpath(".//span[@class='t18Red']")
     draw = {}
     titles.each_with_index do |node, index|
-        draw[node.content] = numbers[index].content.split(/[^\d]/)
+        prize_name = (node.content == "頭獎") ? "頭獎至六獎" : node.content
+        draw[prize_name] = numbers[index].content.split(/[^\d]/)
     end
     return month, draw
 end
