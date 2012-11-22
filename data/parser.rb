@@ -29,8 +29,15 @@ begin
     html = Nokogiri::HTML(open(url))
     puts "Fetched from URL"
 rescue
-    path = File.expand_path("../cache/invoice.html")
-    f = File.open(path)
+    path = "../cache/invoice.html"
+    
+    if not File.exists?(path)
+        puts "Error loading HTML file"
+        exit
+    end
+    
+    file = File.expand_path(path)
+    f = File.open(file)
     html = Nokogiri::HTML(f)
     f.close
     puts "Fetched from cache"
@@ -44,9 +51,9 @@ end
 # @return {Hash}   "prize name" => [numbers...]
 def parse(html, id)
     nodes = html.xpath("//div[@id='#{id}']")
-    month = nodes.xpath('.//h2')[0].content.match(/\d+-\d+.{1}/)[0]
-    titles = nodes.xpath('.//span[@class="t18Red"]/../../td[@class="title"]')
-    numbers = nodes.xpath('.//span[@class="t18Red"]')
+    month = nodes.xpath(".//h2")[0].content.match(/\d+-\d+.{1}/)[0]
+    titles = nodes.xpath(".//span[@class='t18Red']/../../td[@class='title']")
+    numbers = nodes.xpath(".//span[@class='t18Red']")
     draw = {}
     titles.each_with_index do |node, index|
         draw[node.content] = numbers[index].content.split(/[^\d]/)
