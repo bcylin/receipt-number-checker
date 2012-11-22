@@ -166,7 +166,8 @@ require([
 		init: function() {
 			this.origin = this.$el.css('left');
 			this.fraction = parseInt(this.origin) / (this.times + 1);
-			this.loop();
+			var self = this;
+			setTimeout(function() { self.loop(); }, 1000);	// wait 1 second before starting
 		},
 
 		loop: function() {
