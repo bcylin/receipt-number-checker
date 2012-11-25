@@ -362,9 +362,9 @@ body.mobile {
   top: 50%;
   left: 50%;
   height: 16px;
-  width: 40px;
+  width: 90%;
   margin-top: -7px;
-  margin-left: -20px;
+  margin-left: -45%;
 }
 .mobile-screen #prize {
   background-color: #f7f7f7;
@@ -1019,8 +1019,8 @@ body.mobile {
   position: absolute;
   z-index: -1;
   top: 60px;
-  left: 10%;
-  width: 80%;
+  left: 9%;
+  width: 82%;
   border: 1px solid #DDD;
   background-color: white;
   margin-bottom: 50px;
@@ -1042,7 +1042,7 @@ body.mobile {
 #list li {
   margin: 0 10px;
   font-size: 18px;
-  padding: 16px;
+  padding: 16px 12px;
   height: 50px;
   border-top: 1px solid #e1e1e1;
   -webkit-box-sizing: border-box;
@@ -1065,8 +1065,10 @@ body.mobile {
   background: linear-gradient(left, #ffffff, #fffafa 20%, #fffafa 85%, #ffffff);
 }
 #list .months {
+  display: inline-block;
+  min-width: 44px;
   font-size: 12px;
-  line-height: 18px;
+  vertical-align: middle;
   color: gray;
 }
 #list .num {
