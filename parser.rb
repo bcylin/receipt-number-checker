@@ -24,7 +24,7 @@ require "json"
 # Fetch data
 
 url = "http://invoice.etax.nat.gov.tw/"
-path = "../cache/invoice.html"
+path = "./cache/invoice.html"
 
 begin
     html = Nokogiri::HTML(open(url))
@@ -34,7 +34,7 @@ rescue
         puts "Error loading HTML file"
         exit
     end
-    
+
     file = File.expand_path(path)
     f = File.open(file)
     html = Nokogiri::HTML(f)
@@ -72,7 +72,7 @@ draws = {
     last_month => last_draw
 }
 
-filename = File.expand_path("./numbers.json")
+filename = File.expand_path("./data/numbers.json")
 File.open(filename, "w") do |file|
     file.write( draws.to_json )
     puts "Data output: #{filename}"
