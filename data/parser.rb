@@ -23,7 +23,7 @@ require "json"
 
 # Fetch data
 
-url = "http://invoice.etax.nat.gov.tw/invoice.html"
+url = "http://invoice.etax.nat.gov.tw/"
 path = "../cache/invoice.html"
 
 begin
