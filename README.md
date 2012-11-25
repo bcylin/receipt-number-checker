@@ -7,11 +7,9 @@ http://bcylin.github.com/projects/receipt/
 
 ### Parse Data
 
-    $ ./data/parser.rb
+Source: [財政部稅務入口網](http://invoice.etax.nat.gov.tw)
 
-Source: [[1]](http://invoice.etax.nat.gov.tw/invoice.html)
-
-    cache/invoice.html
+    $ ./parser.rb
 
 Output:
 
