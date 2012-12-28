@@ -4,9 +4,9 @@
  *
  * Main config of loading required modules using RequireJS 1.0.8
  *
- * Created by Ben (c) 2012
- * Released under GNU General Public License v2
- * http://www.gnu.org/licenses/gpl-2.0.html
+ * Created by Ben <@bcylin> (c) 2012
+ * Released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
 require.config({
