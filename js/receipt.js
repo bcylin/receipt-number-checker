@@ -40,6 +40,8 @@ require.config({
 	}
 });
 
+// require(['views/share', 'views/signature']);
+
 require([
 	'models/prizeModel',
 	'collections/recordsCollection',
@@ -48,9 +50,7 @@ require([
 	'views/inputView',
 	'views/counterView',
 	'views/listView',
-	'views/notifyView',
-	// 'views/signature',
-	// 'views/share'
+	'views/notifyView'
 ], function(
 	PrizeModel,
 	RecordsCollection,
@@ -144,7 +144,7 @@ require([
 		// listView delegate method
 		// @param {string} client id of Backbone model
 		app.listViewDidSelectItemWithCid = function(cid) {
-			this.notifyView.displayResult( this.records.getByCid(cid) );
+			this.notifyView.displayResult( this.records.get(cid) );
 		};
 
 		// notifyView delegate methods
