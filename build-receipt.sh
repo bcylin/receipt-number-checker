@@ -5,7 +5,7 @@ node lib/r.js -o build-receipt.js
 node lib/r.js -o build-receipt-mobile.js
 cd ..
 
-lessc css/receipt.less > css/receipt.css
+lessc -x css/receipt.less > css/receipt.css
 
 deploy=receipt
 
