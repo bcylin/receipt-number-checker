@@ -13,7 +13,7 @@ require.config({
 	mainConfigFile: 'receipt.js',
 	baseUrl: './js',
 	paths: {
-		'jquery' : 'lib/jquery-1.7.2',
+		'jquery' : 'lib/jquery',
 		'underscore' : 'lib/underscore',
 		'backbone' : 'lib/backbone',
 		'scrollTo' : 'plugin/jquery.scrollTo',

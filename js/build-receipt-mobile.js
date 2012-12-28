@@ -1,10 +1,10 @@
 ({
-	// node r.js -o baseUrl=. name=receipt-mobile.js out=receipt-mobile-built.js paths.jquery=lib/jquery-1.7.2.min ...
+	// node r.js -o baseUrl=. name=receipt-mobile.js out=receipt-mobile-built.js paths.jquery=lib/jquery.min ...
 	baseUrl: '.',
 	name: 'receipt-mobile.js',
 	out: 'receipt-mobile-built.js',
 	paths: {
-		'jquery' : 'lib/jquery-1.7.2.min',
+		'jquery' : 'lib/jquery.min',
 		'underscore' : 'lib/underscore.min',
 		'backbone' : 'lib/backbone.min'
 	},

@@ -13,7 +13,7 @@
 	mainConfigFile: 'receipt-mobile.js',
 	baseUrl: './js',
 	paths: {
-		jquery : 'lib/jquery-1.7.2',
+		jquery : 'lib/jquery',
 		order: 'lib/order',
 		underscore : 'lib/underscore',
 		backbone : 'lib/backbone'
