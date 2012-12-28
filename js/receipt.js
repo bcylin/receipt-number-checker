@@ -13,14 +13,30 @@ require.config({
 	mainConfigFile: 'receipt.js',
 	baseUrl: './js',
 	paths: {
-		jquery : 'lib/jquery-1.7.2',
-		order: 'lib/order',
-		underscore : 'lib/underscore',
-		backbone : 'lib/backbone',
-		scrollTo : 'plugin/jquery.scrollTo',
+		'jquery' : 'lib/jquery-1.7.2',
+		'underscore' : 'lib/underscore',
+		'backbone' : 'lib/backbone',
+		'scrollTo' : 'plugin/jquery.scrollTo',
 		'bootstrap-modal' : 'plugin/bootstrap-modal',
 		'bootstrap-tooltip' : 'plugin/bootstrap-tooltip',
 		'bootstrap-transition' : 'plugin/bootstrap-transition'
+	},
+	// Configure the dependencies and exports for browser globals script
+	shim: {
+		'underscore': {
+			exports: '_'
+		},
+		'backbone': {
+			deps: [
+				'underscore',
+				'jquery'
+			],
+			exports: 'Backbone'
+		},
+		'scrollTo': { deps: ['jquery'] },
+		'bootstrap-modal': { deps: ['jquery'] },
+		'bootstrap-tooltip': { deps: ['jquery'] },
+		'bootstrap-transition': { deps: ['jquery'] }
 	}
 });
 

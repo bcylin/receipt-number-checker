@@ -17,11 +17,24 @@
 		order: 'lib/order',
 		underscore : 'lib/underscore',
 		backbone : 'lib/backbone'
+	},
+	// Configure the dependencies and exports for browser globals script
+	shim: {
+		'underscore': {
+			exports: '_'
+		},
+		'backbone': {
+			deps: [
+				'underscore',
+				'jquery'
+			],
+			exports: 'Backbone'
+		}
 	}
 });
 
 require([
-	'order!jquery',
+	'jquery',
 	'models/prizeModel',
 	'views/titleView',
 	'views/inputView',

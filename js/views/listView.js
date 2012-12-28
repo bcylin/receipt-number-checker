@@ -7,10 +7,9 @@
  */
 
 define([
-	'order!jquery',
-	'order!underscore',
-	'order!backbone',
-	'order!scrollTo'
+	'jquery',
+	'backbone',
+	'scrollTo'
 ], function($) {
 
 return Backbone.View.extend({
