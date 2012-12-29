@@ -4,24 +4,37 @@
  *
  * Main config of loading required modules on mobile devices
  *
- * Created by Ben (c) 2012
- * Released under GNU General Public License v2
- * http://www.gnu.org/licenses/gpl-2.0.html
+ * Created by Ben <@bcylin> (c) 2012
+ * Released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
  require.config({
 	mainConfigFile: 'receipt-mobile.js',
 	baseUrl: './js',
 	paths: {
-		jquery : 'lib/jquery-1.7.2',
+		jquery : 'lib/jquery',
 		order: 'lib/order',
 		underscore : 'lib/underscore',
 		backbone : 'lib/backbone'
+	},
+	// Configure the dependencies and exports for browser globals script
+	shim: {
+		'underscore': {
+			exports: '_'
+		},
+		'backbone': {
+			deps: [
+				'underscore',
+				'jquery'
+			],
+			exports: 'Backbone'
+		}
 	}
 });
 
 require([
-	'order!jquery',
+	'jquery',
 	'models/prizeModel',
 	'views/titleView',
 	'views/inputView',

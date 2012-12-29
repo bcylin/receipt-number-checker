@@ -4,25 +4,43 @@
  *
  * Main config of loading required modules using RequireJS 1.0.8
  *
- * Created by Ben (c) 2012
- * Released under GNU General Public License v2
- * http://www.gnu.org/licenses/gpl-2.0.html
+ * Created by Ben <@bcylin> (c) 2012
+ * Released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
 require.config({
 	mainConfigFile: 'receipt.js',
 	baseUrl: './js',
 	paths: {
-		jquery : 'lib/jquery-1.7.2',
-		order: 'lib/order',
-		underscore : 'lib/underscore',
-		backbone : 'lib/backbone',
-		scrollTo : 'plugin/jquery.scrollTo',
+		'jquery' : 'lib/jquery',
+		'underscore' : 'lib/underscore',
+		'backbone' : 'lib/backbone',
+		'scrollTo' : 'plugin/jquery.scrollTo',
 		'bootstrap-modal' : 'plugin/bootstrap-modal',
 		'bootstrap-tooltip' : 'plugin/bootstrap-tooltip',
 		'bootstrap-transition' : 'plugin/bootstrap-transition'
+	},
+	// Configure the dependencies and exports for browser globals script
+	shim: {
+		'underscore': {
+			exports: '_'
+		},
+		'backbone': {
+			deps: [
+				'underscore',
+				'jquery'
+			],
+			exports: 'Backbone'
+		},
+		'scrollTo': { deps: ['jquery'] },
+		'bootstrap-modal': { deps: ['jquery'] },
+		'bootstrap-tooltip': { deps: ['jquery'] },
+		'bootstrap-transition': { deps: ['jquery'] }
 	}
 });
+
+// require(['views/share', 'views/signature']);
 
 require([
 	'models/prizeModel',
@@ -32,9 +50,7 @@ require([
 	'views/inputView',
 	'views/counterView',
 	'views/listView',
-	'views/notifyView',
-	// 'views/signature',
-	// 'views/share'
+	'views/notifyView'
 ], function(
 	PrizeModel,
 	RecordsCollection,
@@ -128,7 +144,7 @@ require([
 		// listView delegate method
 		// @param {string} client id of Backbone model
 		app.listViewDidSelectItemWithCid = function(cid) {
-			this.notifyView.displayResult( this.records.getByCid(cid) );
+			this.notifyView.displayResult( this.records.get(cid) );
 		};
 
 		// notifyView delegate methods

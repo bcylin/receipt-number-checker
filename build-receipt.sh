@@ -5,7 +5,7 @@ node lib/r.js -o build-receipt.js
 node lib/r.js -o build-receipt-mobile.js
 cd ..
 
-lessc css/receipt.less > css/receipt.css
+lessc -x css/receipt.less > css/receipt.css
 
 deploy=receipt
 
@@ -27,7 +27,6 @@ cp -fv css/lib/reset.css $deploy"/css/lib"
 cp -fv css/plugin/bootstrap-receipt.min.css $deploy"/css/plugin"
 cp -fv js/receipt-built.js $deploy"/js"
 cp -fv js/receipt-mobile-built.js $deploy"/js"
-cp -fv js/lib/html5shiv.js $deploy"/js/lib"
 cp -fv js/lib/require.min.js $deploy"/js/lib"
 cp -fv data/numbers.json $deploy"/data/numbers.json"
 cp -rfv img $deploy

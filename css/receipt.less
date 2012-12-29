@@ -1,8 +1,11 @@
-/**
+@import "lib/reset.less";
+@import "plugin/bootstrap.less";
+
+/*!
  * receipt.less
  * https://github.com/bcylin/receipt-number-checker
  *
- * Created by Ben (c) 2012
+ * Created by Ben <@bcylin> (c) 2012
  * Released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -357,33 +360,38 @@ body {
 
 @arrow-color: #333333;
 
+@box-height: 60px;
+@box-width: 110px;
+
 #input .arrow {
 	position: absolute;
+	z-index: 1;
 	top: 1.5em;
 	left: 3em;
-	height: 60px;
-	width: 110px;
+	height: @box-height;
+	width: @box-width;
 	padding: 1em;
 	color: white;
 	text-align: right;
 	background-color: @arrow-color;
-	border-radius: 5px 3px 3px 5px;
+	border-radius: 5px 2px 2px 5px;
 	.box;
 	.transition(left 0.3s ease-in-out);
 }
 
 #input .arrow:after {
+	.box;
 	content: "";
 	position: absolute;
-	top: 0;
-	left: 108px;
+	z-index: -1;
+	width: @box-height / 1.414;
+	height: @box-height / 1.414;
+	top: @box-height * 0.293 / 2;	// 1 - 1/sqrt(2) = 0.293
+	left: @box-width - (@box-height / 1.414) / 2;
 	margin: 0;
-	width: 35px;
-	border-top: 30px solid transparent;
-	border-right: 0;
-	border-bottom: 30px solid transparent;
-	border-left: 35px solid @arrow-color;
-	height: 60px;
+	background-color: @arrow-color;
+	.transform(rotate(45deg));
+	.transform-origin(center center);
 	.box;
 }
 
@@ -610,7 +618,7 @@ body {
 	z-index: -2;
 	top: 0;
 	left: 1%;
-	width: 99%;
+	width: 98%;
 	height: @counter-height + 3px;
 	border-radius: 5px;
 	background-color: gray;
@@ -728,7 +736,7 @@ body {
 
 
 // ---------------
-/* Motify Modal */
+/* Notify Modal */
 // --------------
 
 #notify {

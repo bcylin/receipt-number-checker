@@ -7,11 +7,10 @@
  */
 
 define([
-	'order!jquery',
-	'order!underscore',
-	'order!backbone',
-	'order!models/drawModel'
-], function($, unused, unused, DrawModel) {
+	'jquery',
+	'backbone',
+	'models/drawModel'
+], function($, unused, DrawModel) {
 
 return function() {
 
