@@ -40,8 +40,6 @@ require.config({
 	}
 });
 
-// require(['views/share', 'views/signature']);
-
 require([
 	'models/prizeModel',
 	'collections/recordsCollection',
