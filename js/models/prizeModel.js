@@ -34,6 +34,12 @@ return function() {
 			dataType: 'json',
 			success: function(data) {
 				var keys = Object.keys(data).sort();
+
+				// Fix the order of January and November
+				if (keys[0] === "01-02月" && keys[1] === "11-12月") {
+					keys.reverse();
+				}
+
 				_current.prevDraw.setData({
 					months: keys[0],
 					prizes: data[keys[0]]
