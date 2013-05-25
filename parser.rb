@@ -74,6 +74,6 @@ draws = {
 
 filename = File.expand_path("./data/numbers.json")
 File.open(filename, "w") do |file|
-    file.write( draws.to_json )
+    file.write( "#{draws.to_json}\n" )
     puts "Data output: #{filename}"
 end
