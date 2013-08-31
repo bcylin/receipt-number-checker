@@ -1,6 +1,8 @@
 #!/bin/sh
 
-echo "\n\033[31mBuild script removes unstaged changes\033[0m"
+echo "\n\033[31mStash uncommitted changes\033[0m"
+git stash save "Build process"
+echo ""
 read -p "[^C] to cancel / [Return] to continue: "
 
 # Link built JavaScript and CSS
@@ -8,7 +10,7 @@ perl -pi -e "s/\/\/\ 'js\//'js\//g" receipt.html
 perl -pi -e "s/stylesheet\/less/stylesheet/g" receipt.html
 perl -pi -e "s/\.less\"/\.css\"/g" receipt.html
 perl -pi -e "s/^\t.+less.min.js\"><\/script>//g" receipt.html
-echo "require(['views/share', 'views/signature']);" >> js/receipt.js
+echo "require(['private/share', 'private/signature']);" >> js/receipt.js
 
 # Build
 cd js
@@ -31,8 +33,6 @@ test -d $deploy"/css/lib" || mkdir $deploy"/css/lib"
 test -d $deploy"/css/plugin" || mkdir $deploy"/css/plugin"
 test -d $deploy"/js" || mkdir $deploy"/js"
 test -d $deploy"/js/lib" || mkdir $deploy"/js/lib"
-test -d $deploy"/data" || mkdir $deploy"/data"
-test -d $deploy"/media" || mkdir $deploy"/media"
 
 cp -fv receipt.html $deploy"/index.html"
 mv -fv css/receipt.css $deploy"/css"
@@ -47,3 +47,5 @@ cp -rfv img $deploy
 
 # Clean up
 git checkout -- .
+echo ""
+git stash pop
