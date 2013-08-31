@@ -1,0 +1,10 @@
+# Built
+deploy
+receipt
+css/receipt.css
+js/receipt-built.js
+js/receipt-mobile-built.js
+
+# Private
+cache
+private
