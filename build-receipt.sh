@@ -48,4 +48,12 @@ cp -rfv img $deploy
 # Clean up
 git checkout -- .
 echo ""
-git stash pop
+
+# Check out gh-pages
+git checkout gh-pages
+
+# Update built files
+echo ""
+rm -rf ./css ./js ./data ./img index.html
+mv ./receipt/* .
+rmdir ./receipt
