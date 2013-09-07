@@ -92,14 +92,6 @@ return function() {
 	};
 
 	// @param {string} which draw
-	// @return {object} prize index-name mapping
-	this.getPrizeNameIDMapping = function(whichDraw) {
-		var draw = !whichDraw ? _draw :
-					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
-		return _current[draw].get('prizeNameOfID');
-	};
-
-	// @param {string} which draw
 	// @return {string} name of the months
 	this.getMonths = function(whichDraw) {
 		var draw = !whichDraw ? _draw :
@@ -108,11 +100,11 @@ return function() {
 	};
 
 	// @param {string} which draw
-	// @return {object} each array of winning numbers
-	this.getNumberList = function(whichDraw) {
+	// @return {object} array of winning numbers in each prize name
+	this.getPrizeNumbers = function(whichDraw) {
 		var draw = !whichDraw ? _draw :
 					(whichDraw === 'thisDraw' || whichDraw === 'prevDraw') ? whichDraw : draw;
-		return _current[draw].get('numberList');
+		return _current[draw].get('prizeNumbers');
 	};
 
 	// @param {string} winning number
@@ -135,9 +127,8 @@ return function() {
 			matchedNumber: undefined,
 			prizeName: undefined
 		};
-		var type = ['matchAll', 'matchThree'];
 
-		$.each(type, function(i, matchType) {
+		$.each(['matchAll', 'matchThree'], function(i, matchType) {
 			$.each(_current[_draw].get(matchType), function(i, winNumber) {
 				// match the last three digits
 				var match = winNumber.substr(winNumber.length - 3, 3);
@@ -149,6 +140,7 @@ return function() {
 				}
 			});
 		});
+
 		return result;
 	};
 };
