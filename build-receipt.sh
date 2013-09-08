@@ -10,7 +10,15 @@ perl -pi -e "s/\/\/\ 'js\//'js\//g" receipt.html
 perl -pi -e "s/stylesheet\/less/stylesheet/g" receipt.html
 perl -pi -e "s/\.less\"/\.css\"/g" receipt.html
 perl -pi -e "s/^\t.+less.min.js\"><\/script>//g" receipt.html
-echo "require(['private/share', 'private/signature']);" >> js/receipt.js
+
+# Link share functions
+if [ -d ../projects-share/ ]; then
+  echo "\n""# Found share functions.""\n"
+  rm -rf js/private
+  mkdir js/private
+  cp -v ../projects-share/*.js ./js/private/
+  echo "require(['private/share', 'private/signature']);" >> js/receipt.js
+fi
 
 # Build
 cd js
