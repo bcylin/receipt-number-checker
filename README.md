@@ -3,7 +3,7 @@
 Result checker for Taiwan Uniform Receipt Lottery
 
 ### Demo
-http://bcylin.github.com/projects/receipt/
+http://bcylin.github.io/receipt-number-checker/
 
 ### Parse Data
 
