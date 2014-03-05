@@ -21,6 +21,7 @@ require "nokogiri"
 require "open-uri"
 require "json"
 
+
 # Fetch data
 
 url = "http://invoice.etax.nat.gov.tw/"
@@ -50,7 +51,9 @@ end
 # @return {Hash}   "prize name" => [numbers...]
 def parse(html, id)
     nodes = html.xpath("//div[@id='#{id}']")
-    month = nodes.xpath(".//h2")[1].content.match(/\d+-\d+.{1}/)[0]
+    month = nodes.xpath(".//h2").map { |node|
+                node.content.match(/\d{2}-\d{2}.{1}/)
+            }.reject!(&:nil?).first.to_s
     titles = nodes.xpath(".//span[@class='t18Red']/../../td[@class='title']")
     numbers = nodes.xpath(".//span[@class='t18Red']")
     draw = {}
