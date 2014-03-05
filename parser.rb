@@ -54,6 +54,7 @@ def parse(html, id)
     month = nodes.xpath(".//h2").map { |node|
                 node.content.match(/\d{2}-\d{2}.{1}/)
             }.reject!(&:nil?).first.to_s
+    month = month.empty? ? id : month
     titles = nodes.xpath(".//span[@class='t18Red']/../../td[@class='title']")
     numbers = nodes.xpath(".//span[@class='t18Red']")
     draw = {}
@@ -66,6 +67,9 @@ end
 
 this_month, this_draw = parse(html, "area1")
 last_month, last_draw = parse(html, "area2")
+
+this_month = (this_month == "area1") ? "本期" : this_month
+last_month = (this_month == "area2") ? "前期" : last_month
 
 
 # Output as JSON file
