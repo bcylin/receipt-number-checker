@@ -9,16 +9,34 @@ require "nokogiri"
 require "open-uri"
 require "JSON"
 
-task default: "parse"
 
 desc "Echo parsed receipt numbers from http://invoice.etax.nat.gov.tw/"
-task :parse do
+task parse: "parse:pretty"
+task default: "parse"
+
+
+namespace :parse do
+  task :pretty do
+    puts JSON.pretty_generate numbers()
+  end
+
+  desc "Echo a compact JSON string of parsed receipt numbers"
+  task :ugly do
+    puts numbers().to_json
+  end
+end
+
+
+private
+
+
+def numbers()
   url = "http://invoice.etax.nat.gov.tw/"
   begin
     html = Nokogiri::HTML(open(url))
   rescue
     puts "Invalid HTML from #{url}"
-    next
+    return {}
   end
 
   this_month, this_draw = parse(html, "area1")
@@ -27,17 +45,11 @@ task :parse do
   this_month = (this_month == "area1") ? "本期" : this_month
   last_month = (this_month == "area2") ? "前期" : last_month
 
-  # Output as JSON file
-  draws = {
+  numbers = {
     this_month => this_draw,
     last_month => last_draw
   }
-
-  puts JSON.pretty_generate(draws)
 end
-
-
-private
 
 
 # Parse winning numbers in certain div with given id
