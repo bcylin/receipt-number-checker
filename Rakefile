@@ -27,6 +27,16 @@ namespace :parse do
 end
 
 
+desc "Update data/numbers.json"
+task :update do
+  filename = File.expand_path("./data/numbers.json")
+  File.open(filename, "w") do |file|
+    file.write "#{numbers().to_json}\n"
+    puts "Data output: #{filename}"
+  end
+end
+
+
 private
 
 
