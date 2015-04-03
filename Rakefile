@@ -37,6 +37,12 @@ task :update do
 end
 
 
+desc "Run locally"
+task :run do
+  sh("open http://localhost:8000/receipt.html && python -m SimpleHTTPServer")
+end
+
+
 private
 
 
