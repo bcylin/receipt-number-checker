@@ -9,15 +9,15 @@ http://bcylin.github.io/receipt-number-checker/
 
 Source: [財政部稅務入口網](http://invoice.etax.nat.gov.tw)
 
-    $ ./parser.rb
+    $ rake parse
 
-Output:
+Update `data/numbers.json`:
 
-    data/numbers.json
+    $ rake update
 
 ### Run Locally
 
-    $ open http://localhost:8000/receipt.html && python -m SimpleHTTPServer
+    $ rake run
 
 ### Build
 
