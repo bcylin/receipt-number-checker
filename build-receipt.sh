@@ -27,6 +27,7 @@ node lib/r.js -o build-receipt-mobile.js
 cd ..
 
 lessc -x css/receipt.less > css/receipt.css
+echo "" >> css/receipt.css
 
 # Setup directory for deployment
 deploy=receipt
