@@ -2,58 +2,58 @@
  * views/inputView.js
  * Take care of input behaviour
  *
- * @return	{function} View constructor extended from Bacbone.View
- * @author	Ben on 19/Jul/2012
+ * @return  {function} View constructor extended from Bacbone.View
+ * @author  Ben on 19/Jul/2012
  */
 
 define([
-	'jquery',
-	'backbone'
+  'jquery',
+  'backbone'
 ], function($) {
 
 return Backbone.View.extend({
 
-	NUM_CHAR_TO_DETECT: 3,
+  NUM_CHAR_TO_DETECT: 3,
 
-	initialize: function() {
-		this.app = window.receiptApp;
-		this.delegate = this.options.delegate;
-	},
+  initialize: function() {
+    this.app = window.receiptApp;
+    this.delegate = this.options.delegate;
+  },
 
-	events: {
-		'keyup': 'processInput'
-	},
+  events: {
+    'keyup': 'processInput'
+  },
 
-	processInput: function(event) {
-		var input = event.target;
+  processInput: function(event) {
+    var input = event.target;
 
-		// ignore non numeric input & non arrow key
-		if ( !(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 37 && event.keyCode <= 40) ) {
-			var num = input.value.match(/\d+/);
-			input.value = num ? num[0] : "";
-		}
+    // ignore non numeric input & non arrow key
+    if ( !(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 37 && event.keyCode <= 40) ) {
+      var num = input.value.match(/\d+/);
+      input.value = num ? num[0] : "";
+    }
 
-		// process the number input once it reaches certian digits
-		if (input.value.length >= this.NUM_CHAR_TO_DETECT) {
-			var num = input.value;
-			input.value = "";	// empty input
-			this.delegate.inputViewDidAcquireNumber(num);
-		}
-	},
+    // process the number input once it reaches certian digits
+    if (input.value.length >= this.NUM_CHAR_TO_DETECT) {
+      var num = input.value;
+      input.value = "";  // empty input
+      this.delegate.inputViewDidAcquireNumber(num);
+    }
+  },
 
-	// Input a number
-	// @param {number|string} of three digits
-	input: function(num) {
-		num.toString().length === this.NUM_CHAR_TO_DETECT && this.save(num);
-	},
+  // Input a number
+  // @param {number|string} of three digits
+  input: function(num) {
+    num.toString().length === this.NUM_CHAR_TO_DETECT && this.save(num);
+  },
 
-	focus: function() {
-		this.$el.focus();
-	},
+  focus: function() {
+    this.$el.focus();
+  },
 
-	blur: function() {
-		this.$el.blur();
-	}
+  blur: function() {
+    this.$el.blur();
+  }
 });
 
 });
