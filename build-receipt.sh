@@ -21,6 +21,9 @@ if [ -d ../projects-share/ ]; then
 fi
 
 # Build
+html-minifier --minify-js --remove-comments --collapse-whitespace -o receipt.min.html receipt.html
+echo "" >> receipt.min.html
+
 cd js
 node lib/r.js -o build-receipt.js
 node lib/r.js -o build-receipt-mobile.js
@@ -43,7 +46,7 @@ test -d $deploy"/css/plugin" || mkdir $deploy"/css/plugin"
 test -d $deploy"/js" || mkdir $deploy"/js"
 test -d $deploy"/js/lib" || mkdir $deploy"/js/lib"
 
-cp -fv receipt.html $deploy"/index.html"
+mv -fv receipt.min.html $deploy"/index.html"
 mv -fv css/receipt.css $deploy"/css"
 cp -fv css/lib/reset.css $deploy"/css/lib"
 cp -fv css/plugin/bootstrap-receipt.min.css $deploy"/css/plugin"
