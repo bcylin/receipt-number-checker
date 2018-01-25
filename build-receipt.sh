@@ -9,7 +9,7 @@ read -p "[^C] to cancel / [Return] to continue: "
 perl -pi -e "s/\/\/\ 'js\//'js\//g" receipt.html
 perl -pi -e "s/stylesheet\/less/stylesheet/g" receipt.html
 perl -pi -e "s/\.less\"/\.css\"/g" receipt.html
-perl -pi -e "s/^\t.+less.min.js\"><\/script>//g" receipt.html
+perl -pi -e "s/^\s.+less.min.js\"><\/script>//g" receipt.html
 
 # Link share functions
 if [ -d ../projects-share/ ]; then
