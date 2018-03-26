@@ -1,0 +1,19 @@
+{
+  "name": "receipt-number-checker",
+  "version": "0.3.8",
+  "description": "Result checker for Taiwan Uniform Receipt Lottery",
+  "dependencies": {
+    "less-plugin-clean-css": "^1.5.1",
+    "less": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcylin/receipt-number-checker.git"
+  },
+  "author": "bcylin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bcylin/receipt-number-checker/issues"
+  },
+  "homepage": "https://github.com/bcylin/receipt-number-checker#readme"
+}

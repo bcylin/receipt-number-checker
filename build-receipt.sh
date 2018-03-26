@@ -1,5 +1,7 @@
 #!/bin/sh
 
+npm install
+
 echo "\n\033[31mStash uncommitted changes\033[0m"
 git stash save "Build process"
 echo ""
@@ -29,7 +31,7 @@ node lib/r.js -o build-receipt.js
 node lib/r.js -o build-receipt-mobile.js
 cd ..
 
-lessc -x css/receipt.less > css/receipt.css
+./node_modules/less/bin/lessc --clean-css="--s1 --advanced" css/receipt.less > css/receipt.css
 echo "" >> css/receipt.css
 
 # Setup directory for deployment
