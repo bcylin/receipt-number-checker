@@ -23,7 +23,7 @@ if [ -d ../projects-share/ ]; then
 fi
 
 # Build
-html-minifier --minify-js --remove-comments --collapse-whitespace -o receipt.min.html receipt.html
+./node_modules/html-minifier/cli.js --minify-js --remove-comments --collapse-whitespace -o receipt.min.html receipt.html
 echo "" >> receipt.min.html
 
 cd js

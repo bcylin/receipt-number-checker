@@ -3,8 +3,9 @@
   "version": "0.3.8",
   "description": "Result checker for Taiwan Uniform Receipt Lottery",
   "dependencies": {
-    "less-plugin-clean-css": "^1.5.1",
-    "less": "^3.0.1"
+    "html-minifier": "^3.5.12",
+    "less": "^3.0.1",
+    "less-plugin-clean-css": "^1.5.1"
   },
   "repository": {
     "type": "git",
