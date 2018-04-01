@@ -616,20 +616,6 @@ body {
 	}
 }
 
-// surface underneath the panel
-#counter:after {
-	content: "";
-	position: absolute;
-	z-index: -2;
-	top: 0;
-	left: 1%;
-	width: 98%;
-	height: @counter-height + 3px;
-	border-radius: 5px;
-	background-color: gray;
-	.box-shadow(0 5px 10px 0 rgba(0,0,0,.3));
-}
-
 #counter.chrome:after {
 	content: none !important;	// bug of different layers in Google Chrome 22
 }
